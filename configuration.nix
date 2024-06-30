@@ -170,6 +170,7 @@ in
     haskellPackages.xmobar
     feh
     trayer
+    # xorg.xbacklight
     # htop
   ]);
 
