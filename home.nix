@@ -249,6 +249,12 @@
       plugins = [ "git" "shrink-path" ];
       theme = "lambda";
     };
+
+    shellAliases = {
+        hibernate = "systemctl hibernate";
+        suspend = "systemctl suspend";
+        logout = "sudo pkill -u username";
+    };
   };
 
   programs.git = {
