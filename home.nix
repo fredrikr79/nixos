@@ -253,7 +253,7 @@
     shellAliases = {
         hibernate = "systemctl hibernate";
         suspend = "systemctl suspend";
-        logout = "sudo pkill -u username";
+        logout = "sudo pkill -u fredrikr";
     };
   };
 
