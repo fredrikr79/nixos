@@ -83,6 +83,9 @@ in
   services.xserver = {
     enable = true;
     autorun = true;
+
+    autoRepeatDelay = 250;
+    autoRepeatInterval = 24;
     
     # DVORAK + NO
     layout = "us,no";
@@ -253,5 +256,12 @@ in
   #   script = "/home/fredrikr/.fehbg &";
   # };
 
+   # Power button invokes suspend, not shutdown.
+
+  services.logind = {
+    # extraConfig = "HandlePowerKey=hibernate";
+    lidSwitch = "hybrid-sleep";
+    powerKey = "hibernate";
+  }; 
 }
 
