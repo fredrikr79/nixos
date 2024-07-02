@@ -90,7 +90,7 @@ in
     # DVORAK + NO
     layout = "us,no";
     xkbVariant = "dvp,";
-    xkbOptions = "compose:menu, grp:alt_shift_toggle";
+    xkbOptions = "compose:menu, grp:alt_shift_toggle, lv3:ralt_switch";
 
     windowManager = {
       xmonad = {
@@ -173,6 +173,7 @@ in
     haskellPackages.xmobar
     feh
     trayer
+    xclip
     # xorg.xbacklight
     # htop
   ]);
@@ -263,5 +264,32 @@ in
     lidSwitch = "hybrid-sleep";
     powerKey = "hibernate";
   }; 
+
+  fonts = {
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "FiraCode" "Monoid" ]; })
+    ];
+
+    fontconfig = {
+      defaultFonts = {
+        monospace = [ "Monoid" ];
+      };
+    };
+  };
+
+  # video acceleration
+  # nixpkgs.config.packageOverrides = pkgs: {
+  #   intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
+  # };
+  # hardware.opengl = { # hardware.graphics on unstable
+  #   enable = true;
+  #   extraPackages = with pkgs; [
+  #     intel-media-driver # LIBVA_DRIVER_NAME=iHD
+  #     intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+  #     libvdpau-va-gl
+  #   ];
+  # };
+  # environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; }; # Force intel-media-driver
+
 }
 

@@ -155,19 +155,29 @@
           ];
 
           window = {
-            completion = {border = "solid";};
-            documentation = {border = "solid";};
+            completion = {
+              winhighlight = "FloatBorder:CmpBorder,Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel";
+              scrollbar = false;
+              sidePadding = 0;
+              border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ];
+            };
+            
+            settings.documentation = {
+              border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ];
+              winhighlight = "FloatBorder:CmpBorder,Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel";
+            };
           };
 
           mapping = {
-            "<C-Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
             "<C-j>" = "cmp.mapping.select_next_item()";
             "<C-k>" = "cmp.mapping.select_prev_item()";
             "<C-e>" = "cmp.mapping.abort()";
             "<C-b>" = "cmp.mapping.scroll_docs(-4)";
             "<C-f>" = "cmp.mapping.scroll_docs(4)";
             "<C-Space>" = "cmp.mapping.complete()";
-            "<C-CR>" = "cmp.mapping.confirm({ select = true })";
+            "<CR>" = "cmp.mapping.confirm({ select = true })";
             "<S-CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })";
           };
         };
@@ -177,22 +187,55 @@
       cmp-buffer = {enable = true;};
       cmp-path = {enable = true;}; # file system paths
       cmp_luasnip = {enable = true;}; # snippets
-      cmp-cmdline = {enable = false;}; # autocomplete for cmdline
+      cmp-cmdline = {enable = true;}; # autocomplete for cmdline
+
       
       lsp = {
         enable = true;
         keymaps = {
+          silent = true;
           diagnostic = {
             "<leader>j" = "goto_next";
             "<leader>k" = "goto_prev";
             "<leader>e" = "open_float";
           };
           lspBuf = {
-            K = "hover";
-            gD = "references";
-            gd = "definition";
-            gi = "implementation";
-            gt = "type_definition";
+            gd = {
+              action = "definition";
+              desc = "Goto Definition";
+            };
+            gr = {
+              action = "references";
+                desc = "Goto References";
+            };
+            gD = {
+              action = "declaration";
+              desc = "Goto Declaration";
+            };
+            gI = {
+              action = "implementation";
+              desc = "Goto Implementation";
+            };
+            gT = {
+              action = "type_definition";
+              desc = "Type Definition";
+            };
+            K = {
+              action = "hover";
+                desc = "Hover";
+            };
+            "<leader>cw" = {
+              action = "workspace_symbol";
+              desc = "Workspace Symbol";
+            };
+            "<leader>cr" = {
+              action = "rename";
+              desc = "Rename";
+            };
+            "<leader>ca" = {
+              action = "code_action";
+              desc = "code action";
+            };
           };
         };
         servers = {
@@ -231,6 +274,37 @@
 
       which-key.enable = true;
     };
+    extraConfigLua = ''
+          luasnip = require("luasnip")
+
+          kind_icons = {
+            Text = "󰊄",
+            Method = "",
+            Function = "󰡱",
+            Constructor = "",
+            Field = "",
+            Variable = "󱀍",
+            Class = "",
+            Interface = "",
+            Module = "󰕳",
+            Property = "",
+            Unit = "",
+            Value = "",
+            Enum = "",
+            Keyword = "",
+            Snippet = "",
+            Color = "",
+            File = "",
+            Reference = "",
+            Folder = "",
+            EnumMember = "",
+            Constant = "",
+            Struct = "",
+            Event = "",
+            Operator = "",
+            TypeParameter = "",
+          }
+    '';
   };
 
   programs.zsh = {
@@ -256,6 +330,14 @@
         suspend = "systemctl suspend";
         logout = "sudo pkill -u fredrikr";
     };
+
+    defaultKeymap = "viins";
+    initExtra = ''
+        bindkey -v
+        bindkey -M viins 'jk' vi-cmd-mode
+    '';
+
+    zsh-abbr.enable = true;
   };
 
   programs.git = {
