@@ -60,6 +60,20 @@ in
   #   useXkbConfig = true; # use xkb.options in tty.
   };
 
+  i18n.inputMethod = {
+      enabled = "fcitx5";
+      fcitx5.addons = with pkgs; [ 
+          fcitx5-rime 
+          fcitx5-mozc 
+          fcitx5-gtk
+          fcitx5-configtool
+      ];
+  };
+  # i18n.inputMethod.fcitx5.engines = with pkgs.fcitx-engines; [ mozc ];
+  # i18n.inputMethod = {
+  #   enabled = "ibus";
+  #   ibus.engines = with pkgs.ibus-engines; [ mozc ];
+  # };
 
   # TTY settings
   i18n = {
@@ -84,7 +98,7 @@ in
     enable = true;
     autorun = true;
 
-    autoRepeatDelay = 250;
+    autoRepeatDelay = 200;
     autoRepeatInterval = 24;
     
     # DVORAK + NO
@@ -139,8 +153,11 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
+  services.blueman.enable = true;
+
   hardware.bluetooth = {
     enable = true;
+    powerOnBoot = true;
     hsphfpd.enable = true;
     settings = {
       General = {
@@ -176,6 +193,12 @@ in
     xclip
     # xorg.xbacklight
     # htop
+    usbutils
+    udiskie
+    udisks
+    # javaPackages.openjfx17
+    libGL
+    # gtk3
   ]);
 
   programs.steam.enable = true;
@@ -265,17 +288,6 @@ in
     powerKey = "hibernate";
   }; 
 
-  fonts = {
-    packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "FiraCode" "Monoid" ]; })
-    ];
-
-    fontconfig = {
-      defaultFonts = {
-        monospace = [ "Monoid" ];
-      };
-    };
-  };
 
   # video acceleration
   # nixpkgs.config.packageOverrides = pkgs: {
@@ -291,5 +303,64 @@ in
   # };
   # environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; }; # Force intel-media-driver
 
+
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+
+
+  services.xrdp = {
+    enable = true;
+    defaultWindowManager = "xmonad";
+    openFirewall = true;
+  };
+
+  fonts = {
+    # enableDefaultFonts = true;
+
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "FiraCode" "Monoid" ]; })
+    ];
+
+    fonts = with pkgs; [
+      noto-fonts
+      ubuntu_font_family
+      unifont
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      carlito
+      dejavu_fonts
+      ipafont
+      kochi-substitute
+      source-code-pro
+      ttf_bitstream_vera
+    ];
+  
+    fontconfig = {
+      antialias = true;
+      # defaultFonts = {
+      #   serif = [ "Ubuntu" ];
+      #   sansSerif = [ "Ubuntu" ];
+      #   monospace = [ "Ubuntu Source" ];
+      # };
+      # defaultFonts = {
+      #   monospace = [ "Monoid" ];
+      # };
+      defaultFonts = {
+        monospace = [
+          "DejaVu Sans Mono"
+          "IPAGothic"
+        ];
+        sansSerif = [
+          "DejaVu Sans"
+          "IPAPGothic"
+        ];
+        serif = [
+          "DejaVu Serif"
+          "IPAPMincho"
+        ];
+      };
+    };
+  };
 }
 

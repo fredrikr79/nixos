@@ -16,6 +16,12 @@
     brightnessctl
     zathura
     python3
+    sage
+    quickemu
+    maven
+    vscode-fhs
+    anki-bin
+    tldr
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -275,6 +281,12 @@
       presence-nvim.enable = true;
 
       which-key.enable = true;
+
+      nvim-jdtls = {
+          enable = true;
+          data = "/home/fredrikr/.cache/jdtls/workspace";
+      };
+
     };
     extraConfigLua = ''
           luasnip = require("luasnip")
@@ -324,13 +336,14 @@
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "shrink-path" ];
-      theme = "lambda";
+      theme = "arrow";
     };
 
     shellAliases = {
         hibernate = "systemctl hibernate";
         suspend = "systemctl suspend";
         logout = "sudo pkill -u fredrikr";
+        lock = "/home/fredrikr/.logout.sh";
     };
 
     defaultKeymap = "viins";
@@ -346,5 +359,11 @@
       enable = true;
       userName = "fredrikr79";
       userEmail = "fredrikrobertsen7@gmail.com";
+  };
+
+  programs.java = {
+    enable = true;
+    package = (pkgs.jdk21.override { enableJavaFX = true; });
+    # package = pkgs.jdk21;
   };
 }
