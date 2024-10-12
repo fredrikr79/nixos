@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    vi-xournalpp = {
+        url = "github:raw-bacon/vi-xournalpp";
+        flake = false;
+    };
+
     #nbfc-linux = {
       #url = "github:nbfc-linux/nbfc-linux";
       #inputs.nixpkgs.follows = "nixpkgs";
@@ -40,24 +45,32 @@
           #];
         #};
 
-        fredrikr = lib.nixosSystem {
-	  inherit system;
-          specialArgs = {inherit inputs;};
-	  modules = [ 
-            ./configuration.nix 
+          fredrikr = lib.nixosSystem {
+              inherit system;
+              specialArgs = {inherit inputs;};
+              modules = [ 
+                  ./configuration.nix 
 
-            home-manager.nixosModules.home-manager {
-              home-manager.useGlobalPkgs = true;
-	      home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "backup";
-              home-manager.users.fredrikr = {
-		imports = [ ./home.nix 
-                  nixvim.homeManagerModules.nixvim 
-                ];
-              };
-            }
-          ];
-        };
+                  home-manager.nixosModules.home-manager 
+
+                  ({ ... }: {
+                      home-manager = {
+                          useGlobalPkgs = true;
+                          useUserPackages = true;
+                          backupFileExtension = "backup";
+                          users.fredrikr = {
+                              imports = [ 
+                                  ./home.nix 
+                                  nixvim.homeManagerModules.nixvim 
+                              ];
+                          };
+                          extraSpecialArgs = {
+                              inherit inputs;
+                          };
+                      };
+                  })
+              ];
+          };
 
       };
     };

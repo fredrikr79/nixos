@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
     home.username = "fredrikr";
@@ -23,6 +23,7 @@
             anki-bin
             tldr
             ripgrep
+            xournalpp
         ];
 
 # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -41,6 +42,10 @@
         ".config/alacritty".source = home/config/alacritty;
         ".config/xmonad".source = home/config/xmonad;
         ".xmobarrc".source = home/.xmobarrc;
+        ".config/xournalpp/plugins/vi-xournalpp" = {
+            source = "${inputs.vi-xournalpp}";
+            recursive = true;
+        };
     };
 
     home.sessionVariables = {
