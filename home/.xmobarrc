@@ -1,0 +1,66 @@
+Config { overrideRedirect = False
+       , font     = "xft:iosevka-9"
+       , bgColor  = "#000000"
+       , lowerOnStart = True
+       , fgColor  = "#f8f8f2"
+       , position = TopW L 100
+       , commands = [ Run Weather "ENVA"
+                        [ "--template", " <tempC>°C <weather>"
+                        , "-L", "0"
+                        , "-H", "25"
+                        , "--low"   , "lightblue"
+                        , "--normal", "#f8f8f2"
+                        , "--high"  , "red"
+                        ] 36000
+                    , Run Cpu
+                        [ "-L", "3"
+                        , "-H", "50"
+                        , "--high"  , "red"
+                        , "--normal", "green"
+                        , "--template", "  <total>%"
+                        ] 10
+                    , Run Alsa "default" "Master"
+                        [ "--template", "  <volumestatus>"
+                        , "--suffix"  , "True"
+                        , "--"
+                        , "--on", ""
+                        ]
+                    , Run Memory ["--template", "   <usedratio>%"] 10
+                    , Run Swap [] 10
+                    , Run Date "%a %Y-%m-%d <fc=#8be9fd>%H:%M:%S</fc>" "date" 10
+                    , Run XMonadLog
+
+                    -- Battery information. This is likely to require some customization
+                    -- based upon your specific hardware. Or, for a desktop you may want
+                    -- to just remove this section entirely.
+                    , Run Battery [
+                        "-t", "<acstatus> <left>%",
+                        "--",
+                        --"-c", "charge_full",
+                        "-O", "󰢟 ",
+                        "-i", "󱟩 ",
+                        "-o", "󰂎 ",
+                        "-h", "green",
+                        "-l", "red"
+                        ] 10
+                    -- , Run Network "wlp0s20f3" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                    , Run CoreTemp       [ "--template" , "<core0> <core1> <core2> <core3>°C"
+                         , "--Low"      , "70"        -- units: °C
+                         , "--High"     , "80"        -- units: °C
+                         , "--low"      , "darkgreen"
+                         , "--normal"   , "darkorange"
+                         , "--high"     , "darkred"
+                         ] 50
+                    , Run DynNetwork     [ "--template" , "  <tx> <rx> kB/s"
+                         , "--Low"      , "1000"       -- units: kB/s
+                         , "--High"     , "5000"       -- units: kB/s
+                         , "--low"      , "darkgreen"
+                         , "--normal"   , "darkorange"
+                         , "--high"     , "darkred"
+                         ] 10
+                    , Run Brightness [ "-t", "󰃠  <percent>%", "--", "-D", "intel_backlight" ] 60
+                    ]
+       , sepChar  = "%"
+       , alignSep = "}{"
+       , template = " %XMonadLog% } %date% { %alsa:default:Master% | %bright% | %cpu% - %coretemp% | %memory% | %ENVA% | %dynnetwork% | %battery% "
+       }

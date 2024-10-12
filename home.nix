@@ -38,6 +38,9 @@
 #   org.gradle.console=verbose
 #   org.gradle.daemon.idletimeout=3600000
 # '';
+        ".config/alacritty".source = home/config/alacritty;
+        ".config/xmonad".source = home/config/xmonad;
+        ".xmobarrc".source = home/.xmobarrc;
     };
 
     home.sessionVariables = {
@@ -85,11 +88,12 @@
         }
         ];
 
-        colorschemes.nord = {
+        colorschemes.dracula = {
             enable = true;
-            settings = {
-                disable_background = true;
-            };
+            # settings = {
+            #     disable_background = true;
+            # };
+            colorterm = false;
         };
 
         viAlias = true;
@@ -130,6 +134,8 @@
         };
 
         plugins = {
+            lualine.enable = true;
+
             coq-nvim.enable = true;
 
             cmp = {
