@@ -199,7 +199,15 @@ in
     # javaPackages.openjfx17
     libGL
     # gtk3
+    zathura
   ]);
+
+  environment.etc."xdg/mimeapps.list" = {
+    text = ''
+      [Default Applications]
+      application/pdf=zathura.desktop
+    '';
+  };
 
   programs.steam.enable = true;
 

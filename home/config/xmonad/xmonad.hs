@@ -26,6 +26,8 @@ import XMonad.StackSet
 
 import Graphics.X11.ExtraTypes.XF86
 
+import XMonad.Layout.Spacing
+
 
 main :: IO ()
 main = xmonad
@@ -45,7 +47,7 @@ myConfig = let
     { modMask = modm
     , terminal = terminal
     , startupHook = myStartupHook
-    , layoutHook = myLayout
+    , layoutHook = spacingWithEdge 3 $ myLayout
     , logHook = historyHook
     }
     `additionalKeysP`
@@ -123,9 +125,9 @@ myXmobarPP = def
 
 myStartupHook :: X ()
 myStartupHook = do
-  spawnOnce "trayer --edge top --align right --SetDockType true \
-            \--SetPartialStrut true --expand true --width 5 --transparent true \
-            \--alpha 0 --tint 0x000000 --height 18 --distance 17"
+  spawnOnce "trayer --edge bottom --align right --SetDockType true \
+            \--SetPartialStrut true --expand false --width 5 --transparent true \
+            \--alpha 0 --tint 0x000000 --height 18 --distance 0"
   spawnOnce "feh --bg-fill --no-fehbg /usr/share/nix.png"
 
 
@@ -133,7 +135,7 @@ myLayout = avoidStruts $ smartBorders tiled ||| smartBorders (Mirror tiled) ||| 
   where
     tiled   = Tall nmaster delta ratio
     nmaster = 1      -- Default number of windows in the master pane
-    ratio   = 1/2    -- Default proportion of screen occupied by master pane
-    delta   = 3/100  -- Percent of screen to increment by when resizing panes
+    ratio   = 3/5    -- Default proportion of screen occupied by master pane
+    delta   = 2/100  -- Percent of screen to increment by when resizing panes
 
 -- toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_a)

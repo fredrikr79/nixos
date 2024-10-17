@@ -14,7 +14,6 @@
 # firefox
             scrot
             brightnessctl
-            zathura
             python3
             sage
             quickemu
@@ -24,6 +23,7 @@
             tldr
             ripgrep
             xournalpp
+            obsidian
         ];
 
 # Home Manager is pretty good at managing dotfiles. The primary way to manage
