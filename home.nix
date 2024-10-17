@@ -7,7 +7,7 @@
     home.stateVersion = "24.05"; # Please read the comment before changing.
 
         home.packages = with pkgs; [
-        htop
+            htop
             dmenu
             alacritty
 # discord
@@ -24,6 +24,7 @@
             ripgrep
             xournalpp
             obsidian
+            redshift
         ];
 
 # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -385,8 +386,37 @@
     programs.java = {
         enable = true;
         package = (pkgs.jdk21.override { enableJavaFX = true; });
-# package = pkgs.jdk21;
+        # package = pkgs.jdk21;
     };
 
+    services.redshift = {
+        enable = true;
 
+        # Display temperature settings
+        temperature = {
+            day = 5700;
+            night = 3500;
+        };
+
+        # Location settings (replace with your coordinates)
+        latitude = "63.410927";
+        longitude = "10.382032";
+
+        # Schedule settings
+        # settings = {
+        #     dawn-time = "6:00-7:45";
+        #     dusk-time = "18:35-20:15";
+        # };
+
+        # General settings
+        # brightness = {
+        #     day = "1";
+        #     night = "0.8";
+        # };
+
+        # extraOptions = [
+        #     "-v"
+        #     "-m randr"
+        # ];
+    };
 }
