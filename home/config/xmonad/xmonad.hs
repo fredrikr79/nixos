@@ -73,8 +73,8 @@ myConfig = let
     , ((0, xF86XK_AudioLowerVolume   ), spawn "amixer set Master 1%-")
     , ((0, xF86XK_AudioRaiseVolume   ), spawn "amixer set Master 1%+")
     , ((0, xF86XK_AudioMute          ), spawn "amixer set Master toggle")
-    , ((0, xF86XK_MonBrightnessUp    ), spawn "brightnessctl set 10%+")
-    , ((0, xF86XK_MonBrightnessDown  ), spawn "brightnessctl set 10%-")
+    , ((0, xF86XK_MonBrightnessUp    ), spawn "brightnessctl set 1%+")
+    , ((0, xF86XK_MonBrightnessDown  ), spawn "brightnessctl set 1%-")
     ] 
     ++
     [((m .|. modm, k), windows $ f i)
