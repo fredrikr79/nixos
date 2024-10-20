@@ -316,13 +316,6 @@ in
   services.gvfs.enable = true;
   services.udisks2.enable = true;
 
-
-  services.xrdp = {
-    enable = true;
-    defaultWindowManager = "xmonad";
-    openFirewall = true;
-  };
-
   fonts = {
     # enableDefaultFonts = true;
 
