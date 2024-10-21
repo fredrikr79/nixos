@@ -274,7 +274,18 @@ in
     extraOptions = "experimental-features = nix-command flakes";
   };
 
-  services.picom.enable = true;
+  services.picom = {
+      enable = true;
+      vSync = true;
+      settings = {
+        backend = "glx";
+        blur = {
+          method = "gaussian";
+          size = 10;
+          deviation = 5.0;
+        };
+      };
+  };
 
   # systemd.services.background-image = {
   #   wantedBy = [ "multi-user.target" ];
