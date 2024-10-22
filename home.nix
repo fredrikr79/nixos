@@ -309,6 +309,8 @@
                     "<leader>fh" = "help_tags";
                 };
             };
+
+            gitsigns.enable = true;
         };
         extraConfigLua = ''
             luasnip = require("luasnip")
