@@ -202,13 +202,6 @@ in
     zathura
   ]);
 
-  environment.etc."xdg/mimeapps.list" = {
-    text = ''
-      [Default Applications]
-      application/pdf=zathura.desktop
-    '';
-  };
-
   programs.steam.enable = true;
 
   nixpkgs.config.allowUnfree = true;
@@ -374,5 +367,14 @@ in
       };
     };
   };
+
+    xdg.mime = {
+        enable = true;
+        defaultApplications = {
+            "application/pdf" = "org.pwmt.zathura.desktop";
+        };
+    };
+
+  programs.ssh.startAgent = true;
 }
 
