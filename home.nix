@@ -25,6 +25,8 @@
             xournalpp
             obsidian
             redshift
+            pandoc
+            typst
         ];
 
 # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -264,6 +266,12 @@
                         nil-ls.enable = true;
                         lua-ls.enable = true;
                         hls.enable = true;
+                        typst-lsp = {
+                            enable = true;
+                            settings = {
+                                exportPdf = "onType";
+                            };
+                        };
                     };
                 };
 
@@ -311,6 +319,14 @@
             };
 
             gitsigns.enable = true;
+
+            typst-vim = {
+                enable = true;
+                settings = {
+                    pdf_viewer = null;
+                    conceal_math = null;
+                };
+            };
         };
         extraConfigLua = ''
             luasnip = require("luasnip")
