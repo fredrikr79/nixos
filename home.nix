@@ -27,6 +27,8 @@
             redshift
             pandoc
             typst
+            uiua386
+            uiua
         ];
 
 # Home Manager is pretty good at managing dotfiles. The primary way to manage

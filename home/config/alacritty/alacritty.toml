@@ -1,14 +1,7 @@
 [window]
 opacity = 0.5
+padding = { x = 2, y = 2 }
 
-[window.class]
-general = "Alacritty"
-instance = "Alacritty"
-
-[window.dimensions]
-columns = 69
-lines = 20
-
-[window.padding]
-x = 2
-y = 2
+[font]
+normal = { family = "Uiua386", style = "Regular" }
+size = 12
