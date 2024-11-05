@@ -337,8 +337,6 @@
             hardtime.enable = true;
 
             diffview.enable = true;
-
-            conform-nvim.enable = true;
         };
         extraConfigLua = ''
             luasnip = require("luasnip")
