@@ -262,10 +262,6 @@
                             action = "code_action";
                             desc = "code action";
                         };
-                        "<leader>cf" = {
-                            action = "format";
-                            desc = "format code";
-                        };
                     };
                 };
                 servers = {
@@ -341,6 +337,8 @@
             hardtime.enable = true;
 
             diffview.enable = true;
+
+            conform-nvim.enable = true;
         };
         extraConfigLua = ''
             luasnip = require("luasnip")
