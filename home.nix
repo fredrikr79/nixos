@@ -117,6 +117,7 @@
             termguicolors = true;
 
             number = true;
+            relativenumber = true;
 
             tabstop = 4;
             softtabstop = 4;
@@ -209,73 +210,77 @@
             };
 
             cmp-nvim-lsp = {enable = true;}; # lsp
-                cmp-buffer = {enable = true;};
+            cmp-buffer = {enable = true;};
             cmp-path = {enable = true;}; # file system paths
-                cmp_luasnip = {enable = true;}; # snippets
-                cmp-cmdline = {enable = true;}; # autocomplete for cmdline
+            cmp_luasnip = {enable = true;}; # snippets
+            cmp-cmdline = {enable = true;}; # autocomplete for cmdline
 
 
-                lsp = {
-                    enable = true;
-                    keymaps = {
-                        silent = true;
-                        diagnostic = {
-                            "<leader>j" = "goto_next";
-                            "<leader>k" = "goto_prev";
-                            "<leader>e" = "open_float";
-                        };
-                        lspBuf = {
-                            gd = {
-                                action = "definition";
-                                desc = "Goto Definition";
-                            };
-                            gr = {
-                                action = "references";
-                                desc = "Goto References";
-                            };
-                            gD = {
-                                action = "declaration";
-                                desc = "Goto Declaration";
-                            };
-                            gI = {
-                                action = "implementation";
-                                desc = "Goto Implementation";
-                            };
-                            gT = {
-                                action = "type_definition";
-                                desc = "Type Definition";
-                            };
-                            K = {
-                                action = "hover";
-                                desc = "Hover";
-                            };
-                            "<leader>cw" = {
-                                action = "workspace_symbol";
-                                desc = "Workspace Symbol";
-                            };
-                            "<leader>cr" = {
-                                action = "rename";
-                                desc = "Rename";
-                            };
-                            "<leader>ca" = {
-                                action = "code_action";
-                                desc = "code action";
-                            };
-                        };
+            lsp = {
+                enable = true;
+                keymaps = {
+                    silent = true;
+                    diagnostic = {
+                        "<leader>j" = "goto_next";
+                        "<leader>k" = "goto_prev";
+                        "<leader>e" = "open_float";
                     };
-                    servers = {
-                        pylsp.enable = true;
-                        nil-ls.enable = true;
-                        lua-ls.enable = true;
-                        hls.enable = true;
-                        typst-lsp = {
-                            enable = true;
-                            settings = {
-                                exportPdf = "onType";
-                            };
+                    lspBuf = {
+                        gd = {
+                            action = "definition";
+                            desc = "Goto Definition";
+                        };
+                        gr = {
+                            action = "references";
+                            desc = "Goto References";
+                        };
+                        gD = {
+                            action = "declaration";
+                            desc = "Goto Declaration";
+                        };
+                        gI = {
+                            action = "implementation";
+                            desc = "Goto Implementation";
+                        };
+                        gT = {
+                            action = "type_definition";
+                            desc = "Type Definition";
+                        };
+                        K = {
+                            action = "hover";
+                            desc = "Hover";
+                        };
+                        "<leader>cw" = {
+                            action = "workspace_symbol";
+                            desc = "Workspace Symbol";
+                        };
+                        "<leader>cr" = {
+                            action = "rename";
+                            desc = "Rename";
+                        };
+                        "<leader>ca" = {
+                            action = "code_action";
+                            desc = "code action";
+                        };
+                        "<leader>cf" = {
+                            action = "format";
+                            desc = "format code";
                         };
                     };
                 };
+                servers = {
+                    pylsp.enable = true;
+                    nil-ls.enable = true;
+                    lua-ls.enable = true;
+                    hls.enable = true;
+                    typst-lsp = {
+                        enable = true;
+                        settings = {
+                            exportPdf = "onType";
+                        };
+                    };
+                };
+            };
 
             friendly-snippets.enable = true;
             luasnip.enable = true;
@@ -329,6 +334,13 @@
                     conceal_math = null;
                 };
             };
+
+
+            sleuth.enable = true;
+
+            hardtime.enable = true;
+
+            diffview.enable = true;
         };
         extraConfigLua = ''
             luasnip = require("luasnip")
