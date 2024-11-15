@@ -29,6 +29,7 @@
             typst
             uiua386
             uiua
+            byzanz
         ];
 
 # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -336,7 +337,10 @@
 
             hardtime.enable = true;
 
-            diffview.enable = true;
+            diffview = {
+                enable = true;
+                view.mergeTool.layout = "diff3_mixed";
+            };
         };
         extraConfigLua = ''
             luasnip = require("luasnip")

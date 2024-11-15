@@ -106,6 +106,8 @@ in
     xkbVariant = "dvp,";
     xkbOptions = "compose:menu, grp:alt_shift_toggle, lv3:ralt_switch";
 
+    exportConfiguration = true;
+
     windowManager = {
       xmonad = {
         enable = true;
