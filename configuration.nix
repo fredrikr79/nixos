@@ -174,7 +174,7 @@ in
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     initialPassword = "password";
     packages = with pkgs; [  # managed by home-manager
-      firefox
+      # firefox
       discord
       #tree
     ];
