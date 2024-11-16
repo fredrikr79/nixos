@@ -475,7 +475,7 @@ in
 
         oh-my-zsh = {
             enable = true;
-            plugins = [ "git" "shrink-path" ];
+            plugins = [ "git" "shrink-path" "direnv" ];
             theme = "arrow";
         };
 
