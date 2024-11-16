@@ -507,6 +507,10 @@ in
         # package = pkgs.jdk21;
     };
 
+    programs.direnv = {
+        enable = true;
+    };
+
     services.redshift = {
         enable = true;
 
