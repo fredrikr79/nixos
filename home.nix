@@ -352,7 +352,7 @@ in
                     };
                 };
                 servers = {
-                    pylsp.enable = true;
+                    pyright.enable = true;
                     nil-ls.enable = true;
                     lua-ls.enable = true;
                     hls.enable = true;
