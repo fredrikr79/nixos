@@ -40,6 +40,8 @@ in
             uiua386
             uiua
             byzanz
+            python3Packages.mdformat
+            typstfmt
         ];
 
 # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -225,6 +227,8 @@ in
 
             updatetime = 50;
 
+            textwidth = 80;
+            formatoptions = "tcqjn1";  # auto-format
             colorcolumn = "80";
 
             ignorecase = true;
@@ -232,6 +236,36 @@ in
         };
 
         plugins = {
+            conform-nvim = {
+                enable = true;
+
+                formatOnSave = {
+                    timeoutMs = 500;
+                    lspFallback = true;
+                };
+
+                formattersByFt = {
+                    typst = ["typstfmt"];
+                    python = ["black"];
+                    markdown = ["prettier"];
+                };
+
+                formatters = {
+                    prettier = {
+                        command = "prettier";
+                        filetypes = ["markdown"];
+                    };
+                    typstfmt = {
+                        command = "typstfmt";
+                        filetypes = ["typst"];
+                    };
+                    black = {
+                        command = "black";
+                        filetypes = ["python"];
+                    };
+                };
+            };
+
             lualine.enable = true;
 
             coq-nvim.enable = true;
@@ -362,6 +396,7 @@ in
                             exportPdf = "onType";
                         };
                     };
+                    clangd.enable = true;
                 };
             };
 
