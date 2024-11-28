@@ -229,7 +229,7 @@ in
 
             textwidth = 80;
             formatoptions = "tcqjn1";  # auto-format
-            colorcolumn = "80";
+            colorcolumn = "81";
 
             ignorecase = true;
             smartcase = true;
