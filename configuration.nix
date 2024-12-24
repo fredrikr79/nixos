@@ -177,6 +177,7 @@ in
       # firefox
       discord
       #tree
+      powertop
     ];
     shell = pkgs.zsh;
   };
@@ -378,5 +379,8 @@ in
     };
 
   programs.ssh.startAgent = true;
+
+  powerManagement.powertop.enable = true;
+  # services.auto-cpufreq.enable = true;
 }
 

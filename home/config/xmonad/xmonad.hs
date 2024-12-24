@@ -64,7 +64,7 @@ myConfig = let
     , ((modm,               xK_Up),    prevWS)
     , ((modm .|. shiftMask, xK_Down),  shiftToNext)
     , ((modm .|. shiftMask, xK_Up),    shiftToPrev)
-    , ((modm,               xK_z),     toggleWS)
+    , ((modm,               xK_z),     spawn "zathura")
     , ((modm,               xK_y),     withFocused $ windows . sink) -- %! Push window back into tiling
     , ((modm,               xK_i),     sendMessage Shrink) -- %! Shrink the master area
     , ((modm,               xK_o),     sendMessage Expand) -- %! Expand the master area
