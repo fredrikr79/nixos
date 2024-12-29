@@ -209,6 +209,8 @@ in
 
   programs.steam.enable = true;
 
+  programs.gamemode.enable = true;
+
   nixpkgs.config.allowUnfree = true;
 
   # Some programs need SUID wrappers, can be configured further or are

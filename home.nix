@@ -42,6 +42,7 @@ in
             byzanz
             python3Packages.mdformat
             typstfmt
+            prismlauncher # minecraft
         ];
 
 # Home Manager is pretty good at managing dotfiles. The primary way to manage
