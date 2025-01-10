@@ -240,10 +240,11 @@ in
             conform-nvim = {
                 enable = true;
 
-                formatOnSave = {
-                    timeoutMs = 500;
-                    lspFallback = true;
-                };
+                # deprecated
+                # formatOnSave = {
+                #     timeoutMs = 500;
+                #     lspFallback = true;
+                # };
 
                 formattersByFt = {
                     typst = ["typstfmt"];
@@ -391,7 +392,7 @@ in
                     nil-ls.enable = true;
                     lua-ls.enable = true;
                     hls.enable = true;
-                    typst-lsp = {
+                    tinymist = {
                         enable = true;
                         settings = {
                             exportPdf = "onType";

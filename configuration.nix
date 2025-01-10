@@ -135,6 +135,18 @@ in
       };
       # sessionCommands = '' '';
     };
+
+    libinput = {
+      enable = true;
+
+      mouse = {
+        accelProfile = "flat";
+      };
+
+      touchpad = {
+        accelProfile = "flat";
+      };
+    };
   };
 
 
@@ -143,15 +155,15 @@ in
 
   # Enable sound.
   sound = {
-    enable = true;
-    mediaKeys.enable = true;
+    # enable = true; deprecated
+    # mediaKeys.enable = true; deprecated
   };
-  hardware.pulseaudio.enable = true;
+  # hardware.pulseaudio.enable = true; use pipewire
   # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
@@ -161,7 +173,7 @@ in
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
-    hsphfpd.enable = true;
+    # hsphfpd.enable = true; handled by pipewire
     settings = {
       General = {
         Enable = "Source,Sink,Media,Socket";
@@ -178,8 +190,6 @@ in
       # firefox
       discord
       #tree
-      powertop
-      gamemode
     ];
     shell = pkgs.zsh;
   };
@@ -205,6 +215,9 @@ in
     libGL
     # gtk3
     zathura
+    libgcc
+    powertop
+    gamemode
   ]);
 
   programs.steam.enable = true;
@@ -270,8 +283,8 @@ in
   ];
 
   nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = "experimental-features = nix-command flakes";
+    # package = pkgs.nixFlakes;
+    # extraOptions = "experimental-features = nix-command flakes";
   };
 
   services.picom = {
@@ -331,7 +344,9 @@ in
     # enableDefaultFonts = true;
 
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "FiraCode" "Monoid" ]; })
+      # (nerdfonts.override { fonts = [ "FiraCode" "Monoid" ]; })
+      nerd-fonts.fira-code
+      nerd-fonts.droid-sans-mono
     ];
 
     fonts = with pkgs; [
