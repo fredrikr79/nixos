@@ -396,6 +396,13 @@ in
                         enable = true;
                         settings = {
                             exportPdf = "onType";
+                            fontPaths = [
+                                "$dir/" 
+                                "./" 
+                                "$\{workspaceFolder}/fonts"
+                                "$\{workspaceFolder}/"
+                            ];
+                            # formatterMode = "typstfmt";
                         };
                     };
                     clangd.enable = true;
