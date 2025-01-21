@@ -43,6 +43,7 @@ in
             python3Packages.mdformat
             typstfmt
             prismlauncher # minecraft
+            ghc
         ];
 
 # Home Manager is pretty good at managing dotfiles. The primary way to manage

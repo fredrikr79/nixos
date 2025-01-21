@@ -160,10 +160,29 @@ in
   };
   # hardware.pulseaudio.enable = true; use pipewire
   # OR
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
     pulse.enable = true;
   };
+
+  services.actkbd = let
+  volumeStep = "1%";
+in {
+  enable = true;
+  bindings = [
+    # "Mute" media key
+    { keys = [ 113 ]; events = [ "key" ];       command = "amixer -q set Master toggle"; }
+
+    # "Lower Volume" media key
+    { keys = [ 114 ]; events = [ "key" "rep" ]; command = "amixer -q set Master ${volumeStep}- unmute"; }
+
+    # "Raise Volume" media key
+    { keys = [ 115 ]; events = [ "key" "rep" ]; command = "amixer -q set Master ${volumeStep}+ unmute"; }
+  ];
+};
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
@@ -216,8 +235,11 @@ in
     # gtk3
     zathura
     libgcc
+    gcc
+    gdb
     powertop
     gamemode
+    alsa-utils
   ]);
 
   programs.steam.enable = true;
@@ -284,7 +306,7 @@ in
 
   nix = {
     # package = pkgs.nixFlakes;
-    # extraOptions = "experimental-features = nix-command flakes";
+    extraOptions = "experimental-features = nix-command flakes";
   };
 
   services.picom = {
