@@ -237,6 +237,9 @@ in {
     libgcc
     gcc
     gdb
+    valgrind-light
+    gnumake
+    qemu_full
     powertop
     gamemode
     alsa-utils

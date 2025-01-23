@@ -70,11 +70,11 @@ myConfig = let
     , ((modm,               xK_o),     sendMessage Expand) -- %! Expand the master area
     , ((modm, xK_r), withFocused $ windows . sink) -- %! Resize viewed windows to the correct size
     , ((modm, xK_a), sendMessage ToggleStruts)
-    , ((0, xF86XK_AudioLowerVolume   ), spawn "amixer set Master 1%-")
-    , ((0, xF86XK_AudioRaiseVolume   ), spawn "amixer set Master 1%+")
+    , ((0, xF86XK_AudioLowerVolume   ), spawn "amixer set Master 2%-")
+    , ((0, xF86XK_AudioRaiseVolume   ), spawn "amixer set Master 2%+")
     , ((0, xF86XK_AudioMute          ), spawn "amixer set Master toggle")
-    , ((0, xF86XK_MonBrightnessUp    ), spawn "brightnessctl set 1%+")
-    , ((0, xF86XK_MonBrightnessDown  ), spawn "brightnessctl set 1%-")
+    , ((0, xF86XK_MonBrightnessUp    ), spawn "brightnessctl set 5%+")
+    , ((0, xF86XK_MonBrightnessDown  ), spawn "brightnessctl set 5%-")
     ] 
     ++
     [((m .|. modm, k), windows $ f i)

@@ -66,6 +66,7 @@ in
             source = "${inputs.vi-xournalpp}";
             recursive = true;
         };
+        ".config/gdb/gdbinit".source = home/config/gdb/gdbinit;
     };
 
     home.sessionVariables = {
