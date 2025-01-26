@@ -44,6 +44,8 @@ in
             typstfmt
             prismlauncher # minecraft
             ghc
+            monocraft
+            zsh-syntax-highlighting
         ];
 
 # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -522,7 +524,14 @@ in
         oh-my-zsh = {
             enable = true;
             plugins = [ "git" "shrink-path" "direnv" ];
-            theme = "arrow";
+            # theme = "";
+        };
+
+        zplug = {
+            enable = true;
+            plugins = [
+                { name = "dracula/zsh"; tags = [ "as:theme" ]; }
+            ];
         };
 
         shellAliases = {
@@ -539,6 +548,58 @@ in
             '';
 
         zsh-abbr.enable = true;
+
+        syntaxHighlighting = {
+            highlighters = ["main" "cursor"];
+            styles = {  # dracula
+                "comment" = "fg=#6272A4";
+                "alias" = "fg=#50FA7B";
+                "suffix-alias" = "fg=#50FA7B";
+                "global-alias" = "fg=#50FA7B";
+                "function" = "fg=#50FA7B";
+                "command" = "fg=#50FA7B";
+                "precommand" = "fg=#50FA7B,italic";
+                "autodirectory" = "fg=#FFB86C,italic";
+                "single-hyphen-option" = "fg=#FFB86C";
+                "double-hyphen-option" = "fg=#FFB86C";
+                "back-quoted-argument" = "fg=#BD93F9";
+                "builtin" = "fg=#8BE9FD";
+                "reserved-word" = "fg=#8BE9FD";
+                "hashed-command" = "fg=#8BE9FD";
+                "commandseparator" = "fg=#FF79C6";
+                "command-substitution-delimiter" = "fg=#F8F8F2";
+                "command-substitution-delimiter-unquoted" = "fg=#F8F8F2";
+                "process-substitution-delimiter" = "fg=#F8F8F2";
+                "back-quoted-argument-delimiter" = "fg=#FF79C6";
+                "back-double-quoted-argument" = "fg=#FF79C6";
+                "back-dollar-quoted-argument" = "fg=#FF79C6";
+                "command-substitution-quoted" = "fg=#F1FA8C";
+                "command-substitution-delimiter-quoted" = "fg=#F1FA8C";
+                "single-quoted-argument" = "fg=#F1FA8C";
+                "single-quoted-argument-unclosed" = "fg=#FF5555";
+                "double-quoted-argument" = "fg=#F1FA8C";
+                "double-quoted-argument-unclosed" = "fg=#FF5555";
+                "rc-quote" = "fg=#F1FA8C";
+                "dollar-quoted-argument" = "fg=#F8F8F2";
+                "dollar-quoted-argument-unclosed" = "fg=#FF5555";
+                "dollar-double-quoted-argument" = "fg=#F8F8F2";
+                "assign" = "fg=#F8F8F2";
+                "named-fd" = "fg=#F8F8F2";
+                "numeric-fd" = "fg=#F8F8F2";
+                "unknown-token" = "fg=#FF5555";
+                "path" = "fg=#F8F8F2";
+                "path_pathseparator" = "fg=#FF79C6";
+                "path_prefix" = "fg=#F8F8F2";
+                "path_prefix_pathseparator" = "fg=#FF79C6";
+                "globbing" = "fg=#F8F8F2";
+                "history-expansion" = "fg=#BD93F9";
+                "back-quoted-argument-unclosed" = "fg=#FF5555";
+                "redirection" = "fg=#F8F8F2";
+                "arg0" = "fg=#F8F8F2";
+                "default" = "fg=#F8F8F2";
+                "cursor" = "standout";
+            };
+        };
     };
 
     programs.git = {
@@ -588,4 +649,41 @@ in
         # ];
     };
 
+
+    programs.kitty = {
+      enable = true;
+      settings = {
+        confirm_os_window_close = 0;
+        dynamic_background_opacity = true;
+        enable_audio_bell = false;
+        mouse_hide_wait = "-1.0";
+        window_padding_width = 10;
+        background_opacity = "0.5";
+        background_blur = 5;
+        symbol_map = let
+          mappings = [
+            "U+23FB-U+23FE"
+            "U+2B58"
+            "U+E200-U+E2A9"
+            "U+E0A0-U+E0A3"
+            "U+E0B0-U+E0BF"
+            "U+E0C0-U+E0C8"
+            "U+E0CC-U+E0CF"
+            "U+E0D0-U+E0D2"
+            "U+E0D4"
+            "U+E700-U+E7C5"
+            "U+F000-U+F2E0"
+            "U+2665"
+            "U+26A1"
+            "U+F400-U+F4A8"
+            "U+F67C"
+            "U+E000-U+E00A"
+            "U+F300-U+F313"
+            "U+E5FA-U+E62B"
+          ];
+        in
+          (builtins.concatStringsSep "," mappings) + " Symbols Nerd Font";
+      };
+      font.name = "monocraft";
+    };
 }

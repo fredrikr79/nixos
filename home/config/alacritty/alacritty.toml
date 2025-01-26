@@ -3,5 +3,5 @@ opacity = 0.7
 padding = { x = 2, y = 2 }
 
 [font]
-normal = { family = "Uiua386", style = "Regular" }
+normal = { family = "Monocraft", style = "Regular" }
 size = 12
