@@ -40,7 +40,7 @@ main = xmonad
     toggleStrutsKey XConfig{ modMask = m } = (m, xK_End)
 
 myConfig = let 
-    terminal = "alacritty"
+    terminal = "kitty"
     browser = "firefox"
     modm = mod4Mask  -- super/meta
   in def 
@@ -53,6 +53,7 @@ myConfig = let
     `additionalKeysP`
     [ ("M-b", spawn browser)
     -- , ("M-t", spawn terminal)
+    -- , ("M-S-Enter", spawn terminal)
     -- , ("<Print>", spawn "scrot ~/Pictures/Screenshots/%b-%d::%H-%M-%S.png")
     , ("<Print>", spawn "/home/fredrikr/.scrot.sh")
     -- , ("<M-S-s>", unGrab *> spawn "scrot -s ~/Pictures/Screenshots/%b-%d::%H-%M-%S.png")
@@ -75,6 +76,7 @@ myConfig = let
     , ((0, xF86XK_AudioMute          ), spawn "amixer set Master toggle")
     , ((0, xF86XK_MonBrightnessUp    ), spawn "brightnessctl set 5%+")
     , ((0, xF86XK_MonBrightnessDown  ), spawn "brightnessctl set 5%-")
+    , ((modm .|. shiftMask, xK_Return), spawn terminal)
     ] 
     ++
     [((m .|. modm, k), windows $ f i)
