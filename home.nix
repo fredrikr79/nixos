@@ -190,6 +190,36 @@ in
             action = ":UndotreeToggle<cr>";
             mode = [ "n" ];
         }
+
+        {
+            key = "<leader>cs";
+            action = ":ClangdSwitchSourceHeader<cr>";
+            mode = [ "n" ];
+        }
+
+        {
+            key = "<leader>cff";
+            action = ":Format<cr>";
+            mode = [ "n" ];
+        }
+
+        {
+            key = "<leader>cfd";
+            action = ":FormatDisable<cr>";
+            mode = [ "n" ];
+        }
+
+        {
+            key = "<leader>cfe";
+            action = ":FormatEnable<cr>";
+            mode = [ "n" ];
+        }
+
+        {
+            key = "<leader>cft";
+            action = ":FormatToggle<cr>";
+            mode = [ "n" ];
+        }
         ];
 
         colorschemes.dracula = {
@@ -343,6 +373,7 @@ in
             cmp_luasnip = {enable = true;}; # snippets
             cmp-cmdline = {enable = true;}; # autocomplete for cmdline
 
+            lsp-format.enable = true;
 
             lsp = {
                 enable = true;
