@@ -37,11 +37,12 @@ in
             redshift
             pandoc
             typst
+            # typstfmt
+            typstyle
             uiua386
             uiua
             byzanz
             python3Packages.mdformat
-            typstfmt
             prismlauncher # minecraft
             ghc
             monocraft
@@ -262,7 +263,7 @@ in
 
             updatetime = 50;
 
-            textwidth = 0;
+            textwidth = 80;
             formatoptions = "tcqjn1";  # auto-format
             colorcolumn = "81";
             wrap = false;
@@ -275,14 +276,15 @@ in
             conform-nvim = {
                 enable = true;
 
-                # deprecated
-                # formatOnSave = {
-                #     timeoutMs = 500;
-                #     lspFallback = true;
-                # };
+                settings = {
+                    format_on_save = {
+                        timeoutMs = 500;
+                        lspFallback = true;
+                    };
+                };
 
                 formattersByFt = {
-                    typst = ["typstfmt"];
+                    typst = ["typstyle "]; #"typstfmt"];
                     python = ["black"];
                     markdown = ["prettier"];
                 };
@@ -292,8 +294,12 @@ in
                         command = "prettier";
                         filetypes = ["markdown"];
                     };
-                    typstfmt = {
-                        command = "typstfmt";
+                    # typstfmt = {
+                    #     command = "typstfmt";
+                    #     filetypes = ["typst"];
+                    # };
+                    typstyle = {
+                        command = "typstyle";
                         filetypes = ["typst"];
                     };
                     black = {
@@ -439,10 +445,13 @@ in
                                 "$\{workspaceFolder}/"
                             ];
                             # formatterMode = "typstfmt";
+                            formatterMode = "typstyle";
                         };
                     };
                     clangd.enable = true;
                     vtsls.enable = true;
+                    marksman.enable = true;
+                    uiua.enable = true;
                 };
             };
 
@@ -502,7 +511,7 @@ in
 
             sleuth.enable = true;
 
-            hardtime.enable = true;
+            # hardtime.enable = true;  # the dark souls of vim
 
             diffview = {
                 enable = true;
@@ -572,6 +581,7 @@ in
             suspend = "systemctl suspend";
             logout = "sudo pkill -u fredrikr";
             lock = "/home/fredrikr/.logout.sh";
+            n = "nvim";
         };
 
         defaultKeymap = "viins";
