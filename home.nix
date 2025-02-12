@@ -472,7 +472,9 @@ in
                 };
             };
 
-            treesitter.enable = true;
+            treesitter = {
+                enable = true; 
+            };
 
             undotree.enable = true;
 
@@ -516,6 +518,10 @@ in
             diffview = {
                 enable = true;
                 view.mergeTool.layout = "diff3_mixed";
+            };
+
+            markview = {
+                enable = true;
             };
         };
         extraConfigLua = ''
@@ -727,6 +733,7 @@ in
         #   ];
         # in
         #   (builtins.concatStringsSep "," mappings) + " Symbols Nerd Font";
+        cursor_trail = 3;
       };
       font.name = "Monocraft Nerd Font";
       font.size = 16;
