@@ -18,6 +18,10 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
+  # boot.kernel.sysctl = {
+  #   "net.ipv6.conf.all.disable_ipv6" = 1;
+  #   "net.ipv6.conf.default.disable_ipv6" = 1;
+  # };
 
   # DUAL BOOT SETUP
   #boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -125,6 +129,7 @@ in
     displayManager = {
       defaultSession = "none+xmonad";
       lightdm = {
+        enable = true;
         greeters.enso = {
           enable = true;
           blur = true;
@@ -146,6 +151,36 @@ in
       touchpad = {
         accelProfile = "flat";
       };
+    };
+  };
+
+  # services.x11vnc = {
+  #   enable = true;
+  #   display = ":0";  # use existing x session
+  #   auth = null;     # uses current x session auth
+  #   loop = true;
+  #   extraOptions = [
+  #     "-forever"       # keep open
+  #     "-shared"        # multiple clients
+  #     "-nopw"          # no password
+  #     "-rfbport 5900"  # vnc port
+  #   ];
+  # };
+  systemd.services.x11vnc = {
+    description = "x11vnc server for mirroring x display";
+    after = [ "display-manager.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      # ExecStart = "${pkgs.x11vnc}/bin/x11vnc -display :0 -forever -nopw -rfbport 5900 -auth /home/fredrikr/.Xauthority";
+      ExecStart = ''
+        ${pkgs.x11vnc}/bin/x11vnc -display :0 -forever -shared -nopw -rfbport 5900 -listen 0.0.0.0 -auth /home/fredrikr/.Xauthority \
+        -ncache 10 -ncache_cr -repeat -xkb -noxdamage 
+        -tightfilexfer -xrandr -many \
+        -clip 1920x1080  # Adjust if needed
+      '';
+      Restart = "always";
+      User = "fredrikr";
+      Environment = "DISPLAY=:0";
     };
   };
 
@@ -243,6 +278,8 @@ in {
     powertop
     gamemode
     alsa-utils
+    x11vnc
+    gawk
   ]);
 
   programs.steam.enable = true;
@@ -265,7 +302,18 @@ in {
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 3389 5900 ]; # rdp port
+    # trustedInterfaces = [ 
+    #   "wlp0s20f3"
+    #   "lo" 
+    #   "enp1s0" 
+    # ];
+    # extraCommands = ''
+    #   iptables -A INPUT -s 192.168.0.0/16 -j ACCEPT
+    # '';
+  };
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -426,5 +474,10 @@ in {
 
   powerManagement.powertop.enable = true;
   # services.auto-cpufreq.enable = true;
+
+  services.xrdp = {
+    enable = true;
+    defaultWindowManager = "xmonad";
+  };
 }
 
