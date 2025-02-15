@@ -477,5 +477,49 @@ in {
     enable = true;
     defaultWindowManager = "xmonad";
   };
+
+  environment.etc."xrdp/xrdp.ini".text = ''
+    [Globals]
+    ini_version=1
+    fork=true
+    port=3389
+    use_vsock=false
+    tcp_nodelay=true
+    tcp_keepalive=true
+    security_layer=negotiate
+    crypt_level=high
+    certificate=/etc/xrdp/cert.pem
+    key_file=/etc/xrdp/key.pem
+    rsakeys_ini=/run/xrdp/rsakeys.ini
+    ssl_protocols=TLSv1.2, TLSv1.3
+    allow_channels=true
+    allow_multimon=true
+    bitmap_cache=true
+    bitmap_compression=true
+    bulk_compression=true
+    max_bpp=32
+    new_cursors=true
+    use_fastpath=both
+    grey=e1e1e1
+    dark_grey=b4b4b4
+    blue=0078d7
+    dark_blue=0078d7
+
+    [Xorg]
+    name=Xorg
+    lib=libxup.so
+    username=ask
+    password=ask
+    port=ask
+    code=20
+
+    [xrdp1]
+    name=test
+    lib=libvnc.so
+    username=ask
+    password=ask
+    ip=127.0.0.1
+    port=5912
+  '';
 }
 
