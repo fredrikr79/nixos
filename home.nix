@@ -47,6 +47,9 @@ in
             ghc
             monocraft
             zsh-syntax-highlighting
+            unityhub
+            dotnet-sdk
+            omnisharp-roslyn
         ];
 
 # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -452,6 +455,7 @@ in
                     vtsls.enable = true;
                     marksman.enable = true;
                     uiua.enable = true;
+                    omnisharp.enable = true;
                 };
             };
 
