@@ -72,6 +72,7 @@ in {
     shfmt
     libtool
     tinymist
+    emacsPackages.treesit-grammars.with-all-grammars
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
