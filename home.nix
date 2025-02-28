@@ -98,6 +98,7 @@ in {
     ".config/gdb/gdbinit".source = home/config/gdb/gdbinit;
     # ".emacs.d".source = home/emacs.d;
     # ".config/emacs".source = home/config/emacs;
+    ".doom.d".source = home/doom.d;
   };
 
   home.sessionVariables = { EDITOR = "nvim"; };
