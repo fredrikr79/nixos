@@ -61,3 +61,5 @@
 (package! elcord)
 
 (package! prettier)
+
+(package! uiua-ts-mode)

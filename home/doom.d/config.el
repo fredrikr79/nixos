@@ -129,3 +129,4 @@
 
 (map! :leader "pv" #'dirvish)
 
+(map! [f5] #'+make/run-last)
