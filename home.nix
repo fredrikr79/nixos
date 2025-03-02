@@ -20,7 +20,6 @@ in {
     dmenu
     alacritty
     # discord
-    # firefox
     scrot
     brightnessctl
     python3
@@ -73,6 +72,7 @@ in {
     libtool
     tinymist
     emacsPackages.treesit-grammars.with-all-grammars
+    librewolf
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -104,96 +104,6 @@ in {
   home.sessionVariables = { EDITOR = "nvim"; };
 
   home.sessionPath = [ "/home/fredrikr/.config/emacs/bin/" ];
-
-  programs.firefox = {
-    enable = true;
-
-    policies = {
-      # about:policies
-      DisableTelemetry = true;
-      DisableFirefoxStudies = true;
-      EnableTrackingProtection = {
-        Value = true;
-        Locked = true;
-        Cryptomining = true;
-        Fingerprinting = true;
-      };
-      DisablePocket = true;
-      DisableFirefoxAccounts = true;
-      DisableAccounts = true;
-      DisableFirefoxScreenshots = true;
-      OverrideFirstRunPage = "";
-      OverridePostUpdatePage = "";
-      DontCheckDefaultBrowser = true;
-      DisplayBookmarksToolbar = "newtab"; # alternatives: "always" or "newtab"
-      DisplayMenuBar =
-        "default-off"; # alternatives: "always", "never" or "default-on"
-      SearchBar = "unified"; # alternative: "separate"
-
-      # about:support
-      ExtensionSettings = {
-        "*".installation_mode =
-          "blocked"; # blocks all addons except the ones specified below
-        # uBlock Origin:
-        "uBlock0@raymondhill.net" = {
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-          installation_mode = "force_installed";
-        };
-
-        # dark reader
-        "addon@darkreader.org" = {
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
-          installation_mode = "force_installed";
-        };
-
-        # kagi
-        "search@kagi.com" = {
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/latest/kagi-search-for-firefox/latest.xpi";
-          installation_mode = "force_installed";
-        };
-
-        # vimium
-        "vimium-store@googlegroups.com" = {
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
-          installation_mode = "force_installed";
-        };
-      };
-
-      # about:config
-      Preferences = {
-        "browser.contentblocking.category" = {
-          Value = "strict";
-          Status = "locked";
-        };
-        "extensions.pocket.enabled" = lock-false;
-        "extensions.screenshots.disabled" = lock-true;
-        "browser.topsites.contile.enabled" = lock-false;
-        "browser.formfill.enable" = lock-false;
-        "browser.search.suggest.enabled" = lock-false;
-        "browser.search.suggest.enabled.private" = lock-false;
-        "browser.urlbar.suggest.searches" = lock-false;
-        "browser.urlbar.showSearchSuggestionsFirst" = lock-false;
-        "browser.newtabpage.activity-stream.feeds.section.topstories" =
-          lock-false;
-        "browser.newtabpage.activity-stream.feeds.snippets" = lock-false;
-        "browser.newtabpage.activity-stream.section.highlights.includePocket" =
-          lock-false;
-        "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" =
-          lock-false;
-        "browser.newtabpage.activity-stream.section.highlights.includeDownloads" =
-          lock-false;
-        "browser.newtabpage.activity-stream.section.highlights.includeVisited" =
-          lock-false;
-        "browser.newtabpage.activity-stream.showSponsored" = lock-false;
-        "browser.newtabpage.activity-stream.system.showSponsored" = lock-false;
-        "browser.newtabpage.activity-stream.showSponsoredTopSites" = lock-false;
-      };
-    };
-  };
 
   programs.home-manager.enable = true;
 
