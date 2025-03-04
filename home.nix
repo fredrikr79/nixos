@@ -73,6 +73,12 @@ in {
     tinymist
     emacsPackages.treesit-grammars.with-all-grammars
     librewolf
+    cargo
+    vulkan-tools
+    mesa.drivers
+    vulkan-loader
+    python312Packages.python-lsp-server
+    python312Packages.numpy
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

@@ -1,3 +1,6 @@
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE TypeSynonymInstances #-}
+
 -- import XMonad.Util.Ungrab
 -- import XMonad.Operations (unGrab)
 
@@ -10,8 +13,11 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
+import XMonad.Layout.MultiToggle
+import XMonad.Layout.MultiToggle.Instances
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing
+import XMonad.Layout.ToggleLayouts
 import XMonad.StackSet
 import XMonad.Util.EZConfig
 import XMonad.Util.Loggers
@@ -28,6 +34,11 @@ main =
     toggleStrutsKey :: XConfig Layout -> (KeyMask, KeySym)
     toggleStrutsKey XConfig {modMask = m} = (m, xK_End)
 
+-- data SPACING = SPACING deriving (Read, Show, Eq)
+--
+-- instance Transformer SPACING Window where
+--   transform _ x k = spacingWithEdge 3
+
 myConfig =
   let terminal = "kitty"
       browser = "librewolf"
@@ -36,7 +47,7 @@ myConfig =
         { modMask = modm,
           terminal = terminal,
           startupHook = myStartupHook,
-          layoutHook = spacingWithEdge 3 $ myLayout,
+          layoutHook = toggleLayouts myLayout $ spacingWithEdge 3 myLayout,
           logHook = historyHook
         }
         `additionalKeysP` [ ("M-b", spawn browser),
@@ -57,7 +68,7 @@ myConfig =
                            ((modm, xK_i), sendMessage Shrink), -- %! Shrink the master area
                            ((modm, xK_o), sendMessage Expand), -- %! Expand the master area
                            ((modm, xK_r), withFocused $ windows . sink), -- %! Resize viewed windows to the correct size
-                           ((modm, xK_a), sendMessage ToggleStruts),
+                           ((modm, xK_a), sequence_ [sendMessage ToggleStruts, sendMessage ToggleLayout]),
                            ((0, xF86XK_AudioLowerVolume), spawn "amixer set Master 2%-"),
                            ((0, xF86XK_AudioRaiseVolume), spawn "amixer set Master 2%+"),
                            ((0, xF86XK_AudioMute), spawn "amixer set Master toggle"),

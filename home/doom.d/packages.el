@@ -63,3 +63,7 @@
 (package! prettier)
 
 (package! uiua-ts-mode)
+
+(package! unity
+  :recipe (:repo "https://github.com/elizagamedev/unity.el"))
+(add-hook 'after-init-hook #'unity-mode)
