@@ -14,6 +14,8 @@
         flake = false;
     };
 
+    zen-browser.url = "github:Gurjaka/zen-browser-nix";
+
     #nbfc-linux = {
       #url = "github:nbfc-linux/nbfc-linux";
       #inputs.nixpkgs.follows = "nixpkgs";

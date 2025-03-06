@@ -41,7 +41,7 @@ main =
 
 myConfig =
   let terminal = "kitty"
-      browser = "librewolf"
+      browser = "zen"
       modm = mod4Mask -- super/meta
    in def
         { modMask = modm,

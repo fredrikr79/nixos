@@ -80,6 +80,7 @@ in {
     python312Packages.python-lsp-server
     editorconfig-core-c
     copilot-cli
+    inputs.zen-browser.packages."${system}".default
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
