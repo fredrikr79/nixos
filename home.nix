@@ -78,7 +78,8 @@ in {
     mesa.drivers
     vulkan-loader
     python312Packages.python-lsp-server
-    python312Packages.numpy
+    editorconfig-core-c
+    copilot-cli
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

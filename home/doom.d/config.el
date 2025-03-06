@@ -130,3 +130,15 @@
 (map! :leader "pv" #'dirvish)
 
 (map! [f5] #'+make/run-last)
+
+
+;; accept completion from copilot and fallback to company
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (:map copilot-completion-map
+              ("<tab>" . 'copilot-accept-completion)
+              ("TAB" . 'copilot-accept-completion)
+              ("C-TAB" . 'copilot-accept-completion-by-word)
+              ("C-<tab>" . 'copilot-accept-completion-by-word)))
+
+;; (add-to-list 'copilot-major-mode-alist '("typescript" . "javascript"))

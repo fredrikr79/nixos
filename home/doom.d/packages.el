@@ -67,3 +67,9 @@
 (package! unity
   :recipe (:repo "https://github.com/elizagamedev/unity.el"))
 (add-hook 'after-init-hook #'unity-mode)
+
+(package! jsonrpc)
+
+(package! copilot
+  :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
+
