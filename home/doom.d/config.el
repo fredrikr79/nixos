@@ -3,6 +3,8 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
+(setq doom-user-dir "~/system_flake/home/doom.d/")
+
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
@@ -142,3 +144,7 @@
               ("C-<tab>" . 'copilot-accept-completion-by-word)))
 
 ;; (add-to-list 'copilot-major-mode-alist '("typescript" . "javascript"))
+
+
+(run-with-idle-timer 120 t #'zone)
+
