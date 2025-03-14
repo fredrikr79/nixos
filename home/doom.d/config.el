@@ -126,8 +126,8 @@
 ;; (add-hook 'typst-ts-mode-hook #'lsp)
 
 
-(require 'elcord)
-(elcord-mode)
+;; (require 'elcord)
+;; (elcord-mode)
 
 (map! :leader "pv" #'dirvish)
 
@@ -148,3 +148,23 @@
 
 (run-with-idle-timer 120 t #'zone)
 
+(defun read-file-to-string (file)
+  "Read the entire contents of FILE as a string."
+  (with-temp-buffer
+    (insert-file-contents file)
+    (string-trim (buffer-string))))
+
+(setq chatgpt-shell-openai-api-key (read-file-to-string "./secrets/.kagi-api-token"))
+
+(after! lsp-ui
+  (setq lsp-ui-sideline-enable t
+        lsp-ui-sideline-show-diagnostics t
+        lsp-ui-sideline-show-hover nil
+        lsp-ui-sideline-show-code-actions nil
+        lsp-ui-sideline-delay 0
+        lsp-ui-sideline-update-mode 'line)) ;; Force update every line change
+
+(add-hook 'lsp-mode-hook #'lsp-ui-sideline-mode) ;; Ensure it's always on
+
+(after! lsp-mode
+  (setq lsp-diagnostics-provider :auto)) ;; Ensures LSP is handling errors

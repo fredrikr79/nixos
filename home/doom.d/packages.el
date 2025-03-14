@@ -58,7 +58,7 @@
   :recipe (:repo "https://github.com/havarddj/typst-preview.el"))
 
 
-(package! elcord)
+;; (package! elcord)
 
 (package! prettier)
 
@@ -72,3 +72,5 @@
 
 (package! copilot
   :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
+
+(package! chatgpt-shell)

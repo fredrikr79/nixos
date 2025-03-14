@@ -299,6 +299,9 @@ in {
               name = "luasnip"; # snippets
               keywordLength = 3;
             }
+            {
+              name = "copilot";
+            }
           ];
 
           window = {
@@ -480,6 +483,12 @@ in {
       };
 
       markview = { enable = true; };
+
+      rainbow-delimiters.enable = true;
+
+      copilot-lua.enable = true;
+      copilot-cmp.enable = true;
+      copilot-chat.enable = true;
     };
     extraConfigLua = ''
       luasnip = require("luasnip")
