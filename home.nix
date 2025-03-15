@@ -81,6 +81,8 @@ in {
     editorconfig-core-c
     copilot-cli
     inputs.zen-browser.packages."${system}".default
+    fzf
+    zoxide
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -484,7 +486,18 @@ in {
 
       markview = { enable = true; };
 
-      rainbow-delimiters.enable = true;
+      rainbow-delimiters = {
+        enable = true;
+        highlight = [
+          "DraculaRed" # "RainbowDelimiterRed"
+          "DraculaYellow" # "RainbowDelimiterYellow"
+          "DraculaBlue" # "RainbowDelimiterBlue"
+          "DraculaOrange" # "RainbowDelimiterOrange"
+          "DraculaGreen" # "RainbowDelimiterGreen"
+          "DraculaViolet" # "RainbowDelimiterViolet"
+          "DraculaCyan" # "RainbowDelimiterCyan"
+        ];
+      };
 
       copilot-lua.enable = true;
       copilot-cmp.enable = true;
@@ -562,6 +575,7 @@ in {
     initExtra = ''
       bindkey -v
       bindkey -M viins 'jk' vi-cmd-mode
+      export TERM=xterm-256color
     '';
 
     zsh-abbr.enable = true;
@@ -714,4 +728,31 @@ in {
     # extraConfig = "home/config/emacs/.doomrc";
   };
   services.emacs.enable = true;
+
+
+  programs.tmux = {
+    enable = true;
+    clock24 = true;
+    keyMode = "vi";
+    mouse = true;
+    plugins = with pkgs; [
+      tmuxPlugins.cpu
+      {
+        plugin = tmuxPlugins.resurrect;
+        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+      }
+      {
+        plugin = tmuxPlugins.continuum;
+        extraConfig = ''
+          set -g @continuum-restore 'on'
+          set -g @continuum-save-interval '60' # minutes
+          '';
+      }
+      {
+        plugin = tmuxPlugins.session-wizard;
+      }
+    ];
+    shell = "${pkgs.zsh}/bin/zsh";
+    newSession = true;
+  };
 }

@@ -40,7 +40,7 @@ main =
 --   transform _ x k = spacingWithEdge 3
 
 myConfig =
-  let terminal = "kitty"
+  let terminal = "kitty tmux attach-session"
       browser = "zen"
       modm = mod4Mask -- super/meta
    in def
