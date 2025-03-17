@@ -83,6 +83,7 @@ in {
     inputs.zen-browser.packages."${system}".default
     fzf
     zoxide
+    libgit2
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -180,6 +181,48 @@ in {
       {
         key = "<leader>cft";
         action = ":FormatToggle<cr>";
+        mode = [ "n" ];
+      }
+
+      {
+        key = "<leader>w";
+        action = "<C-w>";
+        mode = [ "n" ];
+      }
+
+      {
+        key = "<leader>ot";
+        action = ":ToggleTerm direction=float<cr>";
+        mode = [ "n" ];
+      }
+
+      {
+        key = "<leader>cc";
+        action = ":CopilotChatToggle<cr>";
+        mode = [ "n" ];
+      }
+
+      {
+        key = "<leader>gg";
+        action = ":Fugit2<cr>";
+        mode = [ "n" ];
+      }
+
+      {
+        key = "<leader>gl";
+        action = ":Fugit2Graph<cr>";
+        mode = [ "n" ];
+      }
+
+      {
+        key = "<leader>gb";
+        action = ":Fugit2Blame<cr>";
+        mode = [ "n" ];
+      }
+
+      {
+        key = "<leader>gd";
+        action = ":Fugit2Diff<cr>";
         mode = [ "n" ];
       }
     ];
@@ -458,8 +501,8 @@ in {
       telescope = {
         enable = true;
         keymaps = {
-          "<leader>ff" = "find_files";
-          "<leader>fg" = "live_grep";
+          "<leader> " = "find_files";
+          "<leader>/" = "live_grep";
           "<leader>fb" = "buffers";
           "<leader>fh" = "help_tags";
         };
@@ -502,6 +545,26 @@ in {
       copilot-lua.enable = true;
       copilot-cmp.enable = true;
       copilot-chat.enable = true;
+
+      fugit2 = {
+        enable = true;
+        settings.external_diffview = true;
+      };
+
+      toggleterm = {
+        enable = true;
+        # keymaps = {
+        #   "<leader>ot" = "ToggleTerm shell=zsh";
+        # };
+      };
+
+      autoclose.enable = true;
+
+      leap = {
+        enable = true;
+      };
+
+      direnv.enable = true;
     };
     extraConfigLua = ''
       luasnip = require("luasnip")
