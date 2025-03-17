@@ -191,12 +191,6 @@ in {
       }
 
       {
-        key = "<leader>ot";
-        action = ":ToggleTerm direction=float<cr>";
-        mode = [ "n" ];
-      }
-
-      {
         key = "<leader>cc";
         action = ":CopilotChatToggle<cr>";
         mode = [ "n" ];
@@ -553,9 +547,14 @@ in {
 
       toggleterm = {
         enable = true;
-        # keymaps = {
-        #   "<leader>ot" = "ToggleTerm shell=zsh";
-        # };
+        settings = {
+          direction = "float";
+          float_opts = {
+            border = "curved";
+          };
+          open_mapping = "[[<leader>ot]]";
+          close_on_exit = false;
+        };
       };
 
       autoclose.enable = true;
@@ -817,5 +816,6 @@ in {
     ];
     shell = "${pkgs.zsh}/bin/zsh";
     newSession = true;
+    terminal = "kitty";
   };
 }
