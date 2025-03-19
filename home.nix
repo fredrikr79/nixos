@@ -374,6 +374,9 @@ in {
             {
               name = "copilot";
             }
+            {
+              name = "dadbod";
+            }
           ];
 
           window = {
@@ -394,8 +397,7 @@ in {
 
           mapping = {
             "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-            "<S-Tab>" =
-              "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+            "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
             "<C-j>" = "cmp.mapping.select_next_item()";
             "<C-k>" = "cmp.mapping.select_prev_item()";
             "<C-e>" = "cmp.mapping.abort()";
@@ -675,8 +677,6 @@ in {
 
       debugprint.enable = true;
 
-      # dashboard.enable = true;
-
       dap = {
         enable = true;
       };
@@ -706,73 +706,53 @@ in {
 
       colorizer.enable = true;
 
-      alpha = {
+      web-devicons.enable = true;
+
+      dashboard = {
         enable = true;
-        layout = [
-        {
-          type = "padding";
-          val = 2;
-        }
-        {
-          opts = {
-            hl = "Type";
-            position = "center";
+        settings = {
+          change_to_vcs_root = true;
+          config = {
+            footer = [
+              "Made with ❤️"
+            ];
+            header = [
+                "███╗   ██╗██╗██╗  ██╗██╗   ██╗██╗███╗   ███╗"
+                "████╗  ██║██║╚██╗██╔╝██║   ██║██║████╗ ████║"
+                "██╔██╗ ██║██║ ╚███╔╝ ██║   ██║██║██╔████╔██║"
+                "██║╚██╗██║██║ ██╔██╗ ╚██╗ ██╔╝██║██║╚██╔╝██║"
+                "██║ ╚████║██║██╔╝ ██╗ ╚████╔╝ ██║██║ ╚═╝ ██║"
+                "╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝"
+            ];
+            mru = {
+              limit = 20;
+            };
+            project = {
+              enable = false;
+            };
+            shortcut = [
+            {
+              action = {
+                __raw = "function(path) vim.cmd('Telescope find_files') end";
+              };
+              desc = "Files";
+              group = "Label";
+              icon = " ";
+              icon_hl = "@variable";
+              key = "f";
+            }
+            ];
+            week_header = {
+              enable = true;
+            };
           };
-          type = "text";
-          val = [
-              "███╗   ██╗██╗██╗  ██╗██╗   ██╗██╗███╗   ███╗"
-              "████╗  ██║██║╚██╗██╔╝██║   ██║██║████╗ ████║"
-              "██╔██╗ ██║██║ ╚███╔╝ ██║   ██║██║██╔████╔██║"
-              "██║╚██╗██║██║ ██╔██╗ ╚██╗ ██╔╝██║██║╚██╔╝██║"
-              "██║ ╚████║██║██╔╝ ██╗ ╚████╔╝ ██║██║ ╚═╝ ██║"
-              "╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝"
-          ];
-        }
-        {
-          type = "padding";
-          val = 2;
-        }
-        {
-          type = "group";
-          val = [
-          {
-            on_press = {
-              __raw = "function() vim.cmd[[ene]] end";
-            };
-            opts = {
-              shortcut = "n";
-            };
-            type = "button";
-            val = "  New file";
-          }
-          {
-            on_press = {
-              __raw = "function() vim.cmd[[qa]] end";
-            };
-            opts = {
-              shortcut = "q";
-            };
-            type = "button";
-            val = " Quit Neovim";
-          }
-          ];
-        }
-        {
-          type = "padding";
-          val = 2;
-        }
-        {
-          opts = {
-            hl = "Keyword";
-            position = "center";
-          };
-          type = "text";
-          val = "Inspiring quote here.";
-        }
-        ];
+          theme = "hyper";
+        };
       };
 
-      web-devicons.enable = true;
+      vim-dadbod.enable = true;
+      vim-dadbod-completion.enable = true;
+      vim-dadbod-ui.enable = true;
     };
     extraConfigLua = ''
       luasnip = require("luasnip")
@@ -817,7 +797,9 @@ in {
            rev = "5b0fc97f8ae29ddd2668eced7f352337d5d07f52";
            sha256 = "sha256-RgCk/BFi8vb6SAq6NchcRm/Lshvvw7hymxGNY0A+M1U=";
          };
-         propagatedBuildInputs = [ pkgs.lua51Packages.plenary-nvim ];
+         propagatedBuildInputs = [ 
+           pkgs.lua51Packages.plenary-nvim
+         ];
          disabled = pkgs.lua51Packages.lua.luaversion != "5.1";
          knownRockspec = pkgs.writeText "battery.nvim-scm-1.rockspec" ''
            package = "battery.nvim"
