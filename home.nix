@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 let
   lock-false = {
@@ -84,6 +84,8 @@ in {
     fzf
     zoxide
     libgit2
+    python312Packages.debugpy
+    lldb
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -123,12 +125,12 @@ in {
     defaultEditor = true;
 
     keymaps = [
-      {
-        key = "jk";
-        action = "<esc>";
-        mode = [ "i" ];
-        options = { noremap = true; };
-      }
+      # { # managed by easyescape plugin
+      #   key = "jk";
+      #   action = "<esc>";
+      #   mode = [ "i" ];
+      #   options = { noremap = true; };
+      # }
 
       {
         key = "<leader>pv";
@@ -305,7 +307,29 @@ in {
         };
       };
 
-      lualine.enable = true;
+      lualine = {
+        enable = true;
+        settings = {
+          sections = {
+            lualine_z = [ ''
+                  { 
+                    function() return require("battery").get_status_line() end
+                  }
+            '' ];
+          };
+        };
+        luaConfig.pre = ''
+          require("battery").setup({
+              update_rate_seconds = 30,           -- Number of seconds between checking battery status
+              show_status_when_no_battery = true, -- Don't show any icon or text when no battery found (desktop for example)
+              show_plugged_icon = true,           -- If true show a cable icon alongside the battery icon when plugged in
+              show_unplugged_icon = true,         -- When true show a diconnected cable icon when not plugged in
+              show_percent = true,                -- Whether or not to show the percent charge remaining in digits
+              vertical_icons = true,              -- When true icons are vertical, otherwise shows horizontal battery icon
+              multiple_battery_selection = "min", -- Which battery to choose when multiple found. "max" or "maximum", "min" or "minimum" or a number to pick the nth battery found (currently linux acpi only)
+          });
+        '';
+      };
 
       coq-nvim.enable = true;
 
@@ -325,10 +349,19 @@ in {
             { name = "git"; }
             { name = "nvim_lsp"; }
             { name = "emoji"; }
+            # {
+            #   name = "buffer"; # text within current buffer
+            #   option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
+            #   keywordLength = 3;
+            # }
             {
-              name = "buffer"; # text within current buffer
-              option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
-              keywordLength = 3;
+              name = "calc";
+            }
+            {
+              name = "conventionalcommits";
+            }
+            {
+              name  = "treesitter"; # treesitter
             }
             {
               name = "path"; # file system paths
@@ -377,10 +410,13 @@ in {
       };
 
       cmp-nvim-lsp = { enable = true; }; # lsp
-      cmp-buffer = { enable = true; };
+      # cmp-buffer = { enable = true; };
+      cmp-treesitter = { enable = true; };
       cmp-path = { enable = true; }; # file system paths
       cmp_luasnip = { enable = true; }; # snippets
       cmp-cmdline = { enable = true; }; # autocomplete for cmdline
+      cmp-conventionalcommits = { enable = true; };
+      cmp-calc = { enable = true; };
 
       lsp-format.enable = true;
 
@@ -481,6 +517,7 @@ in {
       undotree.enable = true;
 
       comment.enable = true;
+
       surround.enable = true;
 
       presence-nvim.enable = true;
@@ -553,6 +590,7 @@ in {
             border = "curved";
           };
           open_mapping = "[[<leader>ot]]";
+          insert_mappings = false;
           close_on_exit = false;
         };
       };
@@ -564,6 +602,177 @@ in {
       };
 
       direnv.enable = true;
+
+
+      smartcolumn = {
+        enable = true;
+        settings = {
+          colorcolumn = "80";
+          disabled_filetypes = [
+            "checkhealth"
+            "help"
+            "lspinfo"
+            "markdown"
+            "neo-tree"
+            "noice"
+            "text"
+          ];
+          scope = "window";
+        };
+      };
+
+      zen-mode = {
+        enable = true;
+        settings = {
+          window = {
+            width = 85;
+          };
+        };
+      };
+
+      twilight.enable = true;
+
+      telekasten.enable = true;
+
+      # fzf-lua.enable = true;
+      #
+      # overseer = {
+      #   enable = true;
+      #   settings = {
+      #     strategy = "toggleterm";
+      #   };
+      # };
+
+      fidget = {
+        enable = true;
+        settings =
+        {
+          notification = {
+            window = {
+              winblend = 0;
+            };
+          };
+          progress = {
+            display = {
+              done_icon = "";
+              done_ttl = 7;
+              format_message = inputs.nixvim.lib.nixvim.mkRaw "function(msg)\n  if string.find(msg.title, \"Indexing\") then\n    return nil -- Ignore \"Indexing...\" progress messages\n  end\n  if msg.message then\n    return msg.message\n  else\n    return msg.done and \"Completed\" or \"In progress...\"\n  end\nend\n";
+            };
+          };
+        };
+      };
+
+      easyescape = {
+        enable = true;
+        settings = {
+          chars = { 
+            j = 1;
+            k = 1;
+          };
+          timeout = 100;
+        };
+      };
+
+      debugprint.enable = true;
+
+      # dashboard.enable = true;
+
+      dap = {
+        enable = true;
+      };
+      dap-virtual-text = {
+        enable = true;
+        settings = {
+          commented = true;
+        };
+      };
+      dap-ui = {
+        enable = true;
+        settings = {
+          icons = {
+            expanded = "▾";
+            collapsed = "▸";
+          };
+        };
+      };
+      dap-python.enable = true;
+      dap-lldb.enable = true;
+
+      cursorline.enable = true;
+
+      compiler.enable = true;
+
+      committia.enable = true;
+
+      colorizer.enable = true;
+
+      alpha = {
+        enable = true;
+        layout = [
+        {
+          type = "padding";
+          val = 2;
+        }
+        {
+          opts = {
+            hl = "Type";
+            position = "center";
+          };
+          type = "text";
+          val = [
+              "███╗   ██╗██╗██╗  ██╗██╗   ██╗██╗███╗   ███╗"
+              "████╗  ██║██║╚██╗██╔╝██║   ██║██║████╗ ████║"
+              "██╔██╗ ██║██║ ╚███╔╝ ██║   ██║██║██╔████╔██║"
+              "██║╚██╗██║██║ ██╔██╗ ╚██╗ ██╔╝██║██║╚██╔╝██║"
+              "██║ ╚████║██║██╔╝ ██╗ ╚████╔╝ ██║██║ ╚═╝ ██║"
+              "╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝"
+          ];
+        }
+        {
+          type = "padding";
+          val = 2;
+        }
+        {
+          type = "group";
+          val = [
+          {
+            on_press = {
+              __raw = "function() vim.cmd[[ene]] end";
+            };
+            opts = {
+              shortcut = "n";
+            };
+            type = "button";
+            val = "  New file";
+          }
+          {
+            on_press = {
+              __raw = "function() vim.cmd[[qa]] end";
+            };
+            opts = {
+              shortcut = "q";
+            };
+            type = "button";
+            val = " Quit Neovim";
+          }
+          ];
+        }
+        {
+          type = "padding";
+          val = 2;
+        }
+        {
+          opts = {
+            hl = "Keyword";
+            position = "center";
+          };
+          type = "text";
+          val = "Inspiring quote here.";
+        }
+        ];
+      };
+
+      web-devicons.enable = true;
     };
     extraConfigLua = ''
       luasnip = require("luasnip")
@@ -596,6 +805,45 @@ in {
           TypeParameter = "",
       }
     '';
+
+    extraPlugins = [
+      (pkgs.neovimUtils.buildNeovimPlugin {
+       luaAttr = pkgs.lua51Packages.buildLuarocksPackage {
+         pname = "battery.nvim";
+         version = "scm-1";
+         src = pkgs.fetchFromGitHub {
+           owner = "justinhj";
+           repo = "battery.nvim";
+           rev = "5b0fc97f8ae29ddd2668eced7f352337d5d07f52";
+           sha256 = "sha256-RgCk/BFi8vb6SAq6NchcRm/Lshvvw7hymxGNY0A+M1U=";
+         };
+         propagatedBuildInputs = [ pkgs.lua51Packages.plenary-nvim ];
+         disabled = pkgs.lua51Packages.lua.luaversion != "5.1";
+         knownRockspec = pkgs.writeText "battery.nvim-scm-1.rockspec" ''
+           package = "battery.nvim"
+           version = "scm-1"
+           source = {
+             url = "git://github.com/justinhj/battery.nvim",
+           }
+           dependencies = {
+             "lua == 5.1",
+             "plenary.nvim",
+           }
+           build = {
+             type = "builtin",
+             modules = {
+               battery = "lua/battery/battery.lua",
+             },
+             copy_directories = {
+               "doc",
+               "plugin",
+             }
+           }
+         '';
+       };
+       nvimRequiredCheck = "battery";
+     })
+    ];
   };
 
   programs.zsh = {

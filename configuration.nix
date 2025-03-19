@@ -248,6 +248,7 @@ in {
     powertop
     gamemode
     alsa-utils
+    acpi
   ]);
 
   programs.steam.enable = true;
