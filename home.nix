@@ -193,7 +193,7 @@ in {
       }
 
       {
-        key = "<leader>cc";
+        key = "<leader>cp";
         action = ":CopilotChatToggle<cr>";
         mode = [ "n" ];
       }
@@ -220,6 +220,42 @@ in {
         key = "<leader>gd";
         action = ":Fugit2Diff<cr>";
         mode = [ "n" ];
+      }
+
+      {
+        key = "<leader>cdb";
+        action = ":DBUIToggle<cr>";
+        mode = [ "n" ];
+      }
+
+      {
+        key = "<leader>cc";
+        action = ":CompilerOpen<cr>";
+        mode = [ "n" ];
+        options = { 
+          noremap = true; 
+          silent = true; 
+        };
+      }
+
+      {
+        key = "<leader>cC";
+        action = ":CompilerStop<cr>:CompilerRedo<cr>";
+        mode = [ "n" ];
+        options = { 
+          noremap = true; 
+          silent = true; 
+        };
+      }
+
+      {
+        key = "<leader>ch";
+        action = ":CompilerToggleResults<cr>";
+        mode = [ "n" ];
+        options = { 
+          noremap = true; 
+          silent = true; 
+        };
       }
     ];
 
@@ -636,14 +672,14 @@ in {
 
       telekasten.enable = true;
 
-      # fzf-lua.enable = true;
-      #
-      # overseer = {
-      #   enable = true;
-      #   settings = {
-      #     strategy = "toggleterm";
-      #   };
-      # };
+      fzf-lua.enable = true;
+
+      overseer = {  # depended on by compiler.nvim
+        enable = true;
+        settings = {
+          strategy = "toggleterm";
+        };
+      };
 
       fidget = {
         enable = true;
