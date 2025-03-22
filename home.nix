@@ -715,6 +715,26 @@ in {
 
       dap = {
         enable = true;
+        adapters = {
+          # gdb = {
+          #   type = "executable";
+          #   command = "gdb";
+          #   name = "gdb";
+          # };
+        };
+        configurations = {
+          # cpp = [
+          #   {
+          #     name = "Launch file";
+          #     type = "gdb";
+          #     request = "launch";
+          #     program = "''\${workspaceFolder}/a.out";
+          #     cwd = "''\${workspaceFolder}";
+          #     stopOnEntry = false;
+          #     args = [];
+          #   }
+          # ];
+        };
       };
       dap-virtual-text = {
         enable = true;
@@ -789,6 +809,8 @@ in {
       vim-dadbod.enable = true;
       vim-dadbod-completion.enable = true;
       vim-dadbod-ui.enable = true;
+
+      nvim-ufo.enable = true; # folds
     };
     extraConfigLua = ''
       luasnip = require("luasnip")

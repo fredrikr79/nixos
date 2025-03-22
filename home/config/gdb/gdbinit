@@ -1,2 +1,3 @@
 add-auto-load-safe-path /home/fredrikr/Programming/xv6-riscv64/riscv-hello-asm/oving1/.gdbinit
 add-auto-load-safe-path /home/fredrikr/Programming/xv6-riscv64/riscv-hello-asm/oving2/.gdbinit
+add-auto-load-safe-path /home/fredrikr/Programming/xv6-riscv64/riscv-hello-asm/oving3/.gdbinit
