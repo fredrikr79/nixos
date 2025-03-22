@@ -150,6 +150,7 @@ in
 
       touchpad = {
         accelProfile = "flat";
+        naturalScrolling = true;
       };
     };
   };

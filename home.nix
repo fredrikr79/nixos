@@ -304,6 +304,8 @@ in {
 
       ignorecase = true;
       smartcase = true;
+
+      foldlevel = 99;
     };
 
     plugins = {

@@ -60,5 +60,5 @@ Config { overrideRedirect = False
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = " %XMonadLog% %alsa:default:Master% } %date% { %bright% | %cpu% - %coretemp% | %memory% | %dynnetwork% | %battery% "
+       , template = " %XMonadLog% | %alsa:default:Master% } %date% { %bright% | %cpu% - %coretemp% | %memory% | %dynnetwork% | %battery% "
        }
