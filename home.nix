@@ -1101,6 +1101,12 @@ in {
       {
         plugin = tmuxPlugins.session-wizard;
       }
+      {
+        plugin = tmuxPlugins.battery;
+        extraConfig = ''
+          set -g status-right '#{battery_percentage} | %a %h-%d %H:%M '
+        '';
+      }
     ];
     shell = "${pkgs.zsh}/bin/zsh";
     newSession = true;
