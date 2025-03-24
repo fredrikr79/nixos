@@ -229,7 +229,7 @@ in {
       }
 
       {
-        key = "<leader>cc";
+        key = "<leader>cm";
         action = ":CompilerOpen<cr>";
         mode = [ "n" ];
         options = { 
@@ -239,22 +239,32 @@ in {
       }
 
       {
-        key = "<leader>cC";
+        key = "<leader>cc";
         action = ":CompilerStop<cr>:CompilerRedo<cr>";
         mode = [ "n" ];
-        options = { 
+        options = {
           noremap = true; 
           silent = true; 
         };
       }
 
       {
-        key = "<leader>ch";
+        key = "<leader>ct";
         action = ":CompilerToggleResults<cr>";
         mode = [ "n" ];
-        options = { 
+        options = {
           noremap = true; 
           silent = true; 
+        };
+      }
+
+      {
+        key = "<leader>y";
+        action = "\"+y";
+        mode = [ "n" "v" ];
+        options = {
+          noremap = true;
+          silent = true;
         };
       }
     ];
@@ -665,7 +675,7 @@ in {
         enable = true;
         settings = {
           window = {
-            width = 85;
+            width = 92;
           };
         };
       };
