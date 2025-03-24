@@ -268,6 +268,18 @@ in {
           silent = true;
         };
       }
+
+      {
+        key = "<C-backspace>";
+        action = "<C-w>";
+        mode = [ "i" ];
+      }
+
+      {
+        key = "<C-h>";
+        action = "<C-w>";
+        mode = [ "i" ];
+      }
     ];
 
     colorschemes.dracula = {
