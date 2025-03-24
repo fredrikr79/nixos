@@ -86,6 +86,7 @@ in {
     libgit2
     python312Packages.debugpy
     lldb
+    nodePackages.prettier
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -286,7 +287,7 @@ in {
       termguicolors = true;
 
       number = true;
-      relativenumber = true;
+      # relativenumber = true;
 
       tabstop = 4;
       softtabstop = 4;
@@ -309,7 +310,7 @@ in {
 
       textwidth = 80;
       formatoptions = "tcqjn1"; # auto-format
-      colorcolumn = "81";
+      # colorcolumn = "81";
       wrap = false;
 
       ignorecase = true;
