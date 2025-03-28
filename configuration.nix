@@ -151,7 +151,14 @@ in
       touchpad = {
         accelProfile = "flat";
         naturalScrolling = true;
+        disableWhileTyping = true;
+        accelSpeed = "0.7";
       };
+    };
+
+    synaptics = {
+      minSpeed = "7.0";
+      maxSpeed = "8.0";
     };
   };
 

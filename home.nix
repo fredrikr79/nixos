@@ -79,7 +79,6 @@ in {
     vulkan-loader
     python312Packages.python-lsp-server
     editorconfig-core-c
-    copilot-cli
     inputs.zen-browser.packages."${system}".default
     fzf
     zoxide
@@ -193,42 +192,42 @@ in {
         mode = [ "n" ];
       }
 
-      {
-        key = "<leader>cp";
-        action = ":CopilotChatToggle<cr>";
-        mode = [ "n" ];
-      }
-
-      {
-        key = "<leader>gg";
-        action = ":Fugit2<cr>";
-        mode = [ "n" ];
-      }
-
-      {
-        key = "<leader>gl";
-        action = ":Fugit2Graph<cr>";
-        mode = [ "n" ];
-      }
-
-      {
-        key = "<leader>gb";
-        action = ":Fugit2Blame<cr>";
-        mode = [ "n" ];
-      }
-
-      {
-        key = "<leader>gd";
-        action = ":Fugit2Diff<cr>";
-        mode = [ "n" ];
-      }
-
-      {
-        key = "<leader>cdb";
-        action = ":DBUIToggle<cr>";
-        mode = [ "n" ];
-      }
-
+      # {
+      #   key = "<leader>cp";
+      #   action = ":CopilotChatToggle<cr>";
+      #   mode = [ "n" ];
+      # }
+      #
+      # {
+      #   key = "<leader>gg";
+      #   action = ":Fugit2<cr>";
+      #   mode = [ "n" ];
+      # }
+      #
+      # {
+      #   key = "<leader>gl";
+      #   action = ":Fugit2Graph<cr>";
+      #   mode = [ "n" ];
+      # }
+      #
+      # {
+      #   key = "<leader>gb";
+      #   action = ":Fugit2Blame<cr>";
+      #   mode = [ "n" ];
+      # }
+      #
+      # {
+      #   key = "<leader>gd";
+      #   action = ":Fugit2Diff<cr>";
+      #   mode = [ "n" ];
+      # }
+      #
+      # {
+      #   key = "<leader>cdb";
+      #   action = ":DBUIToggle<cr>";
+      #   mode = [ "n" ];
+      # }
+      #
       {
         key = "<leader>cm";
         action = ":CompilerOpen<cr>";
@@ -432,12 +431,12 @@ in {
               name = "luasnip"; # snippets
               keywordLength = 3;
             }
-            {
-              name = "copilot";
-            }
-            {
-              name = "dadbod";
-            }
+            # {
+            #   name = "copilot";
+            # }
+            # {
+            #   name = "dadbod";
+            # }
           ];
 
           window = {
@@ -636,14 +635,14 @@ in {
         ];
       };
 
-      copilot-lua.enable = true;
-      copilot-cmp.enable = true;
-      copilot-chat.enable = true;
-
-      fugit2 = {
-        enable = true;
-        settings.external_diffview = true;
-      };
+      # copilot-lua.enable = true;
+      # copilot-cmp.enable = true;
+      # copilot-chat.enable = true;
+      #
+      # fugit2 = {
+      #   enable = true;
+      #   settings.external_diffview = true;
+      # };
 
       toggleterm = {
         enable = true;
@@ -658,11 +657,11 @@ in {
         };
       };
 
-      autoclose.enable = true;
-
-      leap = {
-        enable = true;
-      };
+      # autoclose.enable = true;
+      #
+      # leap = {
+      #   enable = true;
+      # };
 
       direnv.enable = true;
 
@@ -684,18 +683,18 @@ in {
         };
       };
 
-      zen-mode = {
-        enable = true;
-        settings = {
-          window = {
-            width = 92;
-          };
-        };
-      };
-
-      twilight.enable = true;
-
-      telekasten.enable = true;
+      # zen-mode = {
+      #   enable = true;
+      #   settings = {
+      #     window = {
+      #       width = 92;
+      #     };
+      #   };
+      # };
+      #
+      # twilight.enable = true;
+      #
+      # telekasten.enable = true;
 
       fzf-lua.enable = true;
 
@@ -736,48 +735,48 @@ in {
         };
       };
 
-      debugprint.enable = true;
+      # debugprint.enable = true;
 
-      dap = {
-        enable = true;
-        adapters = {
-          # gdb = {
-          #   type = "executable";
-          #   command = "gdb";
-          #   name = "gdb";
-          # };
-        };
-        configurations = {
-          # cpp = [
-          #   {
-          #     name = "Launch file";
-          #     type = "gdb";
-          #     request = "launch";
-          #     program = "''\${workspaceFolder}/a.out";
-          #     cwd = "''\${workspaceFolder}";
-          #     stopOnEntry = false;
-          #     args = [];
-          #   }
-          # ];
-        };
-      };
-      dap-virtual-text = {
-        enable = true;
-        settings = {
-          commented = true;
-        };
-      };
-      dap-ui = {
-        enable = true;
-        settings = {
-          icons = {
-            expanded = "▾";
-            collapsed = "▸";
-          };
-        };
-      };
-      dap-python.enable = true;
-      dap-lldb.enable = true;
+      # dap = {
+      #   enable = true;
+      #   adapters = {
+      #     # gdb = {
+      #     #   type = "executable";
+      #     #   command = "gdb";
+      #     #   name = "gdb";
+      #     # };
+      #   };
+      #   configurations = {
+      #     # cpp = [
+      #     #   {
+      #     #     name = "Launch file";
+      #     #     type = "gdb";
+      #     #     request = "launch";
+      #     #     program = "''\${workspaceFolder}/a.out";
+      #     #     cwd = "''\${workspaceFolder}";
+      #     #     stopOnEntry = false;
+      #     #     args = [];
+      #     #   }
+      #     # ];
+      #   };
+      # };
+      # dap-virtual-text = {
+      #   enable = true;
+      #   settings = {
+      #     commented = true;
+      #   };
+      # };
+      # dap-ui = {
+      #   enable = true;
+      #   settings = {
+      #     icons = {
+      #       expanded = "▾";
+      #       collapsed = "▸";
+      #     };
+      #   };
+      # };
+      # dap-python.enable = true;
+      # dap-lldb.enable = true;
 
       cursorline.enable = true;
 
@@ -789,51 +788,51 @@ in {
 
       web-devicons.enable = true;
 
-      dashboard = {
-        enable = true;
-        settings = {
-          change_to_vcs_root = true;
-          config = {
-            footer = [
-              "Made with ❤️"
-            ];
-            header = [
-                "███╗   ██╗██╗██╗  ██╗██╗   ██╗██╗███╗   ███╗"
-                "████╗  ██║██║╚██╗██╔╝██║   ██║██║████╗ ████║"
-                "██╔██╗ ██║██║ ╚███╔╝ ██║   ██║██║██╔████╔██║"
-                "██║╚██╗██║██║ ██╔██╗ ╚██╗ ██╔╝██║██║╚██╔╝██║"
-                "██║ ╚████║██║██╔╝ ██╗ ╚████╔╝ ██║██║ ╚═╝ ██║"
-                "╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝"
-            ];
-            mru = {
-              limit = 20;
-            };
-            project = {
-              enable = false;
-            };
-            shortcut = [
-            {
-              action = {
-                __raw = "function(path) vim.cmd('Telescope find_files') end";
-              };
-              desc = "Files";
-              group = "Label";
-              icon = " ";
-              icon_hl = "@variable";
-              key = "f";
-            }
-            ];
-            week_header = {
-              enable = true;
-            };
-          };
-          theme = "hyper";
-        };
-      };
+      # dashboard = {
+      #   enable = true;
+      #   settings = {
+      #     change_to_vcs_root = true;
+      #     config = {
+      #       footer = [
+      #         "Made with ❤️"
+      #       ];
+      #       header = [
+      #           "███╗   ██╗██╗██╗  ██╗██╗   ██╗██╗███╗   ███╗"
+      #           "████╗  ██║██║╚██╗██╔╝██║   ██║██║████╗ ████║"
+      #           "██╔██╗ ██║██║ ╚███╔╝ ██║   ██║██║██╔████╔██║"
+      #           "██║╚██╗██║██║ ██╔██╗ ╚██╗ ██╔╝██║██║╚██╔╝██║"
+      #           "██║ ╚████║██║██╔╝ ██╗ ╚████╔╝ ██║██║ ╚═╝ ██║"
+      #           "╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝"
+      #       ];
+      #       mru = {
+      #         limit = 20;
+      #       };
+      #       project = {
+      #         enable = false;
+      #       };
+      #       shortcut = [
+      #       {
+      #         action = {
+      #           __raw = "function(path) vim.cmd('Telescope find_files') end";
+      #         };
+      #         desc = "Files";
+      #         group = "Label";
+      #         icon = " ";
+      #         icon_hl = "@variable";
+      #         key = "f";
+      #       }
+      #       ];
+      #       week_header = {
+      #         enable = true;
+      #       };
+      #     };
+      #     theme = "hyper";
+      #   };
+      # };
 
-      vim-dadbod.enable = true;
-      vim-dadbod-completion.enable = true;
-      vim-dadbod-ui.enable = true;
+      # vim-dadbod.enable = true;
+      # vim-dadbod-completion.enable = true;
+      # vim-dadbod-ui.enable = true;
 
       nvim-ufo.enable = true; # folds
     };
