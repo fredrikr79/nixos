@@ -1005,7 +1005,13 @@ in {
     initExtra = ''
       bindkey -v
       export TERM=xterm-256color
-    '' + "\n" + builtins.readFile ./jujutsuzsh.lotsofcode;
+
+      # jujutsu setup
+      # autoload -U compinit
+      # compinit
+      source <(jj util completion zsh)
+      source <(COMPLETE=zsh jj)
+    '';
   };
 
   programs.git = {
