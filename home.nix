@@ -86,6 +86,7 @@ in {
     python312Packages.debugpy
     lldb
     nodePackages.prettier
+    jujutsu
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -946,11 +947,6 @@ in {
     };
 
     defaultKeymap = "viins";
-    initExtra = ''
-      bindkey -v
-      bindkey -M viins 'jk' vi-cmd-mode
-      export TERM=xterm-256color
-    '';
 
     zsh-abbr.enable = true;
 
@@ -1005,6 +1001,11 @@ in {
         "cursor" = "standout";
       };
     };
+
+    initExtra = ''
+      bindkey -v
+      export TERM=xterm-256color
+    '' + "\n" + builtins.readFile ./jujutsuzsh.lotsofcode;
   };
 
   programs.git = {
