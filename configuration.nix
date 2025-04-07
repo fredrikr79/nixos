@@ -66,12 +66,14 @@ in
   };
 
   i18n.inputMethod = {
-      enabled = "fcitx5";
+      enable = true;
+      type = "fcitx5";
       fcitx5.addons = with pkgs; [ 
           fcitx5-rime 
           fcitx5-mozc 
           fcitx5-gtk
           fcitx5-configtool
+          libsForQt5.fcitx5-qt
       ];
   };
   # i18n.inputMethod.fcitx5.engines = with pkgs.fcitx-engines; [ mozc ];
@@ -112,6 +114,8 @@ in
     xkbOptions = "compose:menu, grp:alt_shift_toggle, lv3:ralt_switch";
 
     exportConfiguration = true;
+
+    desktopManager.runXdgAutostartIfNone = true;
 
     windowManager = {
       xmonad = {
@@ -245,7 +249,7 @@ in {
     udisks
     # javaPackages.openjfx17
     libGL
-    # gtk3
+    gtk3
     zathura
     libgcc
     gcc
@@ -257,6 +261,8 @@ in {
     gamemode
     alsa-utils
     acpi
+    # fcitx5
+    # fcitx5-configtool
   ]);
 
   programs.steam.enable = true;
@@ -383,7 +389,14 @@ in {
   #     libvdpau-va-gl
   #   ];
   # };
-  # environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; }; # Force intel-media-driver
+  environment.sessionVariables = { 
+    # LIBVA_DRIVER_NAME = "iHD"; # Force intel-media-driver
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx";
+    SDL_IM_MODULE = "fcitx";
+    GLFW_IM_MODULE = "ibus"; # Some applications use GLFW
+  }; 
 
 
   services.devmon.enable = true;
