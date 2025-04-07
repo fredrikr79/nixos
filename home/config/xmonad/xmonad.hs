@@ -41,7 +41,7 @@ main =
 
 myConfig =
   let terminal = "kitty tmux attach-session"
-      browser = "zen"
+      browser = "librewolf"
       modm = mod4Mask -- super/meta
    in def
         { modMask = modm,
