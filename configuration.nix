@@ -396,7 +396,17 @@ in {
     XMODIFIERS = "@im=fcitx";
     SDL_IM_MODULE = "fcitx";
     GLFW_IM_MODULE = "ibus"; # Some applications use GLFW
+    INPUT_METHOD = "fcitx";
   }; 
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
+    ];
+    config.common.default = "*";
+  };
 
 
   services.devmon.enable = true;
