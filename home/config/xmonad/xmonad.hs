@@ -61,6 +61,8 @@ myConfig =
                            ((modm, xK_Escape), spawn "dm-tool lock"),
                            ((modm, xK_Down), nextWS),
                            ((modm, xK_Up), prevWS),
+                           ((modm, xK_j), nextWS),
+                           ((modm, xK_k), prevWS),
                            ((modm .|. shiftMask, xK_Down), shiftToNext),
                            ((modm .|. shiftMask, xK_Up), shiftToPrev),
                            ((modm, xK_z), spawn "zathura"),
