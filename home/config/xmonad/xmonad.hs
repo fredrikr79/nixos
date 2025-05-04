@@ -51,6 +51,7 @@ myConfig =
           logHook = historyHook
         }
         `additionalKeysP` [ ("M-b", spawn browser),
+                            ("M-c", spawn "chromium"),
                             -- , ("M-t", spawn terminal)
                             -- , ("M-S-Enter", spawn terminal)
                             -- , ("<Print>", spawn "scrot ~/Pictures/Screenshots/%b-%d::%H-%M-%S.png")
