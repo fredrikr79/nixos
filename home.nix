@@ -79,7 +79,7 @@ in {
     vulkan-loader
     python312Packages.python-lsp-server
     editorconfig-core-c
-    inputs.zen-browser.packages."${system}".default
+    # inputs.zen-browser.packages."${system}".default
     fzf
     zoxide
     libgit2
