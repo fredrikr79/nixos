@@ -38,7 +38,7 @@ in {
     # typstfmt
     typstyle
     uiua386
-    uiua
+    # uiua
     byzanz
     python3Packages.mdformat
     prismlauncher # minecraft
