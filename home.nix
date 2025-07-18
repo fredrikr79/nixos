@@ -89,6 +89,7 @@ in {
     jujutsu
     ungoogled-chromium
     mpv
+    inputs.uiua.packages."${system}".default
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

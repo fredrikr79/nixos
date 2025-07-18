@@ -26,9 +26,14 @@
       # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    uiua = { 
+      url = "github:uiua-lang/uiua";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixvim, ... } @ inputs: 
+  outputs = { self, nixpkgs, home-manager, nixvim, uiua, ... } @ inputs: 
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
