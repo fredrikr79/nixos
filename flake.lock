@@ -314,11 +314,32 @@
         "type": "github"
       }
     },
+    "qotd": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1753819801,
+        "narHash": "sha256-ZkMmCOEU64TjN/UlD1GuqQuym/YLQuN196CmlMHAO+w=",
+        "ref": "refs/heads/master",
+        "rev": "ad90671e37f034807b19a68a1a3b9824609bbafa",
+        "revCount": 11,
+        "type": "git",
+        "url": "file:///home/fredrikr/Programming/uiua/qotd"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/fredrikr/Programming/uiua/qotd"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
+        "qotd": "qotd",
         "uiua": "uiua",
         "vi-xournalpp": "vi-xournalpp"
       }

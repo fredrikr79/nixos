@@ -31,14 +31,20 @@
       url = "github:uiua-lang/uiua";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    qotd = {
+      url = "git+file:///home/fredrikr/Programming/uiua/qotd";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixvim, uiua, ... } @ inputs: 
+  outputs = { self, nixpkgs, home-manager, nixvim, uiua, qotd, ... } @ inputs: 
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
+        overlays = [ qotd.overlays.default ];
       };
       lib = nixpkgs.lib;
     in 
@@ -53,12 +59,18 @@
         #};
 
           fredrikr = lib.nixosSystem {
-              inherit system;
+              inherit system pkgs;
               specialArgs = {inherit inputs;};
               modules = [ 
                   ./configuration.nix 
 
                   home-manager.nixosModules.home-manager 
+
+                  qotd.nixosModules.default
+                  {
+                    services.qotd.enable = true;
+                    services.qotd.quotes = [ "hei" "hade" ];
+                  }
 
                   ({ ... }: {
                       home-manager = {
