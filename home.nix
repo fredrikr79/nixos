@@ -90,6 +90,8 @@ in {
     ungoogled-chromium
     mpv
     inputs.uiua.packages."${system}".default
+    odin
+    ols
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -558,6 +560,7 @@ in {
           marksman.enable = true;
           uiua.enable = true;
           omnisharp.enable = true;
+          ols.enable = true;
         };
       };
 
