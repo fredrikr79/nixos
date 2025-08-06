@@ -263,6 +263,7 @@ in {
     acpi
     # fcitx5
     # fcitx5-configtool
+    dolphin
   ]);
 
   programs.steam.enable = true;

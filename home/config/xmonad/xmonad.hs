@@ -52,6 +52,7 @@ myConfig =
         }
         `additionalKeysP` [ ("M-b", spawn browser),
                             ("M-c", spawn "chromium"),
+                            ("M-e", spawn "dolphin"),
                             -- , ("M-t", spawn terminal)
                             -- , ("M-S-Enter", spawn terminal)
                             -- , ("<Print>", spawn "scrot ~/Pictures/Screenshots/%b-%d::%H-%M-%S.png")
