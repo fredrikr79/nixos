@@ -264,6 +264,7 @@ in {
     # fcitx5
     # fcitx5-configtool
     dolphin
+    libreoffice-qt6-fresh
   ]);
 
   programs.steam.enable = true;
