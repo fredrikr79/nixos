@@ -83,10 +83,8 @@ in
   # };
 
   # TTY settings
-  i18n = {
-    # luckily this also changes the keyboard layout at boot (for e.g full disk encryption passwords)
-    consoleKeyMap = "dvorak-programmer";
-  };
+  # luckily this also changes the keyboard layout at boot (for e.g full disk encryption passwords)
+  console.keyMap = "dvorak-programmer";
 
   # GUI settings, this includes login screen
   #services.xserver.layout = "us";
@@ -109,9 +107,9 @@ in
     autoRepeatInterval = 24;
     
     # DVORAK + NO
-    layout = "us,no";
-    xkbVariant = "dvp,";
-    xkbOptions = "compose:menu, grp:alt_shift_toggle, lv3:ralt_switch";
+    xkb.layout = "us,no";
+    xkb.variant = "dvp,";
+    xkb.options = "compose:menu, grp:alt_shift_toggle, lv3:ralt_switch";
 
     exportConfiguration = true;
 
@@ -130,8 +128,8 @@ in
         ];
       };
     };
+
     displayManager = {
-      defaultSession = "none+xmonad";
       lightdm = {
         enable = true;
         greeters.enso = {
@@ -145,7 +143,15 @@ in
       # sessionCommands = '' '';
     };
 
-    libinput = {
+    synaptics = {
+      minSpeed = "7.0";
+      maxSpeed = "8.0";
+    };
+  };
+
+  services.displayManager.defaultSession = "none+xmonad";
+
+  services.libinput = {
       enable = true;
 
       mouse = {
@@ -159,12 +165,6 @@ in
         accelSpeed = "0.7";
       };
     };
-
-    synaptics = {
-      minSpeed = "7.0";
-      maxSpeed = "8.0";
-    };
-  };
 
 
   # Enable CUPS to print documents.
@@ -202,7 +202,7 @@ in {
 };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
+  # services.libinput.enable = true;
 
   services.blueman.enable = true;
 
@@ -422,9 +422,6 @@ in {
       # (nerdfonts.override { fonts = [ "FiraCode" "Monoid" ]; })
       nerd-fonts.fira-code
       nerd-fonts.droid-sans-mono
-    ];
-
-    fonts = with pkgs; [
       noto-fonts
       ubuntu_font_family
       unifont

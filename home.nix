@@ -60,7 +60,7 @@ in {
     haskell-language-server
     haskellPackages.hoogle
     cabal-cli
-    nixfmt
+    nixfmt-rfc-style
     black
     python312Packages.pyflakes
     isort
@@ -292,7 +292,7 @@ in {
       # settings = {
       #     disable_background = true;
       # };
-      colorterm = false;
+      settings.colorterm = false;
     };
 
     viAlias = true;
@@ -345,30 +345,30 @@ in {
             timeoutMs = 500;
             lspFallback = true;
           };
-        };
 
-        formattersByFt = {
-          typst = [ "typstyle " ]; # "typstfmt"];
-          python = [ "black" ];
-          markdown = [ "prettier" ];
-        };
+          formatters_by_ft = {
+            typst = [ "typstyle " ]; # "typstfmt"];
+            python = [ "black" ];
+            markdown = [ "prettier" ];
+          };
 
-        formatters = {
-          prettier = {
-            command = "prettier";
-            filetypes = [ "markdown" ];
-          };
-          # typstfmt = {
-          #     command = "typstfmt";
-          #     filetypes = ["typst"];
-          # };
-          typstyle = {
-            command = "typstyle";
-            filetypes = [ "typst" ];
-          };
-          black = {
-            command = "black";
-            filetypes = [ "python" ];
+          formatters = {
+            prettier = {
+              command = "prettier";
+              filetypes = [ "markdown" ];
+            };
+            # typstfmt = {
+            #     command = "typstfmt";
+            #     filetypes = ["typst"];
+            # };
+            typstyle = {
+              command = "typstyle";
+              filetypes = [ "typst" ];
+            };
+            black = {
+              command = "black";
+              filetypes = [ "python" ];
+            };
           };
         };
       };
@@ -538,9 +538,12 @@ in {
         };
         servers = {
           pyright.enable = true;
-          nil-ls.enable = true;
-          lua-ls.enable = true;
-          hls.enable = true;
+          nil_ls.enable = true;
+          lua_ls.enable = true;
+          hls = {
+            enable = true;
+            installGhc = true;
+          };
           tinymist = {
             enable = true;
             settings = {
@@ -587,7 +590,7 @@ in {
 
       comment.enable = true;
 
-      surround.enable = true;
+      vim-surround.enable = true;
 
       presence-nvim.enable = true;
 
@@ -1105,7 +1108,7 @@ in {
     font.size = 16;
     # font.package = pkgs.monocraft;
     shellIntegration.enableZshIntegration = true;
-    theme = "Dracula";
+    themeFile = "Dracula";
   };
 
   programs.emacs = {
