@@ -1,4 +1,10 @@
-{ config, pkgs, inputs, lib, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 
 let
   lock-false = {
@@ -9,7 +15,8 @@ let
     Value = true;
     Status = "locked";
   };
-in {
+in
+{
   home.username = "fredrikr";
   home.homeDirectory = "/home/fredrikr";
 
@@ -24,7 +31,7 @@ in {
     brightnessctl
     python3
     sage
-    quickemu
+    # quickemu
     maven
     vscode-fhs
     anki-bin
@@ -45,7 +52,7 @@ in {
     ghc
     monocraft
     zsh-syntax-highlighting
-    unityhub
+    # unityhub
     dotnet-sdk
     omnisharp-roslyn
     # emacs
@@ -71,11 +78,11 @@ in {
     shfmt
     libtool
     tinymist
-    emacsPackages.treesit-grammars.with-all-grammars
+    # emacsPackages.treesit-grammars.with-all-grammars
     librewolf
     cargo
     vulkan-tools
-    mesa.drivers
+    mesa
     vulkan-loader
     python312Packages.python-lsp-server
     editorconfig-core-c
@@ -120,7 +127,9 @@ in {
     ".doom.d".source = home/doom.d;
   };
 
-  home.sessionVariables = { EDITOR = "nvim"; };
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 
   home.sessionPath = [ "/home/fredrikr/.config/emacs/bin/" ];
 
@@ -238,9 +247,9 @@ in {
         key = "<leader>cm";
         action = ":CompilerOpen<cr>";
         mode = [ "n" ];
-        options = { 
-          noremap = true; 
-          silent = true; 
+        options = {
+          noremap = true;
+          silent = true;
         };
       }
 
@@ -249,8 +258,8 @@ in {
         action = ":CompilerStop<cr>:CompilerRedo<cr>";
         mode = [ "n" ];
         options = {
-          noremap = true; 
-          silent = true; 
+          noremap = true;
+          silent = true;
         };
       }
 
@@ -259,15 +268,18 @@ in {
         action = ":CompilerToggleResults<cr>";
         mode = [ "n" ];
         options = {
-          noremap = true; 
-          silent = true; 
+          noremap = true;
+          silent = true;
         };
       }
 
       {
         key = "<leader>y";
         action = "\"+y";
-        mode = [ "n" "v" ];
+        mode = [
+          "n"
+          "v"
+        ];
         options = {
           noremap = true;
           silent = true;
@@ -285,6 +297,38 @@ in {
         action = "<C-w>";
         mode = [ "i" ];
       }
+
+      # harpoon2 syntax
+      {
+        mode = "n";
+        key = "<leader>ha";
+        action.__raw = "function() require'harpoon':list():add() end";
+      }
+      {
+        mode = "n";
+        key = "<leader>hl";
+        action.__raw = "function() require'harpoon'.ui:toggle_quick_menu(require'harpoon':list()) end";
+      }
+      {
+        mode = "n";
+        key = "<C-h>";
+        action.__raw = "function() require'harpoon':list():select(1) end";
+      }
+      {
+        mode = "n";
+        key = "<C-t>";
+        action.__raw = "function() require'harpoon':list():select(2) end";
+      }
+      {
+        mode = "n";
+        key = "<C-n>";
+        action.__raw = "function() require'harpoon':list():select(3) end";
+      }
+      {
+        mode = "n";
+        key = "<C-s>";
+        action.__raw = "function() require'harpoon':list():select(4) end";
+      }
     ];
 
     colorschemes.dracula = {
@@ -298,7 +342,9 @@ in {
     viAlias = true;
     vimAlias = true;
 
-    globals = { mapleader = " "; };
+    globals = {
+      mapleader = " ";
+    };
 
     opts = {
       termguicolors = true;
@@ -378,7 +424,7 @@ in {
         settings = {
           sections = {
             # lualine_z = [ ''
-            #       { 
+            #       {
             #         function() return require("battery").get_status_line() end
             #       }
             # '' ];
@@ -403,14 +449,24 @@ in {
         enable = true;
         settings = {
           autoEnableSources = true;
-          experimental = { ghost_text = true; };
+          experimental = {
+            ghost_text = true;
+          };
           performance = {
             debounce = 60;
             fetchingTimeout = 200;
             maxViewEntries = 30;
           };
-          snippet = { expand = "luasnip"; };
-          formatting = { fields = [ "kind" "abbr" "menu" ]; };
+          snippet = {
+            expand = "luasnip";
+          };
+          formatting = {
+            fields = [
+              "kind"
+              "abbr"
+              "menu"
+            ];
+          };
           sources = [
             { name = "git"; }
             { name = "nvim_lsp"; }
@@ -427,7 +483,7 @@ in {
               name = "conventionalcommits";
             }
             {
-              name  = "treesitter"; # treesitter
+              name = "treesitter"; # treesitter
             }
             {
               name = "path"; # file system paths
@@ -447,17 +503,33 @@ in {
 
           window = {
             completion = {
-              winhighlight =
-                "FloatBorder:CmpBorder,Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel";
+              winhighlight = "FloatBorder:CmpBorder,Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel";
               scrollbar = false;
               sidePadding = 0;
-              border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ];
+              border = [
+                "╭"
+                "─"
+                "╮"
+                "│"
+                "╯"
+                "─"
+                "╰"
+                "│"
+              ];
             };
 
             settings.documentation = {
-              border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ];
-              winhighlight =
-                "FloatBorder:CmpBorder,Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel";
+              border = [
+                "╭"
+                "─"
+                "╮"
+                "│"
+                "╯"
+                "─"
+                "╰"
+                "│"
+              ];
+              winhighlight = "FloatBorder:CmpBorder,Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel";
             };
           };
 
@@ -471,20 +543,33 @@ in {
             "<C-f>" = "cmp.mapping.scroll_docs(4)";
             "<C-Space>" = "cmp.mapping.complete()";
             "<CR>" = "cmp.mapping.confirm({ select = true })";
-            "<S-CR>" =
-              "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })";
+            "<S-CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })";
           };
         };
       };
 
-      cmp-nvim-lsp = { enable = true; }; # lsp
+      cmp-nvim-lsp = {
+        enable = true;
+      }; # lsp
       # cmp-buffer = { enable = true; };
-      cmp-treesitter = { enable = true; };
-      cmp-path = { enable = true; }; # file system paths
-      cmp_luasnip = { enable = true; }; # snippets
-      cmp-cmdline = { enable = true; }; # autocomplete for cmdline
-      cmp-conventionalcommits = { enable = true; };
-      cmp-calc = { enable = true; };
+      cmp-treesitter = {
+        enable = true;
+      };
+      cmp-path = {
+        enable = true;
+      }; # file system paths
+      cmp_luasnip = {
+        enable = true;
+      }; # snippets
+      cmp-cmdline = {
+        enable = true;
+      }; # autocomplete for cmdline
+      cmp-conventionalcommits = {
+        enable = true;
+      };
+      cmp-calc = {
+        enable = true;
+      };
 
       lsp-format.enable = true;
 
@@ -572,19 +657,21 @@ in {
 
       harpoon = {
         enable = true;
-        keymaps = {
-          navFile = {
-            "1" = "<C-h>";
-            "2" = "<C-t>";
-            "3" = "<C-n>";
-            "4" = "<C-s>";
-          };
-          addFile = "<leader>ha";
-          toggleQuickMenu = "<leader>hl";
-        };
+        # keymaps = {
+        #   navFile = {
+        #     "1" = "<C-h>";
+        #     "2" = "<C-t>";
+        #     "3" = "<C-n>";
+        #     "4" = "<C-s>";
+        #   };
+        #   addFile = "<leader>ha";
+        #   toggleQuickMenu = "<leader>hl";
+        # };
       };
 
-      treesitter = { enable = true; };
+      treesitter = {
+        enable = true;
+      };
 
       undotree.enable = true;
 
@@ -596,9 +683,9 @@ in {
 
       which-key.enable = true;
 
-      nvim-jdtls = {
+      jdtls = {
         enable = true;
-        data = "/home/fredrikr/.cache/jdtls/workspace";
+        # data = "/home/fredrikr/.cache/jdtls/workspace";
       };
 
       telescope = {
@@ -630,7 +717,9 @@ in {
         view.mergeTool.layout = "diff3_mixed";
       };
 
-      markview = { enable = true; };
+      markview = {
+        enable = true;
+      };
 
       rainbow-delimiters = {
         enable = true;
@@ -675,7 +764,6 @@ in {
 
       direnv.enable = true;
 
-
       smartcolumn = {
         enable = true;
         settings = {
@@ -708,7 +796,8 @@ in {
 
       fzf-lua.enable = true;
 
-      overseer = {  # depended on by compiler.nvim
+      overseer = {
+        # depended on by compiler.nvim
         enable = true;
         settings = {
           strategy = "toggleterm";
@@ -717,8 +806,7 @@ in {
 
       fidget = {
         enable = true;
-        settings =
-        {
+        settings = {
           notification = {
             window = {
               winblend = 0;
@@ -737,7 +825,7 @@ in {
       easyescape = {
         enable = true;
         settings = {
-          chars = { 
+          chars = {
             j = 1;
             k = 1;
           };
@@ -889,7 +977,7 @@ in {
     #        rev = "5b0fc97f8ae29ddd2668eced7f352337d5d07f52";
     #        sha256 = "sha256-RgCk/BFi8vb6SAq6NchcRm/Lshvvw7hymxGNY0A+M1U=";
     #      };
-    #      propagatedBuildInputs = [ 
+    #      propagatedBuildInputs = [
     #        pkgs.lua51Packages.plenary-nvim
     #      ];
     #      disabled = pkgs.lua51Packages.lua.luaversion != "5.1";
@@ -934,16 +1022,22 @@ in {
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "shrink-path" "direnv" ];
+      plugins = [
+        "git"
+        "shrink-path"
+        "direnv"
+      ];
       # theme = "";
     };
 
     zplug = {
       enable = true;
-      plugins = [{
-        name = "dracula/zsh";
-        tags = [ "as:theme" ];
-      }];
+      plugins = [
+        {
+          name = "dracula/zsh";
+          tags = [ "as:theme" ];
+        }
+      ];
     };
 
     shellAliases = {
@@ -960,8 +1054,12 @@ in {
     zsh-abbr.enable = true;
 
     syntaxHighlighting = {
-      highlighters = [ "main" "cursor" ];
-      styles = { # dracula
+      highlighters = [
+        "main"
+        "cursor"
+      ];
+      styles = {
+        # dracula
         "comment" = "fg=#6272A4";
         "alias" = "fg=#50FA7B";
         "suffix-alias" = "fg=#50FA7B";
@@ -1011,7 +1109,7 @@ in {
       };
     };
 
-    initExtra = ''
+    initContent = ''
       bindkey -v
       export TERM=xterm-256color
 
@@ -1035,7 +1133,9 @@ in {
     # package = pkgs.jdk21;
   };
 
-  programs.direnv = { enable = true; };
+  programs.direnv = {
+    enable = true;
+  };
 
   services.redshift = {
     enable = true;
@@ -1119,7 +1219,6 @@ in {
   };
   services.emacs.enable = true;
 
-
   programs.tmux = {
     enable = true;
     clock24 = true;
@@ -1136,7 +1235,7 @@ in {
         extraConfig = ''
           set -g @continuum-restore 'on'
           set -g @continuum-save-interval '60' # minutes
-          '';
+        '';
       }
       {
         plugin = tmuxPlugins.session-wizard;

@@ -256,15 +256,16 @@ in {
     gdb
     valgrind-light
     gnumake
-    qemu_full
+    # qemu_full
     powertop
     gamemode
     alsa-utils
     acpi
     # fcitx5
     # fcitx5-configtool
-    dolphin
+    kdePackages.dolphin
     libreoffice-qt6-fresh
+    nix-tree
   ]);
 
   programs.steam.enable = true;
@@ -422,44 +423,44 @@ in {
       # (nerdfonts.override { fonts = [ "FiraCode" "Monoid" ]; })
       nerd-fonts.fira-code
       nerd-fonts.droid-sans-mono
-      noto-fonts
-      ubuntu_font_family
-      unifont
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
-      carlito
-      dejavu_fonts
-      ipafont
-      kochi-substitute
-      source-code-pro
-      ttf_bitstream_vera
+      # noto-fonts
+      # ubuntu_font_family
+      # unifont
+      # noto-fonts-cjk-sans
+      # noto-fonts-cjk-serif
+      # carlito
+      # dejavu_fonts
+      # ipafont
+      # kochi-substitute
+      # source-code-pro
+      # ttf_bitstream_vera
     ];
   
-    fontconfig = {
-      antialias = true;
-      # defaultFonts = {
-      #   serif = [ "Ubuntu" ];
-      #   sansSerif = [ "Ubuntu" ];
-      #   monospace = [ "Ubuntu Source" ];
-      # };
-      # defaultFonts = {
-      #   monospace = [ "Monoid" ];
-      # };
-      defaultFonts = {
-        monospace = [
-          "DejaVu Sans Mono"
-          "IPAGothic"
-        ];
-        sansSerif = [
-          "DejaVu Sans"
-          "IPAPGothic"
-        ];
-        serif = [
-          "DejaVu Serif"
-          "IPAPMincho"
-        ];
-      };
-    };
+    # fontconfig = {
+    #   antialias = true;
+    #   # defaultFonts = {
+    #   #   serif = [ "Ubuntu" ];
+    #   #   sansSerif = [ "Ubuntu" ];
+    #   #   monospace = [ "Ubuntu Source" ];
+    #   # };
+    #   # defaultFonts = {
+    #   #   monospace = [ "Monoid" ];
+    #   # };
+    #   defaultFonts = {
+    #     monospace = [
+    #       "DejaVu Sans Mono"
+    #       "IPAGothic"
+    #     ];
+    #     sansSerif = [
+    #       "DejaVu Sans"
+    #       "IPAPGothic"
+    #     ];
+    #     serif = [
+    #       "DejaVu Serif"
+    #       "IPAPMincho"
+    #     ];
+    #   };
+    # };
   };
 
     xdg.mime = {
