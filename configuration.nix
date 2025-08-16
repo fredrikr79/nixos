@@ -2,17 +2,22 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-  user="fredrikr";
+  user = "fredrikr";
 in
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      #./nbfc.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    #./nbfc.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -34,16 +39,16 @@ in
   #    enable = true;
   #    devices = ["nodev"];
   #    efiSupport = true;
-  #    useOSProber = true;                        
+  #    useOSProber = true;
   #    configurationLimit = 5;
   #  };
   #  timeout = 3;
-  #};   
+  #};
 
   networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Europe/Oslo";
@@ -61,20 +66,20 @@ in
   };
   console = {
     font = "Lat2-Terminus16";
-  #  keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
+    #  keyMap = "us";
+    #   useXkbConfig = true; # use xkb.options in tty.
   };
 
   i18n.inputMethod = {
-      enable = true;
-      type = "fcitx5";
-      fcitx5.addons = with pkgs; [ 
-          fcitx5-rime 
-          fcitx5-mozc 
-          fcitx5-gtk
-          fcitx5-configtool
-          libsForQt5.fcitx5-qt
-      ];
+    enable = true;
+    type = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-rime
+      fcitx5-mozc
+      fcitx5-gtk
+      fcitx5-configtool
+      libsForQt5.fcitx5-qt
+    ];
   };
   # i18n.inputMethod.fcitx5.engines = with pkgs.fcitx-engines; [ mozc ];
   # i18n.inputMethod = {
@@ -90,12 +95,10 @@ in
   #services.xserver.layout = "us";
   #services.xserver.xkbVariant = "dvp";
   #services.xserver.xkbOptions = "eurosign:e";
-  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
-
 
   # Enable the X11 windowing system.
   services.autorandr.enable = true;
@@ -105,7 +108,7 @@ in
 
     autoRepeatDelay = 200;
     autoRepeatInterval = 24;
-    
+
     # DVORAK + NO
     xkb.layout = "us,no";
     xkb.variant = "dvp,";
@@ -152,20 +155,19 @@ in
   services.displayManager.defaultSession = "none+xmonad";
 
   services.libinput = {
-      enable = true;
+    enable = true;
 
-      mouse = {
-        accelProfile = "flat";
-      };
-
-      touchpad = {
-        accelProfile = "flat";
-        naturalScrolling = true;
-        disableWhileTyping = true;
-        accelSpeed = "0.7";
-      };
+    mouse = {
+      accelProfile = "flat";
     };
 
+    touchpad = {
+      accelProfile = "flat";
+      naturalScrolling = true;
+      disableWhileTyping = true;
+      accelSpeed = "0.7";
+    };
+  };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -185,21 +187,41 @@ in
     pulse.enable = true;
   };
 
-  services.actkbd = let
-  volumeStep = "1%";
-in {
-  enable = true;
-  bindings = [
-    # "Mute" media key
-    { keys = [ 113 ]; events = [ "key" ];       command = "amixer -q set Master toggle"; }
+  services.actkbd =
+    let
+      volumeStep = "1%";
+    in
+    {
+      enable = true;
+      bindings = [
+        # "Mute" media key
+        {
+          keys = [ 113 ];
+          events = [ "key" ];
+          command = "amixer -q set Master toggle";
+        }
 
-    # "Lower Volume" media key
-    { keys = [ 114 ]; events = [ "key" "rep" ]; command = "amixer -q set Master ${volumeStep}- unmute"; }
+        # "Lower Volume" media key
+        {
+          keys = [ 114 ];
+          events = [
+            "key"
+            "rep"
+          ];
+          command = "amixer -q set Master ${volumeStep}- unmute";
+        }
 
-    # "Raise Volume" media key
-    { keys = [ 115 ]; events = [ "key" "rep" ]; command = "amixer -q set Master ${volumeStep}+ unmute"; }
-  ];
-};
+        # "Raise Volume" media key
+        {
+          keys = [ 115 ];
+          events = [
+            "key"
+            "rep"
+          ];
+          command = "amixer -q set Master ${volumeStep}+ unmute";
+        }
+      ];
+    };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
@@ -222,7 +244,8 @@ in {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     initialPassword = "password";
-    packages = with pkgs; [  # managed by home-manager
+    packages = with pkgs; [
+      # managed by home-manager
       # firefox
       discord
       #tree
@@ -234,39 +257,42 @@ in {
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = (with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    xorg.xkill
-    haskellPackages.xmobar
-    feh
-    trayer
-    xclip
-    # xorg.xbacklight
-    # htop
-    usbutils
-    udiskie
-    udisks
-    # javaPackages.openjfx17
-    libGL
-    gtk3
-    zathura
-    libgcc
-    gcc
-    gdb
-    valgrind-light
-    gnumake
-    # qemu_full
-    powertop
-    gamemode
-    alsa-utils
-    acpi
-    # fcitx5
-    # fcitx5-configtool
-    kdePackages.dolphin
-    libreoffice-qt6-fresh
-    nix-tree
-  ]);
+  environment.systemPackages = (
+    with pkgs;
+    [
+      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      wget
+      xorg.xkill
+      haskellPackages.xmobar
+      feh
+      trayer
+      xclip
+      # xorg.xbacklight
+      # htop
+      usbutils
+      udiskie
+      udisks
+      # javaPackages.openjfx17
+      libGL
+      gtk3
+      zathura
+      libgcc
+      gcc
+      gdb
+      valgrind-light
+      gnumake
+      # qemu_full
+      powertop
+      gamemode
+      alsa-utils
+      acpi
+      # fcitx5
+      # fcitx5-configtool
+      kdePackages.dolphin
+      libreoffice-qt6-fresh
+      nix-tree
+    ]
+  );
 
   programs.steam.enable = true;
 
@@ -290,11 +316,14 @@ in {
   # Open ports in the firewall.
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 3389 5900 ]; # rdp port
-    # trustedInterfaces = [ 
+    allowedTCPPorts = [
+      3389
+      5900
+    ]; # rdp port
+    # trustedInterfaces = [
     #   "wlp0s20f3"
-    #   "lo" 
-    #   "enp1s0" 
+    #   "lo"
+    #   "enp1s0"
     # ];
     # extraCommands = ''
     #   iptables -A INPUT -s 192.168.0.0/16 -j ACCEPT
@@ -332,31 +361,38 @@ in {
 
   nixpkgs.overlays = [
     (self: super: {
-      discord = super.discord.overrideAttrs (
-        _: { src = builtins.fetchTarball {
+      discord = super.discord.overrideAttrs (_: {
+        src = builtins.fetchTarball {
           url = "https://discord.com/api/download?platform=linux&format=tar.gz";
-	  sha256 = "0k9sk5pmjw7xq68h2s80q8fg48p31albrqrqafmmrxik5f8f96rn";
-        }; }
-      ); 
+          sha256 = "0k9sk5pmjw7xq68h2s80q8fg48p31albrqrqafmmrxik5f8f96rn";
+        };
+      });
     })
   ];
 
   nix = {
     # package = pkgs.nixFlakes;
     extraOptions = "experimental-features = nix-command flakes";
+    optimise.automatic = true;
+    settings.auto-optimise-store = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
   };
 
   services.picom = {
-      enable = true;
-      vSync = true;
-      settings = {
-        backend = "glx";
-        blur = {
-          method = "gaussian";
-          size = 10;
-          deviation = 5.0;
-        };
+    enable = true;
+    vSync = true;
+    settings = {
+      backend = "glx";
+      blur = {
+        method = "gaussian";
+        size = 10;
+        deviation = 5.0;
       };
+    };
   };
 
   # systemd.services.background-image = {
@@ -371,14 +407,13 @@ in {
   #   script = "/home/fredrikr/.fehbg &";
   # };
 
-   # Power button invokes suspend, not shutdown.
+  # Power button invokes suspend, not shutdown.
 
   services.logind = {
     # extraConfig = "HandlePowerKey=hibernate";
     lidSwitch = "hybrid-sleep";
     powerKey = "hibernate";
-  }; 
-
+  };
 
   # video acceleration
   # nixpkgs.config.packageOverrides = pkgs: {
@@ -392,7 +427,7 @@ in {
   #     libvdpau-va-gl
   #   ];
   # };
-  environment.sessionVariables = { 
+  environment.sessionVariables = {
     # LIBVA_DRIVER_NAME = "iHD"; # Force intel-media-driver
     GTK_IM_MODULE = "fcitx";
     QT_IM_MODULE = "fcitx";
@@ -400,7 +435,7 @@ in {
     SDL_IM_MODULE = "fcitx";
     GLFW_IM_MODULE = "ibus"; # Some applications use GLFW
     INPUT_METHOD = "fcitx";
-  }; 
+  };
 
   xdg.portal = {
     enable = true;
@@ -410,7 +445,6 @@ in {
     ];
     config.common.default = "*";
   };
-
 
   services.devmon.enable = true;
   services.gvfs.enable = true;
@@ -435,7 +469,7 @@ in {
       # source-code-pro
       # ttf_bitstream_vera
     ];
-  
+
     # fontconfig = {
     #   antialias = true;
     #   # defaultFonts = {
@@ -463,16 +497,15 @@ in {
     # };
   };
 
-    xdg.mime = {
-        enable = true;
-        defaultApplications = {
-            "application/pdf" = "org.pwmt.zathura.desktop";
-        };
+  xdg.mime = {
+    enable = true;
+    defaultApplications = {
+      "application/pdf" = "org.pwmt.zathura.desktop";
     };
+  };
 
   programs.ssh.startAgent = true;
 
   powerManagement.powertop.enable = true;
   # services.auto-cpufreq.enable = true;
 }
-
