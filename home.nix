@@ -1229,27 +1229,39 @@ in
     keyMode = "vi";
     mouse = true;
     plugins = with pkgs; [
-      tmuxPlugins.cpu
+      # tmuxPlugins.cpu
       {
         plugin = tmuxPlugins.resurrect;
         extraConfig = "set -g @resurrect-strategy-nvim 'session'";
       }
-      {
-        plugin = tmuxPlugins.continuum;
-        extraConfig = ''
-          set -g @continuum-restore 'on'
-          set -g @continuum-save-interval '60' # minutes
-        '';
-      }
-      {
-        plugin = tmuxPlugins.session-wizard;
-      }
-      {
-        plugin = tmuxPlugins.battery;
-        extraConfig = ''
-          set -g status-right '#{battery_percentage} | %a %h-%d %H:%M '
-        '';
-      }
+      # {
+      #   plugin = tmuxPlugins.harpoon;
+      #   extraConfig = ''
+      #     bind -n M-a run 'harpoon -A';
+      #     bind -n M-l run 'harpoon -l';
+      #     bind -n M-e run 'harpoon -e';
+      #     bind -n M-h run 'harpoon -s 1';
+      #     bind -n M-t run 'harpoon -s 2';
+      #     bind -n M-n run 'harpoon -s 3';
+      #     bind -n M-s run 'harpoon -s 4';
+      #   '';
+      # }
+      # {
+      #   plugin = tmuxPlugins.continuum;
+      #   extraConfig = ''
+      #     set -g @continuum-restore 'on'
+      #     set -g @continuum-save-interval '60' # minutes
+      #   '';
+      # }
+      # {
+      #   plugin = tmuxPlugins.session-wizard;
+      # }
+      # {
+      #   plugin = tmuxPlugins.battery;
+      #   extraConfig = ''
+      #     set -g status-right '#{battery_percentage} | %a %h-%d %H:%M '
+      #   '';
+      # }
     ];
     shell = "${pkgs.zsh}/bin/zsh";
     newSession = true;
