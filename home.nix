@@ -1125,6 +1125,10 @@ in
     enable = true;
     userName = "fredrikr79";
     userEmail = "fredrikrobertsen7@gmail.com";
+    ignores = [
+      ".direnv"
+      ".jj"
+    ];
   };
 
   programs.java = {
