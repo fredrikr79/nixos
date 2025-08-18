@@ -288,7 +288,8 @@ in
       acpi
       # fcitx5
       # fcitx5-configtool
-      kdePackages.dolphin
+      # kdePackages.dolphin
+      nnn
       libreoffice-qt6-fresh
       nix-tree
     ]
