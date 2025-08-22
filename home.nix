@@ -705,7 +705,7 @@ in
         enable = true;
         settings = {
           pdf_viewer = null;
-          conceal_math = null;
+          conceal_math = 0;
         };
       };
 
@@ -718,9 +718,9 @@ in
         view.mergeTool.layout = "diff3_mixed";
       };
 
-      markview = {
-        enable = true;
-      };
+      # markview = {
+      #   enable = true;
+      # };
 
       rainbow-delimiters = {
         enable = true;
@@ -797,13 +797,13 @@ in
 
       fzf-lua.enable = true;
 
-      overseer = {
-        # depended on by compiler.nvim
-        enable = true;
-        settings = {
-          strategy = "toggleterm";
-        };
-      };
+      # overseer = {
+      #   # depended on by compiler.nvim
+      #   enable = true;
+      #   settings = {
+      #     strategy = "toggleterm";
+      #   };
+      # };
 
       fidget = {
         enable = true;
