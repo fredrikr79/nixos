@@ -135,11 +135,14 @@ in
     displayManager = {
       lightdm = {
         enable = true;
-        greeters.enso = {
+        greeters.mini = {
           enable = true;
-          blur = true;
+          user = "fredrikr";
           extraConfig = ''
-            default-wallpaper=/usr/share/nix.png
+            [greeter]
+            show-password-label = false
+            [greeter-theme]
+            background-image = ""
           '';
         };
       };
