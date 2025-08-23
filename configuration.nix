@@ -512,6 +512,9 @@ in
     enable = true;
     defaultApplications = {
       "application/pdf" = "org.pwmt.zathura.desktop";
+      "image/png" = "feh.desktop";
+      "image/jpeg" = "feh.desktop";
+      # "text/plain" = "nvim.desktop";
     };
   };
 

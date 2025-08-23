@@ -1048,6 +1048,7 @@ in
       lock = "/home/fredrikr/.logout.sh";
       n = "nvim";
       e = "emacsclient -c -a 'emacs'";
+      nnn = "nnn -e";
     };
 
     defaultKeymap = "viins";
