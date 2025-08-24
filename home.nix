@@ -1269,4 +1269,23 @@ in
     newSession = true;
     terminal = "kitty";
   };
+
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      "git.pvv.ntnu.no" = {
+        hostname = "git.pvv.ntnu.no";
+        user = "gitea";
+        addressFamily = "inet";
+        port = 2222;
+        proxyJump = "hildring";
+      };
+
+      "hildring" = {
+        hostname = "hildring.pvv.ntnu.no";
+        user = "frero";
+        addressFamily = "inet";
+      };
+    };
+  };
 }
