@@ -126,6 +126,7 @@ in
     # ".emacs.d".source = home/emacs.d;
     # ".config/emacs".source = home/config/emacs;
     ".doom.d".source = home/doom.d;
+    ".config/jj".source = home/config/jj;
   };
 
   home.sessionVariables = {
@@ -1049,6 +1050,7 @@ in
       n = "nvim";
       e = "emacsclient -c -a 'emacs'";
       nnn = "nnn -e";
+      jl = "jj l";
     };
 
     defaultKeymap = "viins";

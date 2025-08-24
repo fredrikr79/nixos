@@ -1,0 +1,19 @@
+[user]
+name = "fredrikr79"
+email = "fredrikrobertsen7@gmail.com"
+
+[ui]
+paginate = "auto"
+default-command = "status"
+editor = "nvim"
+
+[ui.streampager]
+interface = "quit-quickly-or-clear-output"
+
+[[--scope]]
+--when.commands = ["status"]
+[--scope.ui]
+paginate = "never"
+
+[aliases]
+l = ["log", "-r", "(main..@):: | (main..@)-"]
