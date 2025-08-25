@@ -798,13 +798,13 @@ in
 
       fzf-lua.enable = true;
 
-      # overseer = {
-      #   # depended on by compiler.nvim
-      #   enable = true;
-      #   settings = {
-      #     strategy = "toggleterm";
-      #   };
-      # };
+      overseer = {
+        # depended on by compiler.nvim
+        enable = true;
+        settings = {
+          strategy = "toggleterm";
+        };
+      };
 
       fidget = {
         enable = true;
