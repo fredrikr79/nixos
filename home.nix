@@ -30,7 +30,7 @@ in
     scrot
     brightnessctl
     python3
-    sage
+    # sage
     # quickemu
     maven
     vscode-fhs
@@ -79,8 +79,9 @@ in
     libtool
     tinymist
     # emacsPackages.treesit-grammars.with-all-grammars
-    librewolf
+    # librewolf
     cargo
+    rustc
     vulkan-tools
     mesa
     vulkan-loader
@@ -127,6 +128,7 @@ in
     # ".config/emacs".source = home/config/emacs;
     ".doom.d".source = home/doom.d;
     ".config/jj".source = home/config/jj;
+    ".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
   };
 
   home.sessionVariables = {
@@ -651,6 +653,7 @@ in
           uiua.enable = true;
           omnisharp.enable = true;
           ols.enable = true;
+          rust-analyzer.enable = true;
         };
       };
 
@@ -1051,6 +1054,7 @@ in
       e = "emacsclient -c -a 'emacs'";
       nnn = "nnn -e";
       jl = "jj l";
+      jla = ''jj log -r "all()"'';
     };
 
     defaultKeymap = "viins";

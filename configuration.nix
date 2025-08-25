@@ -141,6 +141,8 @@ in
           extraConfig = ''
             [greeter]
             show-password-label = false
+            cursor-theme-name = Vanilla-DMZ
+            cursor-theme-size = 32
             [greeter-theme]
             background-image = ""
           '';
@@ -471,6 +473,7 @@ in
       # (nerdfonts.override { fonts = [ "FiraCode" "Monoid" ]; })
       nerd-fonts.fira-code
       nerd-fonts.droid-sans-mono
+      mplus-outline-fonts.osdnRelease
       # noto-fonts
       # ubuntu_font_family
       # unifont
