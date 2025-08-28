@@ -425,10 +425,10 @@ in
 
   # Power button invokes suspend, not shutdown.
 
-  services.logind = {
+  services.logind.settings.Login = {
     # extraConfig = "HandlePowerKey=hibernate";
-    lidSwitch = "hybrid-sleep";
-    powerKey = "hibernate";
+    HandleLidSwitch = "hybrid-sleep";
+    HandlePowerKey = "hibernate";
   };
 
   # video acceleration

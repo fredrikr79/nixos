@@ -80,8 +80,8 @@ in
     tinymist
     # emacsPackages.treesit-grammars.with-all-grammars
     # librewolf
-    cargo
-    rustc
+    # cargo
+    # rustc
     vulkan-tools
     mesa
     vulkan-loader
@@ -653,7 +653,11 @@ in
           uiua.enable = true;
           omnisharp.enable = true;
           ols.enable = true;
-          rust-analyzer.enable = true;
+          rust_analyzer = {
+            enable = true;
+            installCargo = true;
+            installRustc = true;
+          };
         };
       };
 
@@ -1188,7 +1192,7 @@ in
       enable_audio_bell = false;
       mouse_hide_wait = "-1.0";
       window_padding_width = 2;
-      background_opacity = "0.85";
+      background_opacity = "0.5";
       background_blur = 5;
       disable_ligatures = "cursor";
       # symbol_map = let
@@ -1278,6 +1282,7 @@ in
 
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
     matchBlocks = {
       "git.pvv.ntnu.no" = {
         hostname = "git.pvv.ntnu.no";
