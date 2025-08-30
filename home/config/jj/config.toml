@@ -15,5 +15,13 @@ interface = "quit-quickly-or-clear-output"
 [--scope.ui]
 paginate = "never"
 
+[revset-aliases]
+'closest_bookmark(to)' = 'heads(::to & bookmarks())'
+
 [aliases]
 l = ["log", "-r", "(main..@):: | (main..@)-"]
+tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
+e = ["edit"]
+r = ["rebase"]
+s = ["squash"]
+si = ["squash", "--interactive"]
