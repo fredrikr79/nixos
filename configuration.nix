@@ -22,7 +22,13 @@ in
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    acer-wmi-battery
+  ];
+  boot.kernelModules = [
+    "acer-wmi-battery"
+  ];
   # boot.kernel.sysctl = {
   #   "net.ipv6.conf.all.disable_ipv6" = 1;
   #   "net.ipv6.conf.default.disable_ipv6" = 1;
