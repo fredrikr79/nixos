@@ -329,8 +329,8 @@ in
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [
-      3389
-      5900
+      # 3389
+      # 5900
     ]; # rdp port
     # trustedInterfaces = [
     #   "wlp0s20f3"
