@@ -42,12 +42,9 @@ in
     redshift
     pandoc
     typst
-    # typstfmt
-    typstyle
     uiua386
     # uiua
     byzanz
-    python3Packages.mdformat
     prismlauncher # minecraft
     ghc
     monocraft
@@ -63,21 +60,9 @@ in
     cmake
     clang-tools
     glslang
-    csharpier
-    haskell-language-server
     haskellPackages.hoogle
     cabal-cli
-    nixfmt-rfc-style
-    black
-    python312Packages.pyflakes
-    isort
-    pipenv
-    python312Packages.nose2
-    python312Packages.pytest
-    python312Packages.setuptools
-    shfmt
     libtool
-    tinymist
     # emacsPackages.treesit-grammars.with-all-grammars
     # librewolf
     # cargo
@@ -85,21 +70,16 @@ in
     vulkan-tools
     mesa
     vulkan-loader
-    python312Packages.python-lsp-server
     editorconfig-core-c
     # inputs.zen-browser.packages."${system}".default
     fzf
     zoxide
     libgit2
-    python312Packages.debugpy
-    lldb
-    nodePackages.prettier
     jujutsu
     ungoogled-chromium
     mpv
     inputs.uiua.packages."${system}".default
     odin
-    ols
     unzip
   ];
 
@@ -397,28 +377,20 @@ in
           };
 
           formatters_by_ft = {
-            typst = [ "typstyle " ]; # "typstfmt"];
-            python = [ "black" ];
+            typst = [ "typstyle " ];
+            python = [
+              "isort"
+              "black"
+            ];
             markdown = [ "prettier" ];
-          };
-
-          formatters = {
-            prettier = {
-              command = "prettier";
-              filetypes = [ "markdown" ];
-            };
-            # typstfmt = {
-            #     command = "typstfmt";
-            #     filetypes = ["typst"];
-            # };
-            typstyle = {
-              command = "typstyle";
-              filetypes = [ "typst" ];
-            };
-            black = {
-              command = "black";
-              filetypes = [ "python" ];
-            };
+            html = [ "prettier" ];
+            htmldjango = [
+              "djlint"
+              "prettier"
+            ];
+            css = [ "prettier" ];
+            json = [ "prettier" ];
+            nix = [ "nixfmt" ];
           };
         };
       };
@@ -658,6 +630,7 @@ in
             installCargo = true;
             installRustc = true;
           };
+          superhtml.enable = true;
         };
       };
 
@@ -1015,6 +988,22 @@ in
     #    nvimRequiredCheck = "battery";
     #  })
     # ];
+    extraPackages = with pkgs; [
+      nodePackages.prettier
+      typstyle
+      csharpier
+      haskell-language-server
+      nixfmt-rfc-style
+      black
+      python3Packages.pyflakes
+      isort
+      shfmt
+      tinymist
+      python3Packages.python-lsp-server
+      ols
+      djlint
+      superhtml
+    ];
   };
 
   programs.zsh = {
