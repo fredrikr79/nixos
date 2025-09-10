@@ -25,3 +25,9 @@ e = ["edit"]
 r = ["rebase"]
 s = ["squash"]
 si = ["squash", "--interactive"]
+flip = ["util", "exec", "--", "zsh", "-c", """
+set -euo pipefail
+jj --quiet rebase --revisions @ --insert-before @- &> /dev/null
+jj --quiet edit @+ &> /dev/null
+jj status
+""", ""]
