@@ -971,15 +971,15 @@ in
       })
 
       -- LSP Semantic Token highlighting for Uiua with Dracula colors
-      vim.api.nvim_set_hl(0, "@lsp.type.monadic_function.uiua", { fg = "#50fa7b" })      -- Green
-      vim.api.nvim_set_hl(0, "@lsp.type.dyadic_function.uiua", { fg = "#8be9fd" })       -- Cyan  
-      vim.api.nvim_set_hl(0, "@lsp.type.triadic_function.uiua", { fg = "#ffb86c" })      -- Orange
-      vim.api.nvim_set_hl(0, "@lsp.type.monadic_modifier.uiua", { fg = "#ff79c6" })      -- Pink
-      vim.api.nvim_set_hl(0, "@lsp.type.dyadic_modifier.uiua", { fg = "#bd93f9" })       -- Purple
+      vim.api.nvim_set_hl(0, "@lsp.type.monadic_function.uiua", { fg = "#50fa7b" })
+      vim.api.nvim_set_hl(0, "@lsp.type.dyadic_function.uiua", { fg = "#8be9fd" })
+      vim.api.nvim_set_hl(0, "@lsp.type.triadic_function.uiua", { fg = "#bd93f9" })
+      vim.api.nvim_set_hl(0, "@lsp.type.monadic_modifier.uiua", { fg = "#f1fa8c" })
+      vim.api.nvim_set_hl(0, "@lsp.type.dyadic_modifier.uiua", { fg = "#ff79c6" })
 
       -- You can also set other function types based on what the LSP provides
-      vim.api.nvim_set_hl(0, "@lsp.type.constant.uiua", { fg = "#f1fa8c" })             -- Yellow
-      vim.api.nvim_set_hl(0, "@lsp.type.variable.uiua", { fg = "#f8f8f2" })             -- Foreground
+      vim.api.nvim_set_hl(0, "@lsp.type.uiua_number.uiua", { fg = "#ffb86c" })
+      vim.api.nvim_set_hl(0, "@lsp.type.variable.uiua", { fg = "#f8f8f2" })
     '';
 
     # extraPlugins = [
