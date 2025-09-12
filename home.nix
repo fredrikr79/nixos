@@ -653,6 +653,13 @@ in
 
       treesitter = {
         enable = true;
+        settings = {
+          highlight.enable = true;
+          indent.enable = true;
+        };
+        grammarPackages = with pkgs.tree-sitter-grammars; [
+          tree-sitter-uiua
+        ];
       };
 
       undotree.enable = true;
