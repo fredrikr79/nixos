@@ -632,6 +632,12 @@ in
           };
           superhtml.enable = true;
         };
+
+        onAttach = ''
+          if client.server_capabilities.semanticTokensProvider then
+            vim.lsp.semantic_tokens.start(bufnr, client.id)
+          end
+        '';
       };
 
       friendly-snippets.enable = true;
@@ -963,6 +969,17 @@ in
           ua = "uiua",
         },
       })
+
+      -- LSP Semantic Token highlighting for Uiua with Dracula colors
+      vim.api.nvim_set_hl(0, "@lsp.type.monadic_function.uiua", { fg = "#50fa7b" })      -- Green
+      vim.api.nvim_set_hl(0, "@lsp.type.dyadic_function.uiua", { fg = "#8be9fd" })       -- Cyan  
+      vim.api.nvim_set_hl(0, "@lsp.type.triadic_function.uiua", { fg = "#ffb86c" })      -- Orange
+      vim.api.nvim_set_hl(0, "@lsp.type.monadic_modifier.uiua", { fg = "#ff79c6" })      -- Pink
+      vim.api.nvim_set_hl(0, "@lsp.type.dyadic_modifier.uiua", { fg = "#bd93f9" })       -- Purple
+
+      -- You can also set other function types based on what the LSP provides
+      vim.api.nvim_set_hl(0, "@lsp.type.constant.uiua", { fg = "#f1fa8c" })             -- Yellow
+      vim.api.nvim_set_hl(0, "@lsp.type.variable.uiua", { fg = "#f8f8f2" })             -- Foreground
     '';
 
     # extraPlugins = [
