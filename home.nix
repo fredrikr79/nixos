@@ -659,13 +659,6 @@ in
 
       treesitter = {
         enable = true;
-        settings = {
-          highlight.enable = true;
-          indent.enable = true;
-        };
-        grammarPackages = with pkgs.tree-sitter-grammars; [
-          tree-sitter-uiua
-        ];
       };
 
       undotree.enable = true;
@@ -968,6 +961,13 @@ in
         extension = {
           ua = "uiua",
         },
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "uiua",
+        callback = function()
+          vim.bo.commentstring = "# %s"
+        end,
       })
 
       -- LSP Semantic Token highlighting for Uiua with Dracula colors
