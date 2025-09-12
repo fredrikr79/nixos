@@ -447,11 +447,11 @@ in
             { name = "git"; }
             { name = "nvim_lsp"; }
             { name = "emoji"; }
-            # {
-            #   name = "buffer"; # text within current buffer
-            #   option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
-            #   keywordLength = 3;
-            # }
+            {
+              name = "buffer"; # text within current buffer
+              # option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
+              # keywordLength = 3;
+            }
             {
               name = "calc";
             }
@@ -915,6 +915,10 @@ in
       # vim-dadbod-ui.enable = true;
 
       nvim-ufo.enable = true; # folds
+
+      lspconfig = {
+        enable = true;
+      };
     };
     extraConfigLua = ''
       luasnip = require("luasnip")
@@ -946,6 +950,12 @@ in
           Operator = "",
           TypeParameter = "",
       }
+
+      vim.filetype.add({
+        extension = {
+          ua = "uiua",
+        },
+      })
     '';
 
     # extraPlugins = [
