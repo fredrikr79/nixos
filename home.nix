@@ -81,6 +81,8 @@ in
     inputs.uiua.packages."${system}".default
     odin
     unzip
+    xf86_input_wacom
+    libwacom
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
