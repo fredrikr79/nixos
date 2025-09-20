@@ -83,6 +83,7 @@ in
     unzip
     xf86_input_wacom
     libwacom
+    vivaldi
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

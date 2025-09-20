@@ -41,7 +41,7 @@ main =
 
 myConfig =
   let terminal = "kitty tmux attach-session"
-      browser = "librewolf"
+      browser = "vivaldi"
       modm = mod4Mask -- super/meta
    in def
         { modMask = modm,
@@ -52,7 +52,6 @@ myConfig =
         }
         `additionalKeysP` [ ("M-b", spawn browser),
                             ("M-c", spawn "chromium"),
-                            ("M-e", spawn "dolphin"),
                             -- , ("M-t", spawn terminal)
                             -- , ("M-S-Enter", spawn terminal)
                             -- , ("<Print>", spawn "scrot ~/Pictures/Screenshots/%b-%d::%H-%M-%S.png")
