@@ -1084,8 +1084,9 @@ in
       nv = "nvim";
       e = "emacsclient -c -a 'emacs'";
       nnn = "nnn -e";
-      jl = "jj l";
+      jl = "jj log";
       jla = ''jj log -r "all()"'';
+      jll = "jj log --no-pager --limit 5";
     };
 
     defaultKeymap = "viins";
