@@ -369,7 +369,103 @@ in
       foldlevel = 99;
     };
 
+    lsp = {
+      inlayHints.enable = true;
+      servers = {
+        "*" = {
+          settings = {
+            capabilities = {
+              textDocument = {
+                semanticTokens = {
+                  multilineTokenSupport = true;
+                };
+              };
+            };
+            root_markers = [
+              ".git"
+              ".jj"
+            ];
+          };
+        };
+        pyright.enable = true;
+        nil_ls.enable = true;
+        lua_ls.enable = true;
+        hls.enable = true;
+        tinymist = {
+          enable = true;
+          settings = {
+            exportPdf = "onType";
+            fontPaths = [
+              "$dir/"
+              "./"
+              "\${workspaceFolder}/fonts"
+              "\${workspaceFolder}/"
+            ];
+            formatterMode = "typstyle";
+          };
+        };
+        clangd.enable = true;
+        vtsls.enable = true;
+        marksman.enable = true;
+        uiua.enable = true;
+        omnisharp.enable = true;
+        ols.enable = true;
+        rust_analyzer.enable = true;
+        superhtml.enable = true;
+      };
+      # keymaps = [
+      #   {
+      #     "*".options.silent = true;
+      #   }
+      # ];
+      #   diagnostic = {
+      #     "<leader>j" = "goto_next";
+      #     "<leader>k" = "goto_prev";
+      #     "<leader>e" = "open_float";
+      #   };
+      #   lspBuf = {
+      #     gd = {
+      #       action = "definition";
+      #       desc = "Goto Definition";
+      #     };
+      #     gr = {
+      #       action = "references";
+      #       desc = "Goto References";
+      #     };
+      #     gD = {
+      #       action = "declaration";
+      #       desc = "Goto Declaration";
+      #     };
+      #     gI = {
+      #       action = "implementation";
+      #       desc = "Goto Implementation";
+      #     };
+      #     gT = {
+      #       action = "type_definition";
+      #       desc = "Type Definition";
+      #     };
+      #     K = {
+      #       action = "hover";
+      #       desc = "Hover";
+      #     };
+      #     "<leader>cw" = {
+      #       action = "workspace_symbol";
+      #       desc = "Workspace Symbol";
+      #     };
+      #     "<leader>cr" = {
+      #       action = "rename";
+      #       desc = "Rename";
+      #     };
+      #     "<leader>ca" = {
+      #       action = "code_action";
+      #       desc = "code action";
+      #     };
+      #   };
+    };
+
     plugins = {
+      lspconfig.enable = true;
+
       conform-nvim = {
         enable = true;
 
@@ -551,97 +647,6 @@ in
       };
 
       lsp-format.enable = true;
-
-      lsp = {
-        enable = true;
-        keymaps = {
-          silent = true;
-          diagnostic = {
-            "<leader>j" = "goto_next";
-            "<leader>k" = "goto_prev";
-            "<leader>e" = "open_float";
-          };
-          lspBuf = {
-            gd = {
-              action = "definition";
-              desc = "Goto Definition";
-            };
-            gr = {
-              action = "references";
-              desc = "Goto References";
-            };
-            gD = {
-              action = "declaration";
-              desc = "Goto Declaration";
-            };
-            gI = {
-              action = "implementation";
-              desc = "Goto Implementation";
-            };
-            gT = {
-              action = "type_definition";
-              desc = "Type Definition";
-            };
-            K = {
-              action = "hover";
-              desc = "Hover";
-            };
-            "<leader>cw" = {
-              action = "workspace_symbol";
-              desc = "Workspace Symbol";
-            };
-            "<leader>cr" = {
-              action = "rename";
-              desc = "Rename";
-            };
-            "<leader>ca" = {
-              action = "code_action";
-              desc = "code action";
-            };
-          };
-        };
-        servers = {
-          pyright.enable = true;
-          nil_ls.enable = true;
-          lua_ls.enable = true;
-          hls = {
-            enable = true;
-            installGhc = true;
-          };
-          tinymist = {
-            enable = true;
-            settings = {
-              exportPdf = "onType";
-              fontPaths = [
-                "$dir/"
-                "./"
-                "\${workspaceFolder}/fonts"
-                "\${workspaceFolder}/"
-              ];
-              # formatterMode = "typstfmt";
-              formatterMode = "typstyle";
-            };
-          };
-          clangd.enable = true;
-          vtsls.enable = true;
-          marksman.enable = true;
-          uiua.enable = true;
-          omnisharp.enable = true;
-          ols.enable = true;
-          rust_analyzer = {
-            enable = true;
-            installCargo = true;
-            installRustc = true;
-          };
-          superhtml.enable = true;
-        };
-
-        onAttach = ''
-          if client.server_capabilities.semanticTokensProvider then
-            vim.lsp.semantic_tokens.start(bufnr, client.id)
-          end
-        '';
-      };
 
       friendly-snippets.enable = true;
       luasnip.enable = true;
@@ -925,9 +930,6 @@ in
 
       nvim-ufo.enable = true; # folds
 
-      lspconfig = {
-        enable = true;
-      };
     };
     extraConfigLua = ''
       luasnip = require("luasnip")
@@ -959,19 +961,6 @@ in
           Operator = "",
           TypeParameter = "",
       }
-
-      vim.filetype.add({
-        extension = {
-          ua = "uiua",
-        },
-      })
-
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "uiua",
-        callback = function()
-          vim.bo.commentstring = "# %s"
-        end,
-      })
 
       -- LSP Semantic Token highlighting for Uiua with Dracula colors
       vim.api.nvim_set_hl(0, "@lsp.type.stack_function.uiua", { fg = "#f8f8f2" })
