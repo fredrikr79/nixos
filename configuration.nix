@@ -306,9 +306,9 @@ in
     ]
   );
 
-  programs.steam.enable = true;
+  # programs.steam.enable = true;
 
-  programs.gamemode.enable = true;
+  # programs.gamemode.enable = true;
 
   # nixpkgs.config.allowUnfree = true;
 
