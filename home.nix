@@ -126,6 +126,17 @@ in
     enable = true;
     defaultEditor = true;
 
+    autoCmd = [
+      {
+        event = [
+          "BufRead"
+          "BufNewFile"
+        ];
+        pattern = [ "*.ua" ];
+        command = "setfiletype uiua";
+      }
+    ];
+
     keymaps = [
       # { # managed by easyescape plugin
       #   key = "jk";
@@ -378,6 +389,53 @@ in
               textDocument = {
                 semanticTokens = {
                   multilineTokenSupport = true;
+                  overlappingTokenSupport = false;
+                  serverCancelSupport = true;
+                  augmentsSyntaxTokens = true;
+                  formats = [ "relative" ];
+                  requests = {
+                    range = true;
+                    full = {
+                      delta = true;
+                    };
+                  };
+                  tokenTypes = [
+                    "namespace"
+                    "type"
+                    "class"
+                    "enum"
+                    "interface"
+                    "struct"
+                    "typeParameter"
+                    "parameter"
+                    "variable"
+                    "property"
+                    "enumMember"
+                    "event"
+                    "function"
+                    "method"
+                    "macro"
+                    "keyword"
+                    "modifier"
+                    "comment"
+                    "string"
+                    "number"
+                    "regexp"
+                    "operator"
+                    "decorator"
+                  ];
+                  tokenModifiers = [
+                    "declaration"
+                    "definition"
+                    "readonly"
+                    "static"
+                    "deprecated"
+                    "abstract"
+                    "async"
+                    "modification"
+                    "documentation"
+                    "defaultLibrary"
+                  ];
                 };
               };
             };
