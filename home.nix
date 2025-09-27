@@ -137,13 +137,32 @@ in
       }
     ];
 
+    diagnostic.settings = {
+      virtual_lines = {
+        current_line = true;
+      };
+      virtual_text = true;
+    };
+
     keymaps = [
-      # { # managed by easyescape plugin
-      #   key = "jk";
-      #   action = "<esc>";
-      #   mode = [ "i" ];
-      #   options = { noremap = true; };
-      # }
+      {
+        key = "<leader>e";
+        action.__raw = "vim.diagnostic.open_float";
+        options.silent = true;
+        options.desc = "Show Diagnostic";
+      }
+      {
+        key = "<leader>j";
+        action.__raw = "vim.diagnostic.goto_next";
+        options.silent = true;
+        options.desc = "Next Diagnostic";
+      }
+      {
+        key = "<leader>k";
+        action.__raw = "vim.diagnostic.goto_prev";
+        options.silent = true;
+        options.desc = "Previous Diagnostic";
+      }
 
       {
         key = "<leader>pv";
@@ -381,7 +400,6 @@ in
     };
 
     lsp = {
-      inlayHints.enable = true;
       servers = {
         "*" = {
           settings = {
@@ -471,54 +489,54 @@ in
         rust_analyzer.enable = true;
         superhtml.enable = true;
       };
-      # keymaps = [
-      #   {
-      #     "*".options.silent = true;
-      #   }
-      # ];
-      #   diagnostic = {
-      #     "<leader>j" = "goto_next";
-      #     "<leader>k" = "goto_prev";
-      #     "<leader>e" = "open_float";
-      #   };
-      #   lspBuf = {
-      #     gd = {
-      #       action = "definition";
-      #       desc = "Goto Definition";
-      #     };
-      #     gr = {
-      #       action = "references";
-      #       desc = "Goto References";
-      #     };
-      #     gD = {
-      #       action = "declaration";
-      #       desc = "Goto Declaration";
-      #     };
-      #     gI = {
-      #       action = "implementation";
-      #       desc = "Goto Implementation";
-      #     };
-      #     gT = {
-      #       action = "type_definition";
-      #       desc = "Type Definition";
-      #     };
-      #     K = {
-      #       action = "hover";
-      #       desc = "Hover";
-      #     };
-      #     "<leader>cw" = {
-      #       action = "workspace_symbol";
-      #       desc = "Workspace Symbol";
-      #     };
-      #     "<leader>cr" = {
-      #       action = "rename";
-      #       desc = "Rename";
-      #     };
-      #     "<leader>ca" = {
-      #       action = "code_action";
-      #       desc = "code action";
-      #     };
-      #   };
+      keymaps = [
+        # LSP buffer actions
+        {
+          key = "gd";
+          lspBufAction = "definition";
+          options.desc = "Goto Definition";
+        }
+        {
+          key = "gr";
+          lspBufAction = "references";
+          options.desc = "Goto References";
+        }
+        {
+          key = "gD";
+          lspBufAction = "declaration";
+          options.desc = "Goto Declaration";
+        }
+        {
+          key = "gI";
+          lspBufAction = "implementation";
+          options.desc = "Goto Implementation";
+        }
+        {
+          key = "gT";
+          lspBufAction = "type_definition";
+          options.desc = "Type Definition";
+        }
+        {
+          key = "K";
+          lspBufAction = "hover";
+          options.desc = "Hover Documentation";
+        }
+        {
+          key = "<leader>cw";
+          lspBufAction = "workspace_symbol";
+          options.desc = "Workspace Symbol";
+        }
+        {
+          key = "<leader>cr";
+          lspBufAction = "rename";
+          options.desc = "Rename Symbol";
+        }
+        {
+          key = "<leader>ca";
+          lspBufAction = "code_action";
+          options.desc = "Code Action";
+        }
+      ];
     };
 
     plugins = {
