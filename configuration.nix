@@ -261,7 +261,6 @@ in
       discord
       #tree
     ];
-    shell = pkgs.nushell;
   };
 
   # List packages installed in system profile. To search, run:
@@ -532,4 +531,10 @@ in
 
   powerManagement.powertop.enable = true;
   # services.auto-cpufreq.enable = true;
+
+  programs.bash.interactiveShellInit = ''
+    if ![XTERM = "dumb"]; then
+      exec nu
+    fi
+  '';
 }

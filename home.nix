@@ -111,6 +111,7 @@ in
     ".doom.d".source = home/doom.d;
     ".config/jj".source = home/config/jj;
     ".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
+    ".config/nushell/themes".source = home/config/nushell/themes;
   };
 
   home.sessionVariables = {
@@ -1273,4 +1274,39 @@ in
       };
     };
   };
+
+  programs.nushell = {
+    enable = true;
+    configFile.source = ./home/config/nushell/config.nu;
+    shellAliases = {
+      hibernate = "systemctl hibernate";
+      suspend = "systemctl suspend";
+      logout = "sudo pkill -u fredrikr";
+      lock = "/home/fredrikr/.logout.sh";
+      nv = "nvim";
+      e = "emacsclient -c -a 'emacs'";
+      nnn = "nnn -e";
+      jl = "jj log";
+      jla = ''jj log -r "all()"'';
+      jll = "jj log --no-pager --limit 5";
+    };
+  };
+
+  programs.carapace = {
+    enable = true;
+    enableNushellIntegration = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+      character = {
+        success_symbol = "λ(bold green)";
+        error_symbol = "λ(bold red)";
+      };
+    };
+  };
+
+  home.shell.enableNushellIntegration = true;
 }
