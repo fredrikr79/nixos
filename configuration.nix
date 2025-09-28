@@ -261,10 +261,8 @@ in
       discord
       #tree
     ];
-    shell = pkgs.zsh;
+    shell = pkgs.nushell;
   };
-
-  programs.zsh.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

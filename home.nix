@@ -48,7 +48,6 @@ in
     prismlauncher # minecraft
     ghc
     monocraft
-    zsh-syntax-highlighting
     # unityhub
     dotnet-sdk
     omnisharp-roslyn
@@ -1109,156 +1108,6 @@ in
     ];
   };
 
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    autocd = true;
-
-    history = {
-      size = 10000;
-      path = "${config.xdg.dataHome}/zsh/history";
-    };
-
-    oh-my-zsh = {
-      enable = true;
-      plugins = [
-        "git"
-        "shrink-path"
-        "direnv"
-      ];
-      # theme = "";
-    };
-
-    zplug = {
-      enable = true;
-      plugins = [
-        {
-          name = "dracula/zsh";
-          tags = [ "as:theme" ];
-        }
-      ];
-    };
-
-    shellAliases = {
-      hibernate = "systemctl hibernate";
-      suspend = "systemctl suspend";
-      logout = "sudo pkill -u fredrikr";
-      lock = "/home/fredrikr/.logout.sh";
-      nv = "nvim";
-      e = "emacsclient -c -a 'emacs'";
-      nnn = "nnn -e";
-      jl = "jj log";
-      jla = ''jj log -r "all()"'';
-      jll = "jj log --no-pager --limit 5";
-    };
-
-    defaultKeymap = "viins";
-
-    zsh-abbr.enable = true;
-
-    syntaxHighlighting = {
-      highlighters = [
-        "main"
-        "cursor"
-      ];
-      styles = {
-        # dracula
-        "comment" = "fg=#6272A4";
-        "alias" = "fg=#50FA7B";
-        "suffix-alias" = "fg=#50FA7B";
-        "global-alias" = "fg=#50FA7B";
-        "function" = "fg=#50FA7B";
-        "command" = "fg=#50FA7B";
-        "precommand" = "fg=#50FA7B,italic";
-        "autodirectory" = "fg=#FFB86C,italic";
-        "single-hyphen-option" = "fg=#FFB86C";
-        "double-hyphen-option" = "fg=#FFB86C";
-        "back-quoted-argument" = "fg=#BD93F9";
-        "builtin" = "fg=#8BE9FD";
-        "reserved-word" = "fg=#8BE9FD";
-        "hashed-command" = "fg=#8BE9FD";
-        "commandseparator" = "fg=#FF79C6";
-        "command-substitution-delimiter" = "fg=#F8F8F2";
-        "command-substitution-delimiter-unquoted" = "fg=#F8F8F2";
-        "process-substitution-delimiter" = "fg=#F8F8F2";
-        "back-quoted-argument-delimiter" = "fg=#FF79C6";
-        "back-double-quoted-argument" = "fg=#FF79C6";
-        "back-dollar-quoted-argument" = "fg=#FF79C6";
-        "command-substitution-quoted" = "fg=#F1FA8C";
-        "command-substitution-delimiter-quoted" = "fg=#F1FA8C";
-        "single-quoted-argument" = "fg=#F1FA8C";
-        "single-quoted-argument-unclosed" = "fg=#FF5555";
-        "double-quoted-argument" = "fg=#F1FA8C";
-        "double-quoted-argument-unclosed" = "fg=#FF5555";
-        "rc-quote" = "fg=#F1FA8C";
-        "dollar-quoted-argument" = "fg=#F8F8F2";
-        "dollar-quoted-argument-unclosed" = "fg=#FF5555";
-        "dollar-double-quoted-argument" = "fg=#F8F8F2";
-        "assign" = "fg=#F8F8F2";
-        "named-fd" = "fg=#F8F8F2";
-        "numeric-fd" = "fg=#F8F8F2";
-        "unknown-token" = "fg=#FF5555";
-        "path" = "fg=#F8F8F2";
-        "path_pathseparator" = "fg=#FF79C6";
-        "path_prefix" = "fg=#F8F8F2";
-        "path_prefix_pathseparator" = "fg=#FF79C6";
-        "globbing" = "fg=#F8F8F2";
-        "history-expansion" = "fg=#BD93F9";
-        "back-quoted-argument-unclosed" = "fg=#FF5555";
-        "redirection" = "fg=#F8F8F2";
-        "arg0" = "fg=#F8F8F2";
-        "default" = "fg=#F8F8F2";
-        "cursor" = "standout";
-      };
-    };
-
-    initContent = ''
-      bindkey -v
-      export TERM=xterm-256color
-
-      # jujutsu setup
-      # autoload -U compinit
-      # compinit
-      source <(jj util completion zsh)
-      source <(COMPLETE=zsh jj)
-
-      # --------- autocd on nnn quit ----------
-      n ()
-      {
-          # Block nesting of nnn in subshells
-          [ "''${NNNLVL:-0}" -eq 0 ] || {
-              echo "nnn is already running"
-              return
-          }
-
-          # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
-          # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
-          # see. To cd on quit only on ^G, remove the "export" and make sure not to
-          # use a custom path, i.e. set NNN_TMPFILE *exactly* as follows:
-          #      NNN_TMPFILE="''${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-          NNN_TMPFILE="''${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-
-          # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-          # stty start undef
-          # stty stop undef
-          # stty lwrap undef
-          # stty lnext undef
-
-          # The command builtin allows one to alias nnn to n, if desired, without
-          # making an infinitely recursive alias
-          command nnn -e "$@"
-
-          [ ! -f "$NNN_TMPFILE" ] || {
-              . "$NNN_TMPFILE"
-              rm -f -- "$NNN_TMPFILE" > /dev/null
-          }
-      }
-      # ---------------------------------------
-    '';
-  };
-
   programs.git = {
     enable = true;
     userName = "fredrikr79";
@@ -1349,7 +1198,6 @@ in
     font.name = "Monocraft Nerd Font";
     font.size = 16;
     # font.package = pkgs.monocraft;
-    shellIntegration.enableZshIntegration = true;
     themeFile = "Dracula";
   };
 
@@ -1401,7 +1249,7 @@ in
       #   '';
       # }
     ];
-    shell = "${pkgs.zsh}/bin/zsh";
+    shell = "${pkgs.nushell}/bin/nu";
     newSession = true;
     terminal = "kitty";
   };
