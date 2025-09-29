@@ -253,7 +253,10 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel"
+      "input"
+    ]; # Enable ‘sudo’ for the user.
     initialPassword = "password";
     packages = with pkgs; [
       # managed by home-manager
@@ -301,6 +304,8 @@ in
       nnn
       libreoffice-qt6-fresh
       nix-tree
+      evtest
+      dunst
     ]
   );
 
@@ -569,5 +574,31 @@ in
       OnUnitActiveSec = "2min";
     };
     wantedBy = [ "timers.target" ];
+  };
+
+  systemd.user.services.caps-lock-notify = {
+    description = "Caps lock state notification";
+    script = ''
+      caps_state=""
+      prev_state=""
+
+      while true; do
+        caps_state=$(${pkgs.xorg.xset}/bin/xset q 2>/dev/null | ${pkgs.gnugrep}/bin/grep "Caps Lock" | ${pkgs.gawk}/bin/awk '{print $4}' || echo "")
+
+        if [ -n "$caps_state" ] && [ "$caps_state" != "$prev_state" ] && [ -n "$prev_state" ]; then
+          ${pkgs.libnotify}/bin/notify-send "Caps Lock" "$caps_state" -t 1000
+        fi
+
+        prev_state="$caps_state"
+        sleep 0.1
+      done
+    '';
+    serviceConfig = {
+      Type = "simple";
+      Restart = "always";
+      RestartSec = 3;
+    };
+    wantedBy = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
   };
 }
