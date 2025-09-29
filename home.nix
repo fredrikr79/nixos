@@ -1339,5 +1339,10 @@ in
     components = [ "secrets" ];
   };
 
-  services.dunst.enable = true;
+  services.dunst = {
+    enable = true;
+    configFile = ./home/config/dunst/dunstrc;
+    iconTheme.package = pkgs.dracula-icon-theme;
+    iconTheme.name = "Dracula";
+  };
 }
