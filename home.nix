@@ -112,6 +112,7 @@ in
     ".config/jj".source = home/config/jj;
     ".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
     ".config/nushell/themes".source = home/config/nushell/themes;
+    ".config/nushell/quitcd".source = home/config/nushell/quitcd;
   };
 
   home.sessionVariables = {
