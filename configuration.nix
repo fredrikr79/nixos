@@ -553,7 +553,7 @@ in
     description = "batter low notif";
     script = ''
       battery_level=$(${pkgs.acpi}/bin/acpi -b | ${pkgs.gnugrep}/bin/grep -P -o '[0-9]+(?=%)')
-      if [ "$battery_level" -le 15 ] && [ "$(${pkgs.acpi}/bin/acpi -b | ${pkgs.gnugrep}/bin/grep -c 'Discharging')" -eq 1 ]; then
+      if [ "$battery_level" -le 20 ] && [ "$(${pkgs.acpi}/bin/acpi -b | ${pkgs.gnugrep}/bin/grep -c 'Discharging')" -eq 1 ]; then
         ${pkgs.libnotify}/bin/notify-send -u critical "battery low" "battery level: $battery_level%"
       fi
     '';

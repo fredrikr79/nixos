@@ -1210,6 +1210,10 @@ in
       }
       {
         plugin = tmuxPlugins.dracula;
+        extraConfig = ''
+          set -g @dracula-show-powerline true
+          set -g @dracula-plugins "ssh-session"
+        '';
       }
       # {
       #   plugin = tmuxPlugins.harpoon;
