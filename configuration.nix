@@ -537,4 +537,13 @@ in
       exec nu
     fi
   '';
+
+  services.gnome.gnome-keyring.enable = true;
+  services.gnome.gcr-ssh-agent.enable = false;
+
+  security.pam.services.login.enableGnomeKeyring = true;
+  security.pam.services.lightdm.enableGnomeKeyring = true;
+
+  services.dbus.enable = true;
+
 }

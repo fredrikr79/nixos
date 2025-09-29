@@ -1339,4 +1339,18 @@ in
   };
 
   home.shell.enableNushellIntegration = true;
+
+  programs.thunderbird = {
+    enable = true;
+    profiles.default = {
+      isDefault = true;
+    };
+  };
+
+  services.protonmail-bridge.enable = true;
+
+  services.gnome-keyring = {
+    enable = true;
+    components = [ "secrets" ];
+  };
 }
