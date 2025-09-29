@@ -1301,10 +1301,41 @@ in
     enable = true;
     settings = {
       add_newline = false;
-      character = {
-        success_symbol = "λ(bold green)";
-        error_symbol = "λ(bold red)";
+      format = "$directory$git_branch$character";
+
+      directory = {
+        truncation_length = 1;
+        truncate_to_repo = false;
+        format = "[$path]($style) ";
+        style = "bold cyan";
       };
+
+      git_branch = {
+        format = "[$symbol$branch]($style) ";
+        style = "bold purple";
+        symbol = "";
+      };
+
+      character = {
+        success_symbol = "[λ](bold green)";
+        error_symbol = "[λ](bold red)";
+      };
+
+      # Disable all other modules
+      aws.disabled = true;
+      gcloud.disabled = true;
+      nodejs.disabled = true;
+      python.disabled = true;
+      rust.disabled = true;
+      package.disabled = true;
+      docker_context.disabled = true;
+      kubernetes.disabled = true;
+      terraform.disabled = true;
+      cmd_duration.disabled = true;
+      line_break.disabled = true;
+      username.disabled = true;
+      hostname.disabled = true;
+      time.disabled = true;
     };
   };
 
