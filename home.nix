@@ -1283,9 +1283,8 @@ in
       suspend = "systemctl suspend";
       logout = "sudo pkill -u fredrikr";
       lock = "/home/fredrikr/.logout.sh";
-      nv = "nvim";
       e = "emacsclient -c -a 'emacs'";
-      nnn = "nnn -e";
+      n = "nnn -e";
       jl = "jj log";
       jla = ''jj log -r "all()"'';
       jll = "jj log --no-pager --limit 5";
