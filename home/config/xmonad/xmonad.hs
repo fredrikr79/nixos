@@ -79,7 +79,6 @@ myConfig =
                            ((0, xF86XK_MonBrightnessUp), spawn "brightnessctl set 5%+"),
                            ((0, xF86XK_MonBrightnessDown), spawn "brightnessctl set 5%-"),
                            ((modm .|. shiftMask, xK_Return), spawn terminal)
-                           -- ((modm, xK_e), spawn "emacsclient -c -a emacs")
                          ]
         ++ [ ((m .|. modm, k), windows $ f i)
              | (i, k) <- zip myWorkspaces numPadKeys,

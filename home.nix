@@ -51,7 +51,6 @@ in
     # unityhub
     dotnet-sdk
     omnisharp-roslyn
-    # emacs
     fd
     shellcheck
     cmigemo
@@ -62,7 +61,6 @@ in
     haskellPackages.hoogle
     cabal-cli
     libtool
-    # emacsPackages.treesit-grammars.with-all-grammars
     # librewolf
     # cargo
     # rustc
@@ -106,8 +104,6 @@ in
       recursive = true;
     };
     ".config/gdb/gdbinit".source = home/config/gdb/gdbinit;
-    # ".emacs.d".source = home/emacs.d;
-    # ".config/emacs".source = home/config/emacs;
     ".doom.d".source = home/doom.d;
     ".config/jj".source = home/config/jj;
     ".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
@@ -118,8 +114,6 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
   };
-
-  home.sessionPath = [ "/home/fredrikr/.config/emacs/bin/" ];
 
   programs.home-manager.enable = true;
 
@@ -1203,14 +1197,6 @@ in
     themeFile = "Dracula";
   };
 
-  programs.emacs = {
-    enable = true;
-    # defaultEditor = true;
-    package = pkgs.emacs-gtk;
-    # extraConfig = "home/config/emacs/.doomrc";
-  };
-  services.emacs.enable = true;
-
   programs.tmux = {
     enable = true;
     clock24 = true;
@@ -1284,8 +1270,6 @@ in
       suspend = "systemctl suspend";
       logout = "sudo pkill -u fredrikr";
       lock = "/home/fredrikr/.logout.sh";
-      e = "emacsclient -c -a 'emacs'";
-      n = "nnn -e";
       jl = "jj log";
       jla = ''jj log -r "all()"'';
       jll = "jj log --no-pager --limit 5";
