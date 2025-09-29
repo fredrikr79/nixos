@@ -57,8 +57,9 @@ Config { overrideRedirect = False
                          , "--normal"   , "#ffb86c"
                          , "--high"      , "#50fa7b",
                          "--", "-D", "intel_backlight" ] 60
+                    , Run Locks
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = " %XMonadLog% | %alsa:default:Master% } %date% { %bright% | %cpu% - %coretemp% | %memory% | %dynnetwork% | %battery% "
+       , template = " %XMonadLog% | %alsa:default:Master% } %date% { %locks% | %bright% | %cpu% - %coretemp% | %memory% | %dynnetwork% | %battery% "
        }
