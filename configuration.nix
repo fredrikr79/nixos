@@ -294,6 +294,7 @@ in
       gamemode
       alsa-utils
       acpi
+      libnotify
       # fcitx5
       # fcitx5-configtool
       # kdePackages.dolphin
@@ -546,4 +547,27 @@ in
 
   services.dbus.enable = true;
 
+  services.upower.enable = true;
+
+  systemd.user.services.battery-low = {
+    description = "batter low notif";
+    script = ''
+      battery_level=$(${pkgs.acpi}/bin/acpi -b | ${pkgs.gnugrep}/bin/grep -P -o '[0-9]+(?=%)')
+      if [ "$battery_level" -le 15 ] && [ "$(${pkgs.acpi}/bin/acpi -b | ${pkgs.gnugrep}/bin/grep -c 'Discharging')" -eq 1 ]; then
+        ${pkgs.libnotify}/bin/notify-send -u critical "battery low" "battery level: $battery_level%"
+      fi
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+    };
+  };
+
+  systemd.user.timers.battery-low = {
+    description = "check battery level";
+    timerConfig = {
+      OnBootSec = "2min";
+      OnUnitActiveSec = "2min";
+    };
+    wantedBy = [ "timers.target" ];
+  };
 }

@@ -1338,4 +1338,6 @@ in
     enable = true;
     components = [ "secrets" ];
   };
+
+  services.dunst.enable = true;
 }
