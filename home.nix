@@ -81,6 +81,7 @@ in
     xf86_input_wacom
     libwacom
     vivaldi
+    sage
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -133,9 +134,9 @@ in
     ];
 
     diagnostic.settings = {
-      virtual_lines = {
-        current_line = true;
-      };
+      # virtual_lines = {
+      #   current_line = true;
+      # };
       virtual_text = true;
     };
 
