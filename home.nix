@@ -1208,47 +1208,25 @@ in
     clock24 = true;
     keyMode = "vi";
     mouse = true;
+    prefix = "C-b"; # default
     plugins = with pkgs; [
-      # tmuxPlugins.cpu
-      {
-        plugin = tmuxPlugins.resurrect;
-        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
-      }
       {
         plugin = tmuxPlugins.dracula;
         extraConfig = ''
           set -g @dracula-show-powerline true
           set -g @dracula-plugins "ssh-session"
+          set -g @dracula-show-left-icon session
         '';
       }
-      # {
-      #   plugin = tmuxPlugins.harpoon;
-      #   extraConfig = ''
-      #     bind -n M-a run 'harpoon -A';
-      #     bind -n M-l run 'harpoon -l';
-      #     bind -n M-e run 'harpoon -e';
-      #     bind -n M-h run 'harpoon -s 1';
-      #     bind -n M-t run 'harpoon -s 2';
-      #     bind -n M-n run 'harpoon -s 3';
-      #     bind -n M-s run 'harpoon -s 4';
-      #   '';
-      # }
-      # {
-      #   plugin = tmuxPlugins.continuum;
-      #   extraConfig = ''
-      #     set -g @continuum-restore 'on'
-      #     set -g @continuum-save-interval '60' # minutes
-      #   '';
-      # }
-      # {
-      #   plugin = tmuxPlugins.session-wizard;
-      # }
-      # {
-      #   plugin = tmuxPlugins.battery;
-      #   extraConfig = ''
-      #     set -g status-right '#{battery_percentage} | %a %h-%d %H:%M '
-      #   '';
-      # }
+      {
+        plugin = tmuxPlugins.tmux-sessionx;
+        extraConfig = ''
+          set -g @sessionx-bind 'C-s'
+          set -g @sessionx-window-height '85%'
+          set -g @sessionx-window-width '75%'
+          set -g @sessionx-zoxide-mode 'on'
+        '';
+      }
     ];
     shell = "${pkgs.nushell}/bin/nu";
     newSession = true;
