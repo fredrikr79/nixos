@@ -131,6 +131,11 @@ in
         pattern = [ "*.ua" ];
         command = "setfiletype uiua";
       }
+      {
+        event = "FileType";
+        pattern = [ "uiua" ];
+        command = "setlocal commentstring=#\\ %s";
+      }
     ];
 
     diagnostic.settings = {
