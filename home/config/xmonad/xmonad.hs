@@ -40,7 +40,7 @@ main =
 --   transform _ x k = spacingWithEdge 3
 
 myConfig =
-  let terminal = "kitty tmux attach-session"
+  let terminal = "kitty tmux new-session"
       browser = "vivaldi"
       modm = mod4Mask -- super/meta
    in def
@@ -56,7 +56,8 @@ myConfig =
                             -- , ("M-t", spawn terminal)
                             -- , ("M-S-Enter", spawn terminal)
                             -- , ("<Print>", spawn "scrot ~/Pictures/Screenshots/%b-%d::%H-%M-%S.png")
-                            ("<Print>", spawn "/home/fredrikr/.scrot.sh")
+                            ("<Print>", spawn "/home/fredrikr/.scrot.sh"),
+                            ("S-<Print>", spawn "/home/fredrikr/.recordgif.sh")
                             -- , ("<M-S-s>", unGrab *> spawn "scrot -s ~/Pictures/Screenshots/%b-%d::%H-%M-%S.png")
                           ]
         `additionalKeys` [ ((mod1Mask, xK_Tab), nextMatch History (return True)),

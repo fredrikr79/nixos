@@ -45,6 +45,7 @@ in
     uiua386
     # uiua
     byzanz
+    slop
     prismlauncher # minecraft
     ghc
     monocraft
