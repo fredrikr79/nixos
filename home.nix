@@ -83,6 +83,7 @@ in
     libwacom
     vivaldi
     sage
+    godot
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -1008,6 +1009,7 @@ in
 
       nvim-ufo.enable = true; # folds
 
+      godot.enable = true;
     };
     extraConfigLua = ''
       luasnip = require("luasnip")
