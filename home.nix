@@ -1239,6 +1239,7 @@ in
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
+    addKeysToAgent = "1h";
     matchBlocks = {
       "git.pvv.ntnu.no" = {
         hostname = "git.pvv.ntnu.no";
