@@ -146,11 +146,29 @@ in
           user = "fredrikr";
           extraConfig = ''
             [greeter]
-            show-password-label = false
             cursor-theme-name = Vanilla-DMZ
             cursor-theme-size = 32
+            show-input-cursor = false
+            show-password-label = false
+            password-label-text = password
+            invalid-password-text = wrong password
+            [greeter-hotkeys]
+            mod-key = meta
+            shutdown-key = p
+            restart-key = r
+            hibernate-key = h
+            suspend-key = s
             [greeter-theme]
+            font = Monocraft 
+            text-color = "#282A36"
+            error-color = "#282A36"
             background-image = ""
+            background-color = "#282A36"
+            border-color = "#FF5555"
+            password-border-color = "#FF5555"
+            password-background-color = "#282A36"
+            password-color = "#F8F8F2"
+            window-color = "#50FA7B"
           '';
         };
       };
