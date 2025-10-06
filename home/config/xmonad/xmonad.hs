@@ -61,7 +61,7 @@ myConfig =
                             -- , ("<M-S-s>", unGrab *> spawn "scrot -s ~/Pictures/Screenshots/%b-%d::%H-%M-%S.png")
                           ]
         `additionalKeys` [ ((mod1Mask, xK_Tab), nextMatch History (return True)),
-                           ((modm, xK_Escape), spawn "dm-tool lock"),
+                           ((modm, xK_Escape), spawn "xset s activate"),
                            ((modm, xK_Down), nextWS),
                            ((modm, xK_Up), prevWS),
                            ((modm, xK_j), nextWS),

@@ -319,6 +319,7 @@ in
       nnn
       libreoffice-qt6-fresh
       nix-tree
+      xsecurelock
     ]
   );
 
@@ -448,9 +449,14 @@ in
   # Power button invokes suspend, not shutdown.
 
   services.logind.settings.Login = {
-    # extraConfig = "HandlePowerKey=hibernate";
-    HandleLidSwitch = "hybrid-sleep";
-    HandlePowerKey = "hibernate";
+    HandleLidSwitch = "suspend-then-hibernate";
+    HandlePowerKey = "ignore";
+  };
+
+  programs.xss-lock = {
+    enable = true;
+    lockerCommand = "${pkgs.xsecurelock}/bin/xsecurelock";
+    extraOptions = [ "--transfer-sleep-lock" ];
   };
 
   # video acceleration

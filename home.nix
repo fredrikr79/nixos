@@ -1263,10 +1263,6 @@ in
     enable = true;
     configFile.source = ./home/config/nushell/config.nu;
     shellAliases = {
-      hibernate = "systemctl hibernate";
-      suspend = "systemctl suspend";
-      logout = "sudo pkill -u fredrikr";
-      lock = "/home/fredrikr/.logout.sh";
       jl = "jj log";
       jla = ''jj log -r "all()"'';
       jll = "jj log --no-pager --limit 5";
