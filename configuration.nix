@@ -159,7 +159,6 @@ in
             hibernate-key = h
             suspend-key = s
             [greeter-theme]
-            font = Monocraft 
             text-color = "#282A36"
             error-color = "#282A36"
             background-image = ""
@@ -463,7 +462,6 @@ in
           export XSECURELOCK_BLANK_DPMS_STATE=off
           export XSECURELOCK_SHOW_DATETIME=1
           export XSECURELOCK_DATETIME_FORMAT="%H:%M"
-          export XSECURELOCK_PAM_X11_FONT="Monocraft:size=14"
           export XSECURELOCK_BACKGROUND_COLOR="#282A36"
           export XSECURELOCK_AUTH_FOREGROUND_COLOR="#282A36"
           export XSECURELOCK_AUTH_BACKGROUND_COLOR="#50FA7B"
