@@ -455,7 +455,23 @@ in
 
   programs.xss-lock = {
     enable = true;
-    lockerCommand = "${pkgs.xsecurelock}/bin/xsecurelock";
+    lockerCommand = # "${pkgs.xsecurelock}/bin/xsecurelock";
+      let
+        xsecurelock-custom = pkgs.writeShellScriptBin "xsecurelock-custom" ''
+          export XSECURELOCK_SAVER=saver_blank
+          export XSECURELOCK_AUTH=auth_pam_x11
+          export XSECURELOCK_BLANK_DPMS_STATE=off
+          export XSECURELOCK_SHOW_DATETIME=1
+          export XSECURELOCK_DATETIME_FORMAT="%H:%M"
+          export XSECURELOCK_PAM_X11_FONT="Monocraft:size=14"
+          export XSECURELOCK_BACKGROUND_COLOR="#282A36"
+          export XSECURELOCK_AUTH_FOREGROUND_COLOR="#282A36"
+          export XSECURELOCK_AUTH_BACKGROUND_COLOR="#50FA7B"
+          export XSECURELOCK_AUTH_WARNING_COLOR="#FF5555"
+          ${pkgs.xsecurelock}/bin/xsecurelock
+        '';
+      in
+      "${xsecurelock-custom}/bin/xsecurelock-custom";
     extraOptions = [ "--transfer-sleep-lock" ];
   };
 
