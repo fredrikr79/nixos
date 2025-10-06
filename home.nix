@@ -1239,7 +1239,6 @@ in
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    addKeysToAgent = "1h";
     matchBlocks = {
       "git.pvv.ntnu.no" = {
         hostname = "git.pvv.ntnu.no";
@@ -1247,6 +1246,7 @@ in
         addressFamily = "inet";
         port = 2222;
         proxyJump = "hildring";
+        addKeysToAgent = "1h";
       };
 
       "hildring" = {
