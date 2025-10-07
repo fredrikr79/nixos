@@ -608,4 +608,8 @@ in
     };
     wantedBy = [ "timers.target" ];
   };
+
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=60min
+  '';
 }
