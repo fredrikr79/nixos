@@ -410,6 +410,7 @@ in
         clangd.enable = true;
         vtsls.enable = true;
         marksman.enable = true;
+        tinymist.enable = true;
         uiua = {
           enable = true;
           settings = {
@@ -541,7 +542,7 @@ in
           };
 
           formatters_by_ft = {
-            typst = [ "typstyle " ];
+            typst = [ "typstyle" ];
             python = [
               "isort"
               "black"
@@ -997,6 +998,17 @@ in
       nvim-ufo.enable = true; # folds
 
       godot.enable = true;
+
+      typst-preview = {
+        enable = true;
+        settings = {
+          # dependencies_bin = {
+          #   tinymist = "tinymist";
+          #   websocat = "websocat";
+          # };
+          port = 8000;
+        };
+      };
     };
     extraConfigLua = ''
       luasnip = require("luasnip")
@@ -1041,30 +1053,6 @@ in
       vim.api.nvim_set_hl(0, "@lsp.type.uiua_string.uiua", { fg = "#8be9fd" })
       vim.api.nvim_set_hl(0, "@lsp.type.variable.uiua", { fg = "#f8f8f2" })
 
-
-      -- for some reason it didn't work in nixvim.lsp.servers
-      vim.lsp.config.tinymist = {
-        cmd = { 'tinymist' },
-        filetypes = { 'typst' },
-        root_markers = { 'main.typ', '.git' },
-        settings = {
-          exportPdf = "onType",
-          fontPaths = {
-            "$dir/",
-            "./",
-            "''${workspaceFolder}/fonts",
-            "''${workspaceFolder}/"
-          },
-          formatterMode = "typstyle"
-        }
-      }
-
-      vim.api.nvim_create_autocmd('FileType', {
-        pattern = 'typst',
-        callback = function(args)
-          vim.lsp.enable('tinymist')
-        end
-      })
     '';
 
     # extraPlugins = [
