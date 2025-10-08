@@ -56,7 +56,6 @@ in
     shellcheck
     cmigemo
     nodejs_22
-    cmake
     clang-tools
     glslang
     haskellPackages.hoogle
@@ -741,7 +740,7 @@ in
 
       vim-surround.enable = true;
 
-      presence-nvim.enable = true;
+      presence.enable = true;
 
       which-key.enable = true;
 
@@ -784,7 +783,7 @@ in
       #   enable = true;
       # };
 
-      rainbow-delimiters = {
+      rainbow-delimiters.settings = {
         enable = true;
         highlight = [
           "DraculaRed" # "RainbowDelimiterRed"

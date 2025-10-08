@@ -82,12 +82,12 @@ myConfig =
                            ((modm .|. shiftMask, xK_Return), spawn terminal)
                          ]
         ++ [ ((m .|. modm, k), windows $ f i)
-             | (i, k) <- zip myWorkspaces numPadKeys,
-               (f, m) <- [(greedyView, 0), (shift, shiftMask)]
+           | (i, k) <- zip myWorkspaces numPadKeys,
+             (f, m) <- [(greedyView, 0), (shift, shiftMask)]
            ]
         ++ [ ((m .|. modm, k), windows $ f i)
-             | (i, k) <- zip myWorkspaces myWSKeys,
-               (f, m) <- [(greedyView, 0), (shift, shiftMask)]
+           | (i, k) <- zip myWorkspaces myWSKeys,
+             (f, m) <- [(greedyView, 0), (shift, shiftMask)]
            ]
   where
     myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
