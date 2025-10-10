@@ -43,7 +43,7 @@ in
     pandoc
     typst
     uiua386
-    # uiua
+    uiua-unstable
     byzanz
     slop
     prismlauncher # minecraft
@@ -75,7 +75,7 @@ in
     jujutsu
     ungoogled-chromium
     mpv
-    inputs.uiua.packages."${system}".default
+    # inputs.uiua.packages."${system}".default
     odin
     unzip
     xf86_input_wacom

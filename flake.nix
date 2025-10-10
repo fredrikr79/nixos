@@ -27,10 +27,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    uiua = { 
-      url = "github:uiua-lang/uiua";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # uiua = {
+    #   url = "github:uiua-lang/uiua";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # qotd = {
     #   url = "git+file:///home/fredrikr/Programming/uiua/qotd";
@@ -38,7 +38,14 @@
     # };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixvim, uiua, ... } @ inputs: 
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nixvim,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
