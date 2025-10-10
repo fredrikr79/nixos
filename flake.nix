@@ -10,15 +10,15 @@
     };
 
     vi-xournalpp = {
-        url = "github:raw-bacon/vi-xournalpp";
-        flake = false;
+      url = "github:raw-bacon/vi-xournalpp";
+      flake = false;
     };
 
     # zen-browser.url = "github:Gurjaka/zen-browser-nix";
 
     #nbfc-linux = {
-      #url = "github:nbfc-linux/nbfc-linux";
-      #inputs.nixpkgs.follows = "nixpkgs";
+    #url = "github:nbfc-linux/nbfc-linux";
+    #inputs.nixpkgs.follows = "nixpkgs";
     #};
 
     nixvim = {
@@ -52,59 +52,63 @@
         inherit system;
         config.allowUnfree = true;
         # overlays = [ qotd.overlays.default ];
-        config.allowInsecurePredicate = pkg: let
-          name = "${lib.getName pkg}-${lib.getVersion pkg}";
-          byName = builtins.elem name [
-            # "libxml2-2.13.8"
-          ];
-        in if byName 
-           then lib.warn "Allowing insecure package: ${name}" true 
-           else false;
+        config.allowInsecurePredicate =
+          pkg:
+          let
+            name = "${lib.getName pkg}-${lib.getVersion pkg}";
+            byName = builtins.elem name [
+              # "libxml2-2.13.8"
+            ];
+          in
+          if byName then lib.warn "Allowing insecure package: ${name}" true else false;
       };
       lib = nixpkgs.lib;
-    in 
+    in
     {
       nixosConfigurations = {
-	#nixos = lib.nixosSystem {
-	  #inherit system;
-          #specialArgs = {inherit inputs;};
-          #modules = [
-            #./configuration.nix
-          #];
+        #nixos = lib.nixosSystem {
+        #inherit system;
+        #specialArgs = {inherit inputs;};
+        #modules = [
+        #./configuration.nix
+        #];
         #};
 
-          fredrikr = lib.nixosSystem {
-              inherit system pkgs;
-              specialArgs = {inherit inputs;};
-              modules = [ 
-                  ./configuration.nix 
+        fredrikr = lib.nixosSystem {
+          inherit system pkgs;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./configuration.nix
 
-                  home-manager.nixosModules.home-manager 
+            home-manager.nixosModules.home-manager
 
-                  # qotd.nixosModules.default
-                  # {
-                  #   services.qotd.enable = true;
-                  #   services.qotd.quotes = [ "hei" "hade" ];
-                  # }
+            # qotd.nixosModules.default
+            # {
+            #   services.qotd.enable = true;
+            #   services.qotd.quotes = [ "hei" "hade" ];
+            # }
 
-                  ({ ... }: {
-                      home-manager = {
-                          useGlobalPkgs = true;
-                          useUserPackages = true;
-                          backupFileExtension = "backup";
-                          users.fredrikr = {
-                              imports = [ 
-                                  ./home.nix 
-                                  nixvim.homeModules.nixvim 
-                              ];
-                          };
-                          extraSpecialArgs = {
-                              inherit inputs;
-                          };
-                      };
-                  })
-              ];
-          };
+            (
+              { ... }:
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  backupFileExtension = "backup";
+                  users.fredrikr = {
+                    imports = [
+                      ./home.nix
+                      nixvim.homeModules.nixvim
+                    ];
+                  };
+                  extraSpecialArgs = {
+                    inherit inputs;
+                  };
+                };
+              }
+            )
+          ];
+        };
 
       };
     };

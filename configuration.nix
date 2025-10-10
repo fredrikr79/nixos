@@ -316,7 +316,6 @@ in
       # fcitx5-configtool
       # kdePackages.dolphin
       nnn
-      libreoffice-qt6-fresh
       nix-tree
       xsecurelock
     ]
