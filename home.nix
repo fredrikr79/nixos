@@ -87,6 +87,8 @@ in
     krita
     inkscape
     onlyoffice-desktopeditors
+    scala
+    sbt
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -482,6 +484,7 @@ in
         ols.enable = true;
         rust_analyzer.enable = true;
         superhtml.enable = true;
+        metals.enable = true;
       };
       keymaps = [
         # LSP buffer actions
@@ -560,6 +563,7 @@ in
             css = [ "prettier" ];
             json = [ "prettier" ];
             nix = [ "nixfmt" ];
+            # scala = [ "scalafmt" ];
           };
         };
       };
@@ -1106,6 +1110,8 @@ in
       haskell-language-server
       nixfmt-rfc-style
       black
+      scalafmt
+      metals
       python3Packages.pyflakes
       isort
       shfmt
