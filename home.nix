@@ -154,6 +154,12 @@ in
 
     keymaps = [
       {
+        key = "<leader>cpm";
+        action.__raw = "tinymist.pinMain(vim.api.nvim_buf_get_name(0))";
+        options.silent = true;
+        options.desc = "pin main file in tinymist";
+      }
+      {
         key = "<leader>e";
         action.__raw = "vim.diagnostic.open_float";
         options.silent = true;
@@ -409,6 +415,10 @@ in
 
     lsp = {
       servers = {
+        "*".config.root_markers = [
+          ".git"
+          ".jj"
+        ];
         pyright.enable = true;
         nil_ls.enable = true;
         lua_ls.enable = true;
@@ -416,7 +426,14 @@ in
         clangd.enable = true;
         vtsls.enable = true;
         marksman.enable = true;
-        tinymist.enable = true;
+        tinymist = {
+          enable = true;
+          config = {
+            root_markers = [
+              "main.typ"
+            ];
+          };
+        };
         uiua = {
           enable = true;
           settings = {
@@ -474,10 +491,6 @@ in
                 };
               };
             };
-            root_markers = [
-              ".git"
-              ".jj"
-            ];
           };
         };
         omnisharp.enable = true;
