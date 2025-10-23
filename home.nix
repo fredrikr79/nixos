@@ -155,7 +155,7 @@ in
     keymaps = [
       {
         key = "<leader>cpm";
-        action.__raw = "tinymist.pinMain(vim.api.nvim_buf_get_name(0))";
+        action = ":lua vim.lsp.buf.execute_command({ command = 'tinymist.pinMain', arguments = { vim.api.nvim_buf_get_name(0) } })<CR>";
         options.silent = true;
         options.desc = "pin main file in tinymist";
       }
@@ -1028,6 +1028,7 @@ in
           #   websocat = "websocat";
           # };
           port = 8000;
+          open_cmd = ''qutebrowser "%s" --target window --no-err-windows --loglines 0 --loglevel critical --override-restore --nocolor'';
         };
       };
     };
