@@ -565,7 +565,13 @@ in
     };
   };
 
-  programs.ssh.startAgent = true;
+  programs.ssh = {
+    startAgent = true;
+    agentTimeout = "1h";
+    extraConfig = ''
+      AddKeysToAgent yes
+    '';
+  };
 
   powerManagement.powertop.enable = true;
   # services.auto-cpufreq.enable = true;
