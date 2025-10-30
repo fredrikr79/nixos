@@ -274,36 +274,6 @@ in
       # }
       #
       {
-        key = "<leader>cm";
-        action = ":CompilerOpen<cr>";
-        mode = [ "n" ];
-        options = {
-          noremap = true;
-          silent = true;
-        };
-      }
-
-      {
-        key = "<leader>cc";
-        action = ":CompilerStop<cr>:CompilerRedo<cr>";
-        mode = [ "n" ];
-        options = {
-          noremap = true;
-          silent = true;
-        };
-      }
-
-      {
-        key = "<leader>ct";
-        action = ":CompilerToggleResults<cr>";
-        mode = [ "n" ];
-        options = {
-          noremap = true;
-          silent = true;
-        };
-      }
-
-      {
         key = "<leader>y";
         action = "\"+y";
         mode = [
@@ -318,12 +288,6 @@ in
 
       {
         key = "<C-backspace>";
-        action = "<C-w>";
-        mode = [ "i" ];
-      }
-
-      {
-        key = "<C-h>";
         action = "<C-w>";
         mode = [ "i" ];
       }
@@ -604,8 +568,6 @@ in
         # '';
       };
 
-      coq-nvim.enable = true;
-
       cmp = {
         enable = true;
         settings = {
@@ -737,23 +699,9 @@ in
       friendly-snippets.enable = true;
       luasnip.enable = true;
 
-      harpoon = {
-        enable = true;
-        # keymaps = {
-        #   navFile = {
-        #     "1" = "<C-h>";
-        #     "2" = "<C-t>";
-        #     "3" = "<C-n>";
-        #     "4" = "<C-s>";
-        #   };
-        #   addFile = "<leader>ha";
-        #   toggleQuickMenu = "<leader>hl";
-        # };
-      };
+      harpoon.enable = true;
 
-      treesitter = {
-        enable = true;
-      };
+      treesitter.enable = true;
 
       undotree.enable = true;
 
@@ -764,11 +712,6 @@ in
       presence.enable = true;
 
       which-key.enable = true;
-
-      jdtls = {
-        enable = true;
-        # data = "/home/fredrikr/.cache/jdtls/workspace";
-      };
 
       telescope = {
         enable = true;
@@ -786,7 +729,7 @@ in
         enable = true;
         settings = {
           pdf_viewer = "zathura";
-          conceal_math = 0;
+          conceal_math = 1;
           auto_open_quickfix = 0;
         };
       };
@@ -859,33 +802,13 @@ in
             "neo-tree"
             "noice"
             "text"
+            "typst"
           ];
           scope = "window";
         };
       };
 
-      # zen-mode = {
-      #   enable = true;
-      #   settings = {
-      #     window = {
-      #       width = 92;
-      #     };
-      #   };
-      # };
-      #
-      # twilight.enable = true;
-      #
-      # telekasten.enable = true;
-
       fzf-lua.enable = true;
-
-      overseer = {
-        # depended on by compiler.nvim
-        enable = true;
-        settings = {
-          strategy = "toggleterm";
-        };
-      };
 
       fidget = {
         enable = true;
@@ -916,104 +839,13 @@ in
         };
       };
 
-      # debugprint.enable = true;
-
-      # dap = {
-      #   enable = true;
-      #   adapters = {
-      #     # gdb = {
-      #     #   type = "executable";
-      #     #   command = "gdb";
-      #     #   name = "gdb";
-      #     # };
-      #   };
-      #   configurations = {
-      #     # cpp = [
-      #     #   {
-      #     #     name = "Launch file";
-      #     #     type = "gdb";
-      #     #     request = "launch";
-      #     #     program = "''\${workspaceFolder}/a.out";
-      #     #     cwd = "''\${workspaceFolder}";
-      #     #     stopOnEntry = false;
-      #     #     args = [];
-      #     #   }
-      #     # ];
-      #   };
-      # };
-      # dap-virtual-text = {
-      #   enable = true;
-      #   settings = {
-      #     commented = true;
-      #   };
-      # };
-      # dap-ui = {
-      #   enable = true;
-      #   settings = {
-      #     icons = {
-      #       expanded = "▾";
-      #       collapsed = "▸";
-      #     };
-      #   };
-      # };
-      # dap-python.enable = true;
-      # dap-lldb.enable = true;
-
       cursorline.enable = true;
-
-      compiler.enable = true;
 
       committia.enable = true;
 
       colorizer.enable = true;
 
       web-devicons.enable = true;
-
-      # dashboard = {
-      #   enable = true;
-      #   settings = {
-      #     change_to_vcs_root = true;
-      #     config = {
-      #       footer = [
-      #         "Made with ❤️"
-      #       ];
-      #       header = [
-      #           "███╗   ██╗██╗██╗  ██╗██╗   ██╗██╗███╗   ███╗"
-      #           "████╗  ██║██║╚██╗██╔╝██║   ██║██║████╗ ████║"
-      #           "██╔██╗ ██║██║ ╚███╔╝ ██║   ██║██║██╔████╔██║"
-      #           "██║╚██╗██║██║ ██╔██╗ ╚██╗ ██╔╝██║██║╚██╔╝██║"
-      #           "██║ ╚████║██║██╔╝ ██╗ ╚████╔╝ ██║██║ ╚═╝ ██║"
-      #           "╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝"
-      #       ];
-      #       mru = {
-      #         limit = 20;
-      #       };
-      #       project = {
-      #         enable = false;
-      #       };
-      #       shortcut = [
-      #       {
-      #         action = {
-      #           __raw = "function(path) vim.cmd('Telescope find_files') end";
-      #         };
-      #         desc = "Files";
-      #         group = "Label";
-      #         icon = " ";
-      #         icon_hl = "@variable";
-      #         key = "f";
-      #       }
-      #       ];
-      #       week_header = {
-      #         enable = true;
-      #       };
-      #     };
-      #     theme = "hyper";
-      #   };
-      # };
-
-      # vim-dadbod.enable = true;
-      # vim-dadbod-completion.enable = true;
-      # vim-dadbod-ui.enable = true;
 
       nvim-ufo.enable = true; # folds
 
@@ -1076,46 +908,6 @@ in
 
     '';
 
-    # extraPlugins = [
-    #   (pkgs.neovimUtils.buildNeovimPlugin {
-    #    luaAttr = pkgs.lua51Packages.buildLuarocksPackage {
-    #      pname = "battery.nvim";
-    #      version = "scm-1";
-    #      src = pkgs.fetchFromGitHub {
-    #        owner = "justinhj";
-    #        repo = "battery.nvim";
-    #        rev = "5b0fc97f8ae29ddd2668eced7f352337d5d07f52";
-    #        sha256 = "sha256-RgCk/BFi8vb6SAq6NchcRm/Lshvvw7hymxGNY0A+M1U=";
-    #      };
-    #      propagatedBuildInputs = [
-    #        pkgs.lua51Packages.plenary-nvim
-    #      ];
-    #      disabled = pkgs.lua51Packages.lua.luaversion != "5.1";
-    #      knownRockspec = pkgs.writeText "battery.nvim-scm-1.rockspec" ''
-    #        package = "battery.nvim"
-    #        version = "scm-1"
-    #        source = {
-    #          url = "git://github.com/justinhj/battery.nvim",
-    #        }
-    #        dependencies = {
-    #          "lua == 5.1",
-    #          "plenary.nvim",
-    #        }
-    #        build = {
-    #          type = "builtin",
-    #          modules = {
-    #            battery = "lua/battery/battery.lua",
-    #          },
-    #          copy_directories = {
-    #            "doc",
-    #            "plugin",
-    #          }
-    #        }
-    #      '';
-    #    };
-    #    nvimRequiredCheck = "battery";
-    #  })
-    # ];
     extraPackages = with pkgs; [
       nodePackages.prettier
       typstyle
