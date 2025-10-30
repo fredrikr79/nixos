@@ -73,7 +73,6 @@ in
     zoxide
     libgit2
     jujutsu
-    ungoogled-chromium
     mpv
     # inputs.uiua.packages."${system}".default
     odin
@@ -798,7 +797,7 @@ in
 
       diffview = {
         enable = true;
-        view.mergeTool.layout = "diff3_mixed";
+        settings.view.merge_tool.layout = "diff3_mixed";
       };
 
       # markview = {
@@ -1139,8 +1138,10 @@ in
 
   programs.git = {
     enable = true;
-    userName = "fredrikr79";
-    userEmail = "fredrikrobertsen7@gmail.com";
+    settings.user = {
+      name = "fredrikr79";
+      email = "fredrikrobertsen7@gmail.com";
+    };
     ignores = [
       ".direnv"
       ".jj"
