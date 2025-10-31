@@ -143,7 +143,7 @@ myStartupHook = do
   spawnOnce
     "trayer --edge bottom --align right --SetDockType true \
     \--SetPartialStrut true --expand false --width 5 --transparent true \
-    \--alpha 0 --tint 0x000000 --height 18 --distance 0"
+    \--alpha 0 --tint 0x000000 --height 18 --distance 0 --monitor primary"
   spawnOnce "feh --bg-fill --no-fehbg /usr/share/nix.png"
 
 myLayout = avoidStruts $ smartBorders tiled ||| smartBorders (Mirror tiled) ||| smartBorders Full
