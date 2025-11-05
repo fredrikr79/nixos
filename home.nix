@@ -86,8 +86,6 @@ in
     krita
     inkscape
     onlyoffice-desktopeditors
-    scala
-    sbt
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -938,12 +936,6 @@ in
       ".direnv"
       ".jj"
     ];
-  };
-
-  programs.java = {
-    enable = true;
-    package = (pkgs.jdk21.override { enableJavaFX = true; });
-    # package = pkgs.jdk21;
   };
 
   programs.direnv = {
