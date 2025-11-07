@@ -537,7 +537,6 @@ in
             css = [ "prettier" ];
             json = [ "prettier" ];
             nix = [ "nixfmt" ];
-            # scala = [ "scalafmt" ];
           };
         };
       };
@@ -820,7 +819,18 @@ in
             display = {
               done_icon = "";
               done_ttl = 7;
-              format_message = inputs.nixvim.lib.nixvim.mkRaw "function(msg)\n  if string.find(msg.title, \"Indexing\") then\n    return nil -- Ignore \"Indexing...\" progress messages\n  end\n  if msg.message then\n    return msg.message\n  else\n    return msg.done and \"Completed\" or \"In progress...\"\n  end\nend\n";
+              format_message = inputs.nixvim.lib.nixvim.mkRaw ''
+                function(msg)
+                  if msg.title and string.find(msg.title, "Indexing") then
+                    return nil
+                  end
+                  if msg.message then
+                    return msg.message
+                  else
+                    return msg.done and "Completed" or "In progress..."
+                  end
+                end
+              '';
             };
           };
         };
