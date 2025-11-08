@@ -561,7 +561,9 @@ in
       "application/pdf" = "org.pwmt.zathura.desktop";
       "image/png" = "feh.desktop";
       "image/jpeg" = "feh.desktop";
-      # "text/plain" = "nvim.desktop";
+      "text/html" = "org.qutebrowser.qutebrowser.desktop";
+      "x-scheme-handler/http" = "org.qutebrowser.qutebrowser.desktop";
+      "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
     };
   };
 

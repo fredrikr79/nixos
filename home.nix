@@ -960,7 +960,7 @@ in
     # Display temperature settings
     temperature = {
       day = 5700;
-      night = 3500;
+      night = 3000;
     };
 
     # Location settings (replace with your coordinates)
@@ -1167,9 +1167,11 @@ in
           fg = "#ffffff";
         };
         tabs.bar.bg = "#000000";
+        webpage.darkmode.enabled = true;
       };
       # tabs.tabs_are_windows = true;
       url.start_pages = [ "https://kagi.com/" ];
+      url.default_page = "https://kagi.com/";
     };
     searchEngines = {
       w = "https://en.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1";
