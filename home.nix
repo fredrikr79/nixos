@@ -114,6 +114,14 @@ in
     ".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
     ".config/nushell/themes".source = home/config/nushell/themes;
     ".config/nushell/quitcd".source = home/config/nushell/quitcd;
+    ".local/share/applications/qutebrowser-new.desktop".text = ''
+      [Desktop Entry]
+      Name=Qutebrowser New Window
+      Exec=qutebrowser --target window %u
+      Type=Application
+      MimeType=text/html
+      Icon=qutebrowser
+    '';
   };
 
   home.sessionVariables = {
