@@ -125,6 +125,14 @@ in
     '';
   };
 
+  xdg.configFile."luakit/userconf.lua".text = ''
+    local settings = require "settings"
+    settings.window.home_page = "https://kagi.com/"
+    local engines = settings.window.search_engines
+    engines.kagi = "https://kagi.com/search?q=%s"
+    engines.default = engines.kagi
+  '';
+
   home.sessionVariables = {
     EDITOR = "nvim";
   };

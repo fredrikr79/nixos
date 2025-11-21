@@ -318,6 +318,7 @@ in
       nnn
       nix-tree
       xsecurelock
+      luakit
     ]
   );
 
@@ -561,9 +562,9 @@ in
       "application/pdf" = "org.pwmt.zathura.desktop";
       "image/png" = "feh.desktop";
       "image/jpeg" = "feh.desktop";
-      "text/html" = "qutebrowser-new.desktop";
-      "x-scheme-handler/http" = "org.qutebrowser.qutebrowser.desktop";
-      "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
+      "text/html" = "luakit.desktop";
+      "x-scheme-handler/http" = "luakit.desktop";
+      "x-scheme-handler/https" = "luakit.desktop";
     };
   };
 

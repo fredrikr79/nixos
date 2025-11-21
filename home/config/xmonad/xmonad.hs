@@ -51,7 +51,7 @@ myConfig =
           logHook = historyHook
         }
         `additionalKeysP` [ ("M-b", spawn browser),
-                            ("M-c", spawn "qutebrowser"),
+                            ("M-c", spawn "luakit"),
                             ("M-m", spawn "thunderbird"),
                             -- , ("M-t", spawn terminal)
                             -- , ("M-S-Enter", spawn terminal)
