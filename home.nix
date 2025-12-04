@@ -135,6 +135,7 @@ in
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    MOZ_USE_XINPUT2 = "1";
   };
 
   programs.home-manager.enable = true;
@@ -1205,6 +1206,74 @@ in
     perDomainSettings = {
       "accounts.google.com".content.headers.user_agent =
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36";
+    };
+  };
+
+  programs.firefox = {
+    enable = true;
+
+    profiles.default = {
+      id = 0;
+      name = "default";
+      isDefault = true;
+
+      settings = {
+        # Memory optimization
+        "dom.ipc.processCount" = 1;
+        "dom.ipc.processCount.webIsolated" = 1;
+        "fission.autostart" = false;
+        "browser.cache.memory.capacity" = 2097152;
+
+        # Hardware acceleration
+        "gfx.webrender.all" = true;
+        "media.hardware-video-decoding.force-enabled" = true;
+        "layers.acceleration.force-enabled" = true;
+
+        # UI customization
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "browser.compactmode.show" = true;
+
+        # Clean interface
+        "browser.startup.homepage" = "about:blank";
+        "browser.newtabpage.enabled" = false;
+        "browser.newtabpage.activity-stream.feeds.section.highlights" = false;
+
+        # Privacy
+        "privacy.resistFingerprinting" = true;
+        "dom.security.https_only_mode" = true;
+      };
+
+      # Minimal userChrome.css
+      userChrome = ''
+        /* Hide tab bar when single tab */
+        #tabbrowser-tabs {
+          visibility: collapse !important;
+        }
+        #tabbrowser-tabs[overflow="true"],
+        #tabbrowser-tabs:not([overflow]) {
+          visibility: visible !important;
+        }
+
+        /* Auto-hide address bar */
+        #nav-bar {
+          margin-top: -40px !important;
+          transition: margin-top 0.2s ease !important;
+        }
+        #navigator-toolbox:hover #nav-bar,
+        #nav-bar:focus-within {
+          margin-top: 0px !important;
+        }
+
+        /* Clean minimal look */
+        #identity-box,
+        #tracking-protection-icon-container,
+        #urlbar-zoom-button,
+        #star-button-box { display: none !important; }
+      '';
+
+      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+        ublock-origin
+      ];
     };
   };
 }
