@@ -1227,53 +1227,85 @@ in
         # Hardware acceleration
         "gfx.webrender.all" = true;
         "media.hardware-video-decoding.force-enabled" = true;
-        "layers.acceleration.force-enabled" = true;
 
         # UI customization
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "browser.compactmode.show" = true;
 
+        # uBlock Origin medium mode (blocks 3rd-party scripts by default)
+        "extensions.webextensions.uuids" = ''{"[email protected]":"ublock0"}'';
+
         # Clean interface
         "browser.startup.homepage" = "about:blank";
         "browser.newtabpage.enabled" = false;
-        "browser.newtabpage.activity-stream.feeds.section.highlights" = false;
+        "browser.tabs.firefox-view" = false;
 
         # Privacy
         "privacy.resistFingerprinting" = true;
         "dom.security.https_only_mode" = true;
       };
 
-      # Minimal userChrome.css
+      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+        ublock-origin
+      ];
+
+      # Working minimal userChrome.css (luakit/qutebrowser style)
       userChrome = ''
-        /* Hide tab bar when single tab */
+        @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+
+        /* Hide entire navigation toolbox by default */
+        #navigator-toolbox {
+          height: 0px !important;
+          min-height: 0px !important;
+          overflow: hidden !important;
+          transition: height 0.2s ease !important;
+        }
+
+        /* Show navigation when focused (Ctrl+L works) */
+        #navigator-toolbox:focus,
+        #navigator-toolbox:focus-within,
+        #navigator-toolbox:active {
+          height: auto !important;
+          overflow: visible !important;
+        }
+
+        /* Hide tabs when single tab */
         #tabbrowser-tabs {
           visibility: collapse !important;
         }
+
+        /* Show tabs with multiple tabs */
         #tabbrowser-tabs[overflow="true"],
         #tabbrowser-tabs:not([overflow]) {
           visibility: visible !important;
         }
 
-        /* Auto-hide address bar */
-        #nav-bar {
-          margin-top: -40px !important;
-          transition: margin-top 0.2s ease !important;
-        }
-        #navigator-toolbox:hover #nav-bar,
-        #nav-bar:focus-within {
-          margin-top: 0px !important;
+        /* Clean minimal styling */
+        .tabbrowser-tab {
+          min-height: 32px !important;
+          background: #1d2021 !important;
+          color: #ebdbb2 !important;
+          border: none !important;
         }
 
-        /* Clean minimal look */
-        #identity-box,
-        #tracking-protection-icon-container,
-        #urlbar-zoom-button,
-        #star-button-box { display: none !important; }
+        .tabbrowser-tab[selected="true"] {
+          background: #458588 !important;
+          color: #1d2021 !important;
+        }
+
+        /* Hide unnecessary UI elements */
+        #identity-box, #tracking-protection-icon-container,
+        #urlbar-zoom-button, #star-button-box,
+        #pageActionButton, #pageActionSeparator,
+        #firefox-view-button {
+          display: none !important;
+        }
+
+        /* Remove window decorations */
+        .titlebar-buttonbox-container {
+          display: none !important;
+        }
       '';
-
-      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
-        ublock-origin
-      ];
     };
   };
 }
