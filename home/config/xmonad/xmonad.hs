@@ -41,7 +41,7 @@ main =
 
 myConfig =
   let terminal = "kitty tmux new-session"
-      browser = "vivaldi"
+      browser = "firefox"
       modm = mod4Mask -- super/meta
    in def
         { modMask = modm,

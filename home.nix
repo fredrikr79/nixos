@@ -87,6 +87,7 @@ in
     inkscape
     onlyoffice-desktopeditors
     proton-pass
+    w3m
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -1245,7 +1246,7 @@ in
       userChrome = ''
         @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
 
-        /* CRITICAL: Move navbar above tabs */
+        /* Move navbar above tabs */
         #nav-bar {
           order: -1 !important;
           background: #1d2021 !important;
@@ -1291,14 +1292,17 @@ in
           display: none !important;
         }
 
-        /* Window controls positioning (adjust if needed) */
+        /* PROPERLY hide window controls */
         .titlebar-buttonbox-container {
-          height: 38px;
-          position: absolute;
-          right: 0;
-          top: 0;
+          display: none !important;
+        }
+
+        /* Hide menu button */
+        #PanelUI-button {
+          display: none !important;
         }
       '';
+
     };
   };
 }
