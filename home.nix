@@ -1232,9 +1232,6 @@ in
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "browser.compactmode.show" = true;
 
-        # uBlock Origin medium mode (blocks 3rd-party scripts by default)
-        "extensions.webextensions.uuids" = ''{"[email protected]":"ublock0"}'';
-
         # Clean interface
         "browser.startup.homepage" = "about:blank";
         "browser.newtabpage.enabled" = false;
@@ -1245,42 +1242,35 @@ in
         "dom.security.https_only_mode" = true;
       };
 
-      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
-        ublock-origin
-      ];
-
-      # Working minimal userChrome.css (luakit/qutebrowser style)
       userChrome = ''
         @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
 
-        /* Hide entire navigation toolbox by default */
-        #navigator-toolbox {
-          height: 0px !important;
-          min-height: 0px !important;
-          overflow: hidden !important;
-          transition: height 0.2s ease !important;
+        /* CRITICAL: Move navbar above tabs */
+        #nav-bar {
+          order: -1 !important;
+          background: #1d2021 !important;
         }
 
-        /* Show navigation when focused (Ctrl+L works) */
-        #navigator-toolbox:focus,
-        #navigator-toolbox:focus-within,
-        #navigator-toolbox:active {
-          height: auto !important;
-          overflow: visible !important;
+        /* Auto-hide navbar */
+        #navigator-toolbox:not(:hover) > #nav-bar,
+        #navigator-toolbox:not(:focus-within) > #nav-bar {
+          margin-top: -40px !important;
+          opacity: 0 !important;
         }
 
-        /* Hide tabs when single tab */
-        #tabbrowser-tabs {
+        #nav-bar {
+          transition: all 0.2s ease-in-out !important;
+        }
+
+        /* Hide single tab */
+        .tabbrowser-tab:only-of-type,
+        .tabbrowser-tab[first-visible-tab="true"][last-visible-tab="true"] {
           visibility: collapse !important;
+          min-height: 0 !important;
+          height: 0;
         }
 
-        /* Show tabs with multiple tabs */
-        #tabbrowser-tabs[overflow="true"],
-        #tabbrowser-tabs:not([overflow]) {
-          visibility: visible !important;
-        }
-
-        /* Clean minimal styling */
+        /* Clean tab styling */
         .tabbrowser-tab {
           min-height: 32px !important;
           background: #1d2021 !important;
@@ -1301,9 +1291,12 @@ in
           display: none !important;
         }
 
-        /* Remove window decorations */
+        /* Window controls positioning (adjust if needed) */
         .titlebar-buttonbox-container {
-          display: none !important;
+          height: 38px;
+          position: absolute;
+          right: 0;
+          top: 0;
         }
       '';
     };
