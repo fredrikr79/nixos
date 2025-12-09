@@ -304,9 +304,24 @@ in
       }
 
       {
-        key = "<C-backspace>";
+        key = "<C-Backspace>";
         action = "<C-w>";
-        mode = [ "i" ];
+        mode = "i";
+      }
+      {
+        key = "";
+        action = "<C-w>";
+        mode = "i";
+      }
+      {
+        key = "<Find>";
+        action = "<Home>";
+        mode = "i";
+      }
+      {
+        key = "<Select>";
+        action = "<End>";
+        mode = "i";
       }
 
       # harpoon2 syntax

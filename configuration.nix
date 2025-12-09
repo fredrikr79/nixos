@@ -118,7 +118,7 @@ in
     # DVORAK + NO
     xkb.layout = "us,no";
     xkb.variant = "dvp,";
-    xkb.options = "compose:alt,grp:alt_shift_toggle,lv3:menu";
+    xkb.options = "compose:menu,grp:alt_shift_toggle,lv3:ralt";
 
     exportConfiguration = true;
 
