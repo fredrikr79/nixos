@@ -620,4 +620,6 @@ in
   systemd.sleep.extraConfig = ''
     HibernateDelaySec=60min
   '';
+
+  programs.nix-ld.enable = true;
 }

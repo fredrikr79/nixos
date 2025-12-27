@@ -88,6 +88,7 @@ in
     onlyoffice-desktopeditors
     proton-pass
     w3m
+    zed-editor
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -314,14 +315,32 @@ in
         mode = "i";
       }
       {
+        key = "<PageDown>";
+        action = "<PageDown>zz";
+        mode = "n";
+      }
+      {
+        key = "<PageUp>";
+        action = "<PageUp>zz";
+        mode = "n";
+      }
+      {
         key = "<Find>";
         action = "<Home>";
-        mode = "i";
+        mode = [
+          "i"
+          "n"
+          "v"
+        ];
       }
       {
         key = "<Select>";
         action = "<End>";
-        mode = "i";
+        mode = [
+          "i"
+          "n"
+          "v"
+        ];
       }
 
       # harpoon2 syntax
@@ -489,7 +508,14 @@ in
           };
         };
         omnisharp.enable = true;
-        ols.enable = true;
+        ols = {
+          enable = true;
+          package = pkgs.ols.overrideAttrs (oldAttrs: {
+            postInstall = (oldAttrs.postInstall or "") + ''
+              cp -r $src/builtin $out/bin/builtin
+            '';
+          });
+        };
         rust_analyzer.enable = true;
         superhtml.enable = true;
         metals.enable = true;
@@ -824,7 +850,7 @@ in
       smartcolumn = {
         enable = true;
         settings = {
-          colorcolumn = "80";
+          colorcolumn = [ "80" ];
           disabled_filetypes = [
             "checkhealth"
             "help"
@@ -835,7 +861,7 @@ in
             "text"
             "typst"
           ];
-          scope = "window";
+          scope = "line";
         };
       };
 
@@ -963,7 +989,6 @@ in
       isort
       shfmt
       python3Packages.python-lsp-server
-      ols
       djlint
       superhtml
       tinymist
@@ -1059,6 +1084,7 @@ in
     font.size = 16;
     # font.package = pkgs.monocraft;
     themeFile = "Dracula";
+    extraConfig = "tab_stop 4";
   };
 
   programs.tmux = {
