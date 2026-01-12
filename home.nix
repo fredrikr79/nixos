@@ -1282,6 +1282,14 @@ in
         # Privacy
         "privacy.resistFingerprinting" = true;
         "dom.security.https_only_mode" = true;
+
+        "general.smoothScroll" = true;
+        "general.smoothScroll.mouseWheel" = true;
+        "mousewheel.min_line_scroll_amount" = 10;
+        "mousewheel.default.delta_multiplier_y" = 300;
+        "apz.gtk.kinetic_scroll.enabled" = true; # for kinetic scrolling
+        "apz.gtk.kinetic_scroll.priming_enabled" = true;
+        "apz.gtk.kinetic_scroll.animation_duration_ms" = 500;
       };
 
       userChrome = ''

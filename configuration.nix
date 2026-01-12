@@ -493,6 +493,7 @@ in
     SDL_IM_MODULE = "fcitx";
     GLFW_IM_MODULE = "ibus"; # Some applications use GLFW
     INPUT_METHOD = "fcitx";
+    MOZ_USE_XINPUT2 = "1";
   };
 
   xdg.portal = {
